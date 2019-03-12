@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mt.dao.AccountDao">
+    <select id="getUserByUsername" resultType="Account" parameterType="String">
+        SELECT * FROM account WHERE username = #{username};
+    </select>
+
+    <insert id="addUser">
+        INSERT INTO account (username, password, act) VALUES (#{username}, SHA1(#{password}), #{act});
+    </insert>
+
+    <update id="resetPassword">
+        UPDATE account SET password = SHA1('123456') WHERE account_id = #{account_id};
+    </update>
+
+    <select id="countJoin" resultType="int">
+        SELECT TIMESTAMPDIFF(DAY,created_at,NOW()) FROM account WHERE account_id = #{account_id};
+    </select>
+
+    <update id="disable">
+        UPDATE account SET disable = #{disable} WHERE account_id = #{account_id};
+    </update>
+
+    <select id="getAllAccount" resultType="Account">
+        SELECT * FROM account;
+    </select>
+</mapper>
