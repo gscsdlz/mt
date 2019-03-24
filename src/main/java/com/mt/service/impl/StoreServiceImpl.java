@@ -1,0 +1,51 @@
+package com.mt.service.impl;
+
+import com.mt.dao.StoreDao;
+import com.mt.entity.Store;
+import com.mt.service.StoreService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class StoreServiceImpl implements StoreService {
+
+    @Autowired
+    private StoreDao store;
+
+    @Override
+    public List<Store> getStore(int page, int size) {
+        List<Store> res = store.getAllStore();
+        int l = (page - 1) * size;
+        int r = page * size;
+        //get [L, r)
+        if (res.size() < l) {
+            res.clear();
+        } else if (res.size() < r) {
+            r = res.size();
+        }
+        return res.subList(l, r);
+    }
+
+    @Override
+    public Boolean modifyStore(Store s) {
+        return store.updateNewStore(s.getId(), s.getStoreName(), s.getCityId(), s.getTypeId()) > 0;
+    }
+
+    @Override
+    public Boolean addStore(Store s) {
+        return store.addNewStore(s.getStoreName(), s.getStoreImg(), s.getCityId(), s.getTypeId()) > 0;
+    }
+
+    @Override
+    public Boolean delStore(int id) {
+        int effRow = store.delStoreWithId(id);
+        return effRow > 0;
+    }
+
+    @Override
+    public Boolean modifyImg(int id, String imgPath) {
+        return null;
+    }
+}

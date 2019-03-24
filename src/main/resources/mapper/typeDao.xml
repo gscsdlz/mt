@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mt.dao.TypeDao">
+    <select id="getAllSubType" resultType="Type">
+        SELECT id, main_type, type_name FROM m_type WHERE main_type = #{main_type};
+    </select>
+
+    <select id="getAllType" resultType="Type">
+        SELECT id, main_type, type_name FROM m_type;
+    </select>
+
+    <select id="getAllMainType" resultType="Type">
+        SELECT DISTINCT(main_type) FROM m_type;
+</select>
+</mapper>

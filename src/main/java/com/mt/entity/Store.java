@@ -8,6 +8,42 @@ public class Store {
     private int typeId;
     private String createdAt;
     private String updatedAt;
+    private String Province;
+    private String city;
+    private String mainType;
+    private String typeName;
+
+    public String getProvince() {
+        return Province;
+    }
+
+    public void setProvince(String province) {
+        Province = province;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getMainType() {
+        return mainType;
+    }
+
+    public void setMainType(String mainType) {
+        this.mainType = mainType;
+    }
+
+    public String getTypeName() {
+        return typeName;
+    }
+
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
+    }
 
     public int getId() {
         return id;

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mt.dao.StoreDao">
+    <select id="getAllStore" resultType="Store">
+        SELECT m_store.*, m_city.province, m_city.city, m_type.main_type, m_type.type_name
+        FROM m_store
+                 JOIN m_city ON (m_store.city_id = m_city.id)
+                 JOIN m_type ON (m_type.id = m_store.type_id)
+        WHERE 1;
+    </select>
+
+    <delete id="delStoreWithId">
+        DELETE
+        FROM m_store
+        WHERE id = #{id};
+    </delete>
+
+    <insert id="addNewStore">
+        INSERT INTO m_store (store_name, store_img, city_id, type_id) VALUES (#{store_name}, #{store_img}, #{city_id}, #{type_id});
+    </insert>
+</mapper>
