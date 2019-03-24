@@ -19,17 +19,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">商铺列表</h4>
-                        <button id="add" class="btn btn-sm btn-primary" type="button">新增 <span
-                                class="mdi mdi-plus"></span></button>
-                        <button id="moreAction" disabled class="btn btn-sm btn-primary dropdown-toggle" type="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">批量操作
-                        </button>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">删除</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                            <div role="separator" class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">取消全选</a>
-                        </div>
+                        <button id="add" class="btn btn-sm btn-primary" type="button">新增 <span class="mdi mdi-plus"></span></button>
                         <hr/>
                         <table class="table table-bordered">
                             <thead>
@@ -47,13 +37,7 @@
                             <tbody id="dataArea">
                             <c:forEach items="${data}" var="store">
                                 <tr>
-                                    <td>
-                                        <div class="form-check">
-                                            <label class="form-check-label">
-                                                <input type="checkbox" class="form-check-input">${store.id}
-                                            </label>
-                                        </div>
-                                    </td>
+                                    <td>${store.id}</td>
                                     <td><img src="${store.storeImg}" width="100%" height="70px">
                                     </td>
                                     <td>${store.storeName}</td>
@@ -84,7 +68,7 @@
                 <h4>店铺操作</h4>
             </div>
             <div class="modal-body">
-                <form>
+                <form id="storeForm">
                     <input type="hidden" id="storeId" />
                     <div class="row">
                         <div class="col-sm-8">
@@ -153,18 +137,30 @@
             let city = $("#city").val();
             let type = $("#type").val();
             let img = $("#storeImg").attr('src');
+            let args = {
+                storeName: name,
+                cityId: city,
+                typeId: type,
+                storeImg: img,
+                id: parseInt($("#storeId").val())
+            };
             if (parseInt($("#storeId").val()) > 0 ) {
                 //udpate
+                $.post("/admin/store_api/modify", {json_str: JSON.stringify(args)}, function (resp) {
+                    if (resp.status) {
+                        window.location.reload();
+                    } else {
+                        alert(resp.info);
+                    }
+                })
             } else {
                 //add
-                let args = {
-                    storeName: name,
-                    cityId: city,
-                    typeId: type,
-                    storeImg: img,
-                };
                 $.post("/admin/store_api/add", {json_str: JSON.stringify(args)}, function (resp) {
-
+                    if (resp.status) {
+                        window.location.reload();
+                    } else {
+                        alert(resp.info);
+                    }
                 })
             }
         });
@@ -182,20 +178,6 @@
             }
         });
 
-        $(".form-check-input").click(function () {
-            checkedIds = [];
-            $(".form-check-input").each(function () {
-                if ($(this).prop('checked')) {
-                    checkedIds.push($(this).parent().text().trim())
-                }
-            });
-            if (checkedIds.length === 0) {
-                $("#moreAction").attr("disabled", true);
-            } else {
-                $("#moreAction").attr("disabled", false);
-            }
-        });
-
         $("[actionDel]").click(function () {
             let id = $(this).attr('actionDel');
             $.post("/admin/store_api/del", {id: id}, function (resp) {
@@ -207,8 +189,28 @@
                 }
             })
         });
+        
+        $("[actionModify]").click(function () {
+            document.getElementById("storeForm").reset();
+            let id = $(this).attr("actionModify");
+            let target = $(this).parent().parent().children();
+            $("#storeId").val(id);
+            $("#storeName").val(target.eq(2).html());
+            $("#storeImg").attr('src', target.eq(1).children().eq(0).attr('src'));
+            let arr = target.eq(3).html().split(" · ");
+            $("#province").val(arr[0]);
+            loadCity(arr[0], arr[1]);
+            arr = target.eq(4).html().split(" / ");
+            $("#mainType").val(arr[0]);
+            loadType(arr[0], arr[1]);
+            $("#storeModal").modal()
+        });
 
         $("#add").click(function () {
+            document.getElementById("storeForm").reset();
+            $("#storeImg").attr('src', '/assets/images/default/empty_img.png');
+            loadCity($("#province").val());
+            loadType($("#mainType").val());
             $("#storeModal").modal()
         });
 
@@ -297,19 +299,27 @@
         return typeMapper[typeName];
     }
 
-    function loadCity(cityName) {
+    function loadCity(cityName, defaultValue) {
         $("#city").html("");
         let cList = getAllCity(cityName);
         for (let i = 0; i < cList.length; i++) {
-            $("#city").append('<option value="' + cList[i].id + '">' + cList[i].city + '</option>')
+            if (typeof defaultValue !== 'undefined' && defaultValue === cList[i].city) {
+                $("#city").append('<option selected value="' + cList[i].id + '">' + cList[i].city + '</option>')
+            } else {
+                $("#city").append('<option value="' + cList[i].id + '">' + cList[i].city + '</option>')
+            }
         }
     }
 
-    function loadType(mainType) {
+    function loadType(mainType, defaultValue) {
         $("#type").html("");
         let types = getAllType(mainType);
         for (let i = 0; i < types.length; i++) {
-            $("#type").append('<option value="' + types[i].id + '">' + types[i].typeName + '</option>')
+            if (typeof defaultValue !== 'undefined' && defaultValue === types[i].typeName) {
+                $("#type").append('<option selected value="' + types[i].id + '">' + types[i].typeName + '</option>')
+            } else {
+                $("#type").append('<option value="' + types[i].id + '">' + types[i].typeName + '</option>')
+            }
         }
     }
 </script>

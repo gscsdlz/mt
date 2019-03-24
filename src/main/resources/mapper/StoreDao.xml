@@ -18,6 +18,16 @@
     </delete>
 
     <insert id="addNewStore">
-        INSERT INTO m_store (store_name, store_img, city_id, type_id) VALUES (#{store_name}, #{store_img}, #{city_id}, #{type_id});
+        INSERT INTO m_store (store_name, store_img, city_id, type_id)
+        VALUES (#{store_name}, #{store_img}, #{city_id}, #{type_id});
     </insert>
+
+    <update id="updateNewStore">
+        UPDATE m_store
+        SET store_name = #{store_name},
+            store_img  = #{store_img},
+            city_id    = #{city_id},
+            type_id    = #{type_id}
+        WHERE id = #{id};
+    </update>
 </mapper>

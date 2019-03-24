@@ -30,7 +30,7 @@ public class StoreServiceImpl implements StoreService {
 
     @Override
     public Boolean modifyStore(Store s) {
-        return store.updateNewStore(s.getId(), s.getStoreName(), s.getCityId(), s.getTypeId()) > 0;
+        return store.updateNewStore(s.getId(), s.getStoreName(), s.getStoreImg(), s.getCityId(), s.getTypeId()) > 0;
     }
 
     @Override
@@ -42,10 +42,5 @@ public class StoreServiceImpl implements StoreService {
     public Boolean delStore(int id) {
         int effRow = store.delStoreWithId(id);
         return effRow > 0;
-    }
-
-    @Override
-    public Boolean modifyImg(int id, String imgPath) {
-        return null;
     }
 }

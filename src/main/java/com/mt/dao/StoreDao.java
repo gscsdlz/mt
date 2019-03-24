@@ -20,6 +20,7 @@ public interface StoreDao {
     int updateNewStore(
             @Param("id") int id,
             @Param("store_name") String storeName,
+            @Param("store_img") String storeImg,
             @Param("city_id") int cityId,
             @Param("type_id") int typeId
     );

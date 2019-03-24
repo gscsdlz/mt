@@ -86,7 +86,7 @@ public class Store {
     }
 
     public String getCreatedAt() {
-        return createdAt;
+        return createdAt.substring(0, 19);
     }
 
     public void setCreatedAt(String createdAt) {
@@ -94,7 +94,7 @@ public class Store {
     }
 
     public String getUpdatedAt() {
-        return updatedAt;
+        return updatedAt.substring(0, 19);
     }
 
     public void setUpdatedAt(String updatedAt) {

@@ -12,6 +12,4 @@ public interface StoreService {
     Boolean addStore(Store store);
 
     Boolean delStore(int id);
-
-    Boolean modifyImg(int id, String imgPath);
 }
