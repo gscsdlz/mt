@@ -36,12 +36,12 @@
                         </div>
                     </a>
                     <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/admin/account/center">
                             <i class="mdi mdi-cached mr-2 text-success"></i>
                             用户中心
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/logout">
                             <i class="mdi mdi-logout mr-2 text-primary"></i>
                             退出登录
                         </a>
@@ -55,82 +55,61 @@
     </nav>
     <!-- partial -->
     <div class="container-fluid page-body-wrapper">
-        <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <nav class="sidebar sidebar-offcanvas">
             <ul class="nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="index.html">
+                    <a class="nav-link" href="${pageContext.request.contextPath}/admin/index">
                         <span class="menu-title">主页</span>
                         <i class="mdi mdi-home menu-icon"></i>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item active">
                     <a class="nav-link" href="${pageContext.request.contextPath}/admin/store/index">
                         <span class="menu-title">店铺管理</span>
                         <i class="mdi mdi-home menu-icon"></i>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="index.html">
+                    <a class="nav-link" href="${pageContext.request.contextPath}/admin/item/index">
                         <span class="menu-title">商品管理</span>
                         <i class="mdi mdi-home menu-icon"></i>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="index.html">
-                        <span class="menu-title"></span>
-                        <i class="mdi mdi-home menu-icon"></i>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-                        <span class="menu-title">UI Elements</span>
+                    <a class="nav-link" data-toggle="collapse" href="#order-menu" aria-expanded="false" aria-controls="ui-basic">
+                        <span class="menu-title">订单管理</span>
                         <i class="menu-arrow"></i>
                         <i class="mdi mdi-crosshairs-gps menu-icon"></i>
                     </a>
-                    <div class="collapse" id="ui-basic">
+                    <div class="collapse" id="order-menu">
                         <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
-                            <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="${pageContext.request.contextPath}/admin/order/index">未完成订单管理</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="${pageContext.request.contextPath}/admin/order/history">历史订单查询</a></li>
                         </ul>
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="pages/icons/mdi.html">
-                        <span class="menu-title">Icons</span>
-                        <i class="mdi mdi-contacts menu-icon"></i>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/admin/type/index">
+                        <span class="menu-title">分类管理</span>
+                        <i class="mdi mdi-home menu-icon"></i>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="pages/forms/basic_elements.html">
-                        <span class="menu-title">Forms</span>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/admin/post/index">
+                        <span class="menu-title">发帖管理</span>
                         <i class="mdi mdi-format-list-bulleted menu-icon"></i>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="pages/charts/chartjs.html">
-                        <span class="menu-title">Charts</span>
-                        <i class="mdi mdi-chart-bar menu-icon"></i>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="pages/tables/basic-table.html">
-                        <span class="menu-title">Tables</span>
-                        <i class="mdi mdi-table-large menu-icon"></i>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="collapse" href="#general-pages" aria-expanded="false" aria-controls="general-pages">
-                        <span class="menu-title">Sample Pages</span>
+                    <a class="nav-link" data-toggle="collapse" href="#menu-user" aria-expanded="false" aria-controls="ui-basic">
+                        <span class="menu-title">用户管理</span>
                         <i class="menu-arrow"></i>
-                        <i class="mdi mdi-medical-bag menu-icon"></i>
+                        <i class="mdi mdi-crosshairs-gps menu-icon"></i>
                     </a>
-                    <div class="collapse" id="general-pages">
+                    <div class="collapse" id="menu-user">
                         <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"> <a class="nav-link" href="pages/samples/blank-page.html"> Blank Page </a></li>
-                            <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Login </a></li>
-                            <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>
-                            <li class="nav-item"> <a class="nav-link" href="pages/samples/error-404.html"> 404 </a></li>
-                            <li class="nav-item"> <a class="nav-link" href="pages/samples/error-500.html"> 500 </a></li>
+                            <li class="nav-item"> <a class="nav-link" href="${pageContext.request.contextPath}/admin/account/normal">普通用户管理</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="${pageContext.request.contextPath}/admin/account/admin">管理员管理</a></li>
                         </ul>
                     </div>
                 </li>

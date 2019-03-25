@@ -15,32 +15,32 @@ public class AccountServiceImpl implements AccountService {
     private AccountDao accountDao;
 
     @Override
-    public Account getUserByUsername(String username) {
-        return accountDao.getUserByUsername(username);
+    public List<Account> getAllAccount(int pri, int page, int size) {
+        return null;
     }
 
     @Override
-    public int addUser(String username, String password, int act) {
-        return accountDao.addUser(username, password, act);
+    public boolean addAccount(Account account) {
+        return false;
     }
 
     @Override
-    public int countJoin(int accountId) {
-        return accountDao.countJoin(accountId);
+    public boolean updateAccount(Account account) {
+        return false;
     }
 
     @Override
-    public int disable(int accountId, int disable) {
-        return accountDao.disable(accountId, disable);
+    public boolean delAccount(int id) {
+        return false;
     }
 
     @Override
-    public int resetPassword(int accountId) {
-        return accountDao.resetPassword(accountId);
+    public Account getAccountByUserName(String username) {
+        return null;
     }
 
     @Override
-    public List<Account> getAllUser() {
-        return accountDao.getAllAccount();
+    public Account getAccountById(int id) {
+        return null;
     }
 }

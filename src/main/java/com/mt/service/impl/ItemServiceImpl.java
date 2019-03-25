@@ -25,12 +25,12 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public int addItem(Item item) {
-        return 0;
+    public boolean addItem(Item item) {
+        return itemDao.addItem(item.getItemName(), item.getStoreId(), item.getOldPrice(), item.getPrice(), item.getItemImg()) > 0;
     }
 
     @Override
-    public int modifyItem(Item item) {
-        return 0;
+    public boolean modifyItem(Item item) {
+        return itemDao.updateItem(item.getId(), item.getItemName(), item.getOldPrice(), item.getPrice(), item.getItemImg()) > 0;
     }
 }

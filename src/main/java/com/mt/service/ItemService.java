@@ -9,8 +9,8 @@ public interface ItemService {
 
     boolean delItem(int itemId);
 
-    int addItem(Item item);
+    boolean addItem(Item item);
 
-    int modifyItem(Item item);
+    boolean modifyItem(Item item);
 
 }

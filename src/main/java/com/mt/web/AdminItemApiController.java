@@ -31,4 +31,37 @@ public class AdminItemApiController {
         response.setData(itemService.getItem(page, size, storeId));
         return response;
     }
+
+    @RequestMapping("/modify")
+    private NormalResponse<String> modifyItem(@RequestParam Map<String, Object> param) {
+        NormalResponse<String> response = new NormalResponse<>();
+        ParamUtils p = new ParamUtils(param);
+        Item i = p.parseJson("json_str", Item.class);
+        if (!itemService.modifyItem(i)) {
+            response.setInfo("更新失败，请重试");
+        }
+        return response;
+    }
+
+    @RequestMapping("/del")
+    private NormalResponse<String> delItem(@RequestParam Map<String, Object> param) {
+        NormalResponse<String> response = new NormalResponse<>();
+        ParamUtils p = new ParamUtils(param);
+        int itemId = p.getInteger("id", 0);
+        if (!itemService.delItem(itemId)) {
+            response.setInfo("删除失败，请重试");
+        }
+        return response;
+    }
+
+    @RequestMapping("/add")
+    private NormalResponse<String> addItem(@RequestParam Map<String, Object> param) {
+        NormalResponse<String> response = new NormalResponse<>();
+        ParamUtils p = new ParamUtils(param);
+        Item i = p.parseJson("json_str", Item.class);
+        if (!itemService.addItem(i)) {
+            response.setInfo("添加失败，请重试");
+        }
+        return response;
+    }
 }

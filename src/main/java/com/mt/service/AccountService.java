@@ -5,15 +5,15 @@ import com.mt.entity.Account;
 import java.util.List;
 
 public interface AccountService {
-    Account getUserByUsername(String username);
+    List<Account> getAllAccount(int pri, int page, int size);
 
-    int addUser(String username, String password, int act);
+    boolean addAccount(Account account);
 
-    int countJoin(int accountId);
+    boolean updateAccount(Account account);
 
-    int disable(int accountId, int disable);
+    boolean delAccount(int id);
 
-    int resetPassword(int accountId);
+    Account getAccountByUserName(String username);
 
-    List<Account> getAllUser();
+    Account getAccountById(int id);
 }
