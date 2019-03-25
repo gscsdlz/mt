@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface ItemDao {
-    List<Item> getAllItem(@Param("store_id") int storeId);
+    List<Item> getAllItem(@Param("store_id") int storeId, @Param("offset") int offset, @Param("limit") int limit);
 
     int updateItem(
             @Param("id") int id,

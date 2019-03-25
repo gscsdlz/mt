@@ -1,9 +1,11 @@
 package com.mt.service.impl;
 
+import com.mt.dao.StoreDao;
 import com.mt.dao.TypeDao;
 import com.mt.entity.Type;
 import com.mt.service.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,6 +14,9 @@ import java.util.List;
 public class TypeServiceImpl implements TypeService {
     @Autowired
     private TypeDao typeDao;
+
+    @Autowired
+    private StoreDao storeDao;
 
     public List<Type> getSubType(String mainType) {
         return typeDao.getAllSubType(mainType);
@@ -25,5 +30,31 @@ public class TypeServiceImpl implements TypeService {
     @Override
     public List<Type> getAllMainType() {
         return typeDao.getAllMainType();
+    }
+
+    @Override
+    public boolean addType(Type t) {
+        try {
+            return typeDao.addType(t.getMainType(), t.getTypeName()) > 0;
+        } catch (DuplicateKeyException e) {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean updateType(Type t) {
+        try {
+            return typeDao.updateType(t.getId(), t.getMainType(), t.getTypeName()) > 0;
+        } catch (DuplicateKeyException e) {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean delType(int typeId) {
+        if (storeDao.getSizeByType(typeId) == 0 && typeDao.delType(typeId) > 0) {
+            return true;
+        }
+        return false;
     }
 }

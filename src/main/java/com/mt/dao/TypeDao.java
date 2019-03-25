@@ -7,6 +7,14 @@ import java.util.List;
 
 public interface TypeDao {
     List<Type> getAllSubType(@Param("main_type") String mainType);
+
     List<Type> getAllType();
+
     List<Type> getAllMainType();
+
+    int addType(@Param("main_type") String mainType, @Param("type_name") String typeName);
+
+    int updateType(@Param("id") int id, @Param("main_type") String mainType, @Param("type_name") String typeName);
+
+    int delType(@Param("id") int id);
 }

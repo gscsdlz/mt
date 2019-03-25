@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mt.dao.ItemDao">
     <select id="getAllItem" resultType="Item">
-        SELECT * FROM m_item WHERE store_id = #{store_id};
+        SELECT * FROM m_item WHERE store_id = #{store_id} LIMIT ${offset}, ${limit};
     </select>
     <insert id="addItem">
         INSERT INTO m_item (item_name, store_id, old_price, price, item_img) VALUES (#{item_name}, #{store_id}, #{old_price}, #{price}, #{item_img});

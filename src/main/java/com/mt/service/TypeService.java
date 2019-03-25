@@ -10,4 +10,10 @@ public interface TypeService {
     List<Type> getAllType();
 
     List<Type> getAllMainType();
+
+    boolean addType(Type t);
+
+    boolean updateType(Type t);
+
+    boolean delType(int typeId);
 }

@@ -3,5 +3,44 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mt.dao.OrderDao">
+    <select id="getAllOrderByUser" resultType="Order">
+        SELECT *
+        FROM m_order
+        WHERE account_id = #{account_id}
+        LIMIT ${offset}, ${limit}
+    </select>
+    <select id="getAllOrder" resultType="Order">
+        SELECT *
+        FROM m_order
+        LIMIT ${offset}, ${limit}
+    </select>
+    <select id="getAllOrderByStore" resultType="Order">
+        SELECT *
+        FROM m_order
+                 LEFT JOIN m_item ON (m_order.item_id = m_item.id)
+        WHERE m_item.store_id = #{store_id}
+        LIMIT ${offset}, ${limit}
+    </select>
+    <insert id="addOrder">
+        INSERT INTO m_order (item_id, account_id, item_number, item_price, total_price)
+        VALUES (#{item_id}, #{account_id}, ${item_number}, #{item_price}, ${total_price})
+    </insert>
 
+    <update id="updateOrderStar">
+        UPDATE m_order
+        SET star = #{star}
+        WHERE id = #{id};
+    </update>
+
+    <update id="updateOrderCommit">
+        UPDATE m_order
+        SET commit = #{commit}
+        WHERE id = #{id};
+    </update>
+
+    <update id="updateOrderStatus">
+        UPDATE m_order
+        SET order_status = #{order_status}
+        WHERE id = #{id};
+    </update>
 </mapper>

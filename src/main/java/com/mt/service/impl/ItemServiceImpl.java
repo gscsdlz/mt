@@ -16,12 +16,12 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public List<Item> getItem(int page, int size, int storeId) {
-        return null;
+        return itemDao.getAllItem(storeId, (page - 1) * size, size);
     }
 
     @Override
     public boolean delItem(int itemId) {
-        return false;
+        return itemDao.delItem(itemId) > 0;
     }
 
     @Override

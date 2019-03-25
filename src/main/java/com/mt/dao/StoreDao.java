@@ -8,6 +8,10 @@ import java.util.List;
 public interface StoreDao {
     List<Store> getAllStore();
 
+    List<Store> getAllStoreByType(@Param("type_id") int typeId);
+
+    int getSizeByType(@Param("type_id") int typeId);
+
     int delStoreWithId(@Param("id") int id);
 
     int addNewStore(
