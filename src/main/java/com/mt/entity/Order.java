@@ -4,15 +4,30 @@ import com.mt.enums.OrderStatus;
 
 public class Order {
     private int id;
-    private int itemId;
+    private String items;
     private int accountId;
     private int orderStatus;
-    private int itemNumber;
-    private double itemPrice;
     private double totalPrice;
     private int star;
-    private String commit;
+    private String remark;
     private String updatedAt;
+
+    public String getItems() {
+        return items;
+    }
+
+    public void setItems(String items) {
+        this.items = items;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
     private String createdAt;
 
     public int getId() {
@@ -21,14 +36,6 @@ public class Order {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getItemId() {
-        return itemId;
-    }
-
-    public void setItemId(int itemId) {
-        this.itemId = itemId;
     }
 
     public int getAccountId() {
@@ -47,22 +54,6 @@ public class Order {
         this.orderStatus = orderStatus;
     }
 
-    public int getItemNumber() {
-        return itemNumber;
-    }
-
-    public void setItemNumber(int itemNumber) {
-        this.itemNumber = itemNumber;
-    }
-
-    public double getItemPrice() {
-        return itemPrice;
-    }
-
-    public void setItemPrice(double itemPrice) {
-        this.itemPrice = itemPrice;
-    }
-
     public double getTotalPrice() {
         return totalPrice;
     }
@@ -77,14 +68,6 @@ public class Order {
 
     public void setStar(int star) {
         this.star = star;
-    }
-
-    public String getCommit() {
-        return commit;
-    }
-
-    public void setCommit(String commit) {
-        this.commit = commit;
     }
 
     public String getUpdatedAt() {

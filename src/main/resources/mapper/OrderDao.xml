@@ -17,12 +17,12 @@
     <select id="getAllOrderByStore" resultType="Order">
         SELECT *
         FROM m_order
-                 LEFT JOIN m_item ON (m_order.item_id = m_item.id)
+                 LEFT JOIN m_item ON (m_order.items = m_item.id)
         WHERE m_item.store_id = #{store_id}
         LIMIT ${offset}, ${limit}
     </select>
     <insert id="addOrder">
-        INSERT INTO m_order (item_id, account_id, item_number, item_price, total_price)
+        INSERT INTO m_order (items, account_id, item_number, item_price, total_price)
         VALUES (#{item_id}, #{account_id}, ${item_number}, #{item_price}, ${total_price})
     </insert>
 
@@ -34,7 +34,7 @@
 
     <update id="updateOrderCommit">
         UPDATE m_order
-        SET commit = #{commit}
+        SET remark = #{commit}
         WHERE id = #{id};
     </update>
 

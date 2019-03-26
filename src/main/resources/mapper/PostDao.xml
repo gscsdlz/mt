@@ -3,5 +3,23 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mt.dao.PostDao">
+    <select id="getAllPost" resultType="Post">
+        SELECT m_post.*, m_account.username FROM m_post LEFT JOIN m_account ON (m_account.id = m_post.manager_id) LIMIT #{offset}, #{limit};
+    </select>
 
+    <select id="getAllPostByUser" resultType="Post">
+        SELECT m_post.*, m_account.username FROM m_post LEFT JOIN m_account ON (m_account.id = m_post.manager_id) WHERE manager_id = #{manager_id} LIMIT #{offset}, #{limit};
+    </select>
+
+    <insert id="addPost">
+        INSERT INTO m_post (post_title, manager_id) VALUES (#{post_title}, #{manager_id});
+    </insert>
+
+    <delete id="delPost">
+        DELETE FROM m_post WHERE manager_id = #{manager_id};
+    </delete>
+
+    <update id="updatePostTitle">
+        UPDATE m_post SET post_title = #{post_title} WHERE id = #{id};
+    </update>
 </mapper>

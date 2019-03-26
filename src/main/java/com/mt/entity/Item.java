@@ -4,7 +4,6 @@ public class Item {
     private int id;
     private String itemName;
     private int storeId;
-    private double oldPrice;
     private double price;
     private String itemImg;
     private int totalSale;
@@ -34,14 +33,6 @@ public class Item {
 
     public void setStoreId(int storeId) {
         this.storeId = storeId;
-    }
-
-    public double getOldPrice() {
-        return oldPrice;
-    }
-
-    public void setOldPrice(double oldPrice) {
-        this.oldPrice = oldPrice;
     }
 
     public double getPrice() {
