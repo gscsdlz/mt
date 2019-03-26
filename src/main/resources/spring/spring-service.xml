@@ -27,4 +27,5 @@
             <bean class="com.mt.middleware.PrivilegeMiddleWare"/>
         </mvc:interceptor>
     </mvc:interceptors>
+    <bean id="exceptionResolver" class="com.mt.exception.GlobalExceptionHandle" />
 </beans>

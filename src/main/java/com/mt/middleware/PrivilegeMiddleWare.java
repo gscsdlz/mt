@@ -1,20 +1,14 @@
 package com.mt.middleware;
 
-import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PrivilegeMiddleWare extends HandlerInterceptorAdapter {
-
-    private ThreadLocal<Long> startTimeThreadLocal = new ThreadLocal<Long>() {
-        @Override
-        protected Long initialValue() {
-            return System.currentTimeMillis();
-        }
-    };
+public class PrivilegeMiddleWare implements HandlerInterceptor {
 
     private static List<String> whiteList;
 
@@ -43,6 +37,16 @@ public class PrivilegeMiddleWare extends HandlerInterceptorAdapter {
             response.sendRedirect("/login");
             return false;
         }*/
-        return super.preHandle(request, response, handler);
+        return true;
+    }
+
+    @Override
+    public void postHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, ModelAndView modelAndView) throws Exception {
+
+    }
+
+    @Override
+    public void afterCompletion(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) throws Exception {
+
     }
 }
