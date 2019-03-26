@@ -2,8 +2,10 @@ package com.mt.service.impl;
 
 import com.mt.dao.StoreDao;
 import com.mt.entity.Store;
+import com.mt.exception.DBSystemError;
 import com.mt.service.StoreService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,8 +31,12 @@ public class StoreServiceImpl implements StoreService {
     }
 
     @Override
-    public boolean modifyStore(Store s) {
-        return store.updateNewStore(s.getId(), s.getStoreName(), s.getStoreImg(), s.getCityId(), s.getTypeId()) > 0;
+    public boolean modifyStore(Store s) throws DBSystemError {
+        try {
+            return store.updateNewStore(s.getId(), s.getStoreName(), s.getStoreImg(), s.getCityId(), s.getTypeId()) > 0;
+        } catch (DuplicateKeyException d) {
+            throw new DBSystemError();
+        }
     }
 
     @Override

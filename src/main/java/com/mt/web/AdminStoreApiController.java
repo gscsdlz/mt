@@ -2,6 +2,7 @@ package com.mt.web;
 
 import com.mt.dto.NormalResponse;
 import com.mt.entity.Store;
+import com.mt.exception.DBSystemError;
 import com.mt.service.StoreService;
 import com.mt.utils.ParamUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,16 +35,11 @@ public class AdminStoreApiController {
     }
 
     @RequestMapping("/modify")
-    private NormalResponse<String> modify(@RequestParam Map<String, Object> param) {
+    private NormalResponse<String> modify(@RequestParam Map<String, Object> param) throws DBSystemError {
         ParamUtils p = new ParamUtils(param);
         NormalResponse<String> response = new NormalResponse<>();
-        try {
-            Store s = p.parseJson("json_str", Store.class);
-            storeService.modifyStore(s);
-        } catch (Exception e) {
-            e.printStackTrace();
-            response.setInfo(e.getMessage());
-        }
+        Store s = p.parseJson("json_str", Store.class);
+        storeService.modifyStore(s);
         return response;
     }
 
