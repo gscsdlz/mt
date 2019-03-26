@@ -21,12 +21,6 @@ public class PrivilegeMiddleWare extends HandlerInterceptorAdapter {
     static {
         whiteList = new ArrayList<>();
         whiteList.add("/login");
-        whiteList.add("/register");
-        whiteList.add("/user/login");
-        whiteList.add("/user/register");
-        whiteList.add("/page/services");
-        whiteList.add("/page/about");
-        whiteList.add("/page/contact");
     }
 
     @Override

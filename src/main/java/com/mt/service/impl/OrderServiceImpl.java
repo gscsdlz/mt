@@ -32,13 +32,13 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public boolean addOrder(Order o) {
-        return orderDao.addOrder(o.getItemId(), o.getAccountId(), o.getItemNumber(), o.getItemPrice(), o.getTotalPrice()) > 0;
+        return false;
     }
 
     @Override
     public boolean updateOrder(Order o, OrderUpdateOption updateOption) {
         if (updateOption == OrderUpdateOption.UPDATE_COMMIT_ONLY) {
-            return orderDao.updateOrderCommit(o.getId(), o.getCommit()) > 0;
+            return orderDao.updateOrderCommit(o.getId(), o.getRemark()) > 0;
         } else if (updateOption == OrderUpdateOption.UPDATE_STAR_ONLY) {
             return orderDao.updateOrderStar(o.getId(), o.getStar()) > 0;
         } else {

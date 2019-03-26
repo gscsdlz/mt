@@ -29,17 +29,17 @@ public class StoreServiceImpl implements StoreService {
     }
 
     @Override
-    public Boolean modifyStore(Store s) {
+    public boolean modifyStore(Store s) {
         return store.updateNewStore(s.getId(), s.getStoreName(), s.getStoreImg(), s.getCityId(), s.getTypeId()) > 0;
     }
 
     @Override
-    public Boolean addStore(Store s) {
+    public boolean addStore(Store s) {
         return store.addNewStore(s.getStoreName(), s.getStoreImg(), s.getCityId(), s.getTypeId()) > 0;
     }
 
     @Override
-    public Boolean delStore(int id) {
+    public boolean delStore(int id) {
         int effRow = store.delStoreWithId(id);
         return effRow > 0;
     }

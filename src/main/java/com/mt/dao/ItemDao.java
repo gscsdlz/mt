@@ -11,7 +11,6 @@ public interface ItemDao {
     int updateItem(
             @Param("id") int id,
             @Param("item_name") String itemName,
-            @Param("old_price") double oldPrice,
             @Param("price") double price,
             @Param("item_img") String itemImg
     );
@@ -19,7 +18,6 @@ public interface ItemDao {
     int addItem(
             @Param("item_name") String itemName,
             @Param("store_id") int StoreId,
-            @Param("old_price") double oldPrice,
             @Param("price") double price,
             @Param("item_img") String itemImg
     );
