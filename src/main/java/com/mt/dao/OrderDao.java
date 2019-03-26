@@ -25,4 +25,6 @@ public interface OrderDao {
     int updateOrderCommit(@Param("id") int id, @Param("commit") String commit);
 
     int updateOrderStatus(@Param("id") int id, @Param("order_status") int orderStatus);
+
+    List<Order> getHistoryOrder(@Param("offset") int offset, @Param("limit") int limit);
 }

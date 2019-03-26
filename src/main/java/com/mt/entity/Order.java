@@ -1,5 +1,7 @@
 package com.mt.entity;
 
+import com.mt.enums.OrderStatus;
+
 public class Order {
     private int id;
     private int itemId;
@@ -99,5 +101,9 @@ public class Order {
 
     public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getStatus() {
+        return OrderStatus.values()[this.orderStatus].toString();
     }
 }

@@ -43,4 +43,8 @@
         SET order_status = #{order_status}
         WHERE id = #{id};
     </update>
+
+    <select id="getHistoryOrder" resultType="Order">
+        SELECT * FROM m_order WHERE order_status = 5 LIMIT #{offset}, #{limit}
+    </select>
 </mapper>

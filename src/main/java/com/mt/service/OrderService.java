@@ -16,4 +16,6 @@ public interface OrderService {
     boolean addOrder(Order o);
 
     boolean updateOrder(Order o, OrderUpdateOption updateOption);
+
+    List<Order> getHistoryOrder(int page, int size);
 }

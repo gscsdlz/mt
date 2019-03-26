@@ -22,7 +22,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<Order> getOrderByStore(int storeId, int page, int size) {
-        return orderDao.getAllOrderByUser(storeId, (page - 1) *size, size);
+        return orderDao.getAllOrderByStore(storeId, (page - 1) *size, size);
     }
 
     @Override
@@ -44,5 +44,10 @@ public class OrderServiceImpl implements OrderService {
         } else {
             return orderDao.updateOrderStar(o.getId(), o.getOrderStatus()) > 0;
         }
+    }
+
+    @Override
+    public List<Order> getHistoryOrder(int page, int size) {
+        return orderDao.getHistoryOrder((page - 1) * size, size);
     }
 }
