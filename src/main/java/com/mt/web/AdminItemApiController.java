@@ -2,6 +2,7 @@ package com.mt.web;
 
 import com.mt.dto.NormalResponse;
 import com.mt.entity.Item;
+import com.mt.exception.CustomException;
 import com.mt.service.ItemService;
 import com.mt.utils.ParamUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,7 @@ public class AdminItemApiController {
     }
 
     @RequestMapping("/modify")
-    private NormalResponse<String> modifyItem(@RequestParam Map<String, Object> param) {
+    private NormalResponse<String> modifyItem(@RequestParam Map<String, Object> param) throws CustomException {
         NormalResponse<String> response = new NormalResponse<>();
         ParamUtils p = new ParamUtils(param);
         Item i = p.parseJson("json_str", Item.class);
@@ -44,7 +45,7 @@ public class AdminItemApiController {
     }
 
     @RequestMapping("/del")
-    private NormalResponse<String> delItem(@RequestParam Map<String, Object> param) {
+    private NormalResponse<String> delItem(@RequestParam Map<String, Object> param) throws CustomException {
         NormalResponse<String> response = new NormalResponse<>();
         ParamUtils p = new ParamUtils(param);
         int itemId = p.getInteger("id", 0);
@@ -55,7 +56,7 @@ public class AdminItemApiController {
     }
 
     @RequestMapping("/add")
-    private NormalResponse<String> addItem(@RequestParam Map<String, Object> param) {
+    private NormalResponse<String> addItem(@RequestParam Map<String, Object> param) throws CustomException {
         NormalResponse<String> response = new NormalResponse<>();
         ParamUtils p = new ParamUtils(param);
         Item i = p.parseJson("json_str", Item.class);

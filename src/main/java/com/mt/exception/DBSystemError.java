@@ -1,12 +1,14 @@
 package com.mt.exception;
 
+import com.mt.enums.DBErrorType;
+
 public class DBSystemError extends CustomException{
 
     public DBSystemError() {
-        super("数据库错误，请重试");
+        super(DBErrorType.toString(0));
     }
 
-    public DBSystemError(String message) {
-        super(message);
+    public DBSystemError(DBErrorType type) {
+        super(type.toString());
     }
 }

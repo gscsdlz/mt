@@ -1,6 +1,7 @@
 package com.mt.utils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mt.exception.CustomException;
 
 import java.util.Map;
 
@@ -37,12 +38,12 @@ public class ParamUtils {
         }
     }
 
-    public <T> T parseJson(String key, Class<T> valueType) {
+    public <T> T parseJson(String key, Class<T> valueType) throws CustomException {
         try {
             return mapper.readValue(this.getString(key, "{}"), valueType);
         } catch (Exception e) {
             e.printStackTrace();
+            throw new CustomException("JSON 解析失败");
         }
-        return null;
     }
 }

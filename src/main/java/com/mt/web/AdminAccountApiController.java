@@ -2,6 +2,7 @@ package com.mt.web;
 
 import com.mt.dto.NormalResponse;
 import com.mt.entity.Account;
+import com.mt.exception.CustomException;
 import com.mt.service.AccountService;
 import com.mt.utils.ParamUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class AdminAccountApiController {
     private AccountService accountService;
 
     @RequestMapping("/modify")
-    private NormalResponse<String> update(@RequestParam Map<String, Object> param) {
+    private NormalResponse<String> update(@RequestParam Map<String, Object> param) throws CustomException {
         NormalResponse<String> response = new NormalResponse<>();
         ParamUtils p = new ParamUtils(param);
         Account a = p.parseJson("json_str", Account.class);

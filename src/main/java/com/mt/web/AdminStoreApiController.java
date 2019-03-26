@@ -2,6 +2,7 @@ package com.mt.web;
 
 import com.mt.dto.NormalResponse;
 import com.mt.entity.Store;
+import com.mt.exception.CustomException;
 import com.mt.exception.DBSystemError;
 import com.mt.service.StoreService;
 import com.mt.utils.ParamUtils;
@@ -35,7 +36,7 @@ public class AdminStoreApiController {
     }
 
     @RequestMapping("/modify")
-    private NormalResponse<String> modify(@RequestParam Map<String, Object> param) throws DBSystemError {
+    private NormalResponse<String> modify(@RequestParam Map<String, Object> param) throws CustomException {
         ParamUtils p = new ParamUtils(param);
         NormalResponse<String> response = new NormalResponse<>();
         Store s = p.parseJson("json_str", Store.class);
@@ -44,16 +45,11 @@ public class AdminStoreApiController {
     }
 
     @RequestMapping("/add")
-    private NormalResponse<String> add(@RequestParam Map<String, Object> param) {
+    private NormalResponse<String> add(@RequestParam Map<String, Object> param) throws CustomException {
         ParamUtils p = new ParamUtils(param);
         NormalResponse<String> response = new NormalResponse<>();
-        try {
-            Store s = p.parseJson("json_str", Store.class);
-            storeService.addStore(s);
-        } catch (Exception e) {
-            e.printStackTrace();
-            response.setInfo(e.getMessage());
-        }
+        Store s = p.parseJson("json_str", Store.class);
+        storeService.addStore(s);
         return response;
     }
 
