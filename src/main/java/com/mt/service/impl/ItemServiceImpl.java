@@ -16,7 +16,11 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public List<Item> getItem(int page, int size, int storeId) {
-        return itemDao.getAllItem(storeId, (page - 1) * size, size);
+        if (storeId == 0) {
+            return itemDao.getAllItem((page - 1) * size, size);
+        } else {
+            return itemDao.getAllItemByStore(storeId, (page - 1) * size, size);
+        }
     }
 
     @Override
@@ -26,11 +30,11 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public boolean addItem(Item item) {
-        return itemDao.addItem(item.getItemName(), item.getStoreId(), item.getPrice(), item.getItemImg()) > 0;
+        return itemDao.addItem(item.getItemName(), item.getStoreId(), item.getPrice(), item.getItemImg(), item.getInventory()) > 0;
     }
 
     @Override
     public boolean modifyItem(Item item) {
-        return itemDao.updateItem(item.getId(), item.getItemName(), item.getPrice(), item.getItemImg()) > 0;
+        return itemDao.updateItem(item.getId(), item.getItemName(), item.getPrice(), item.getItemImg(), item.getInventory(), item.getStoreId()) > 0;
     }
 }

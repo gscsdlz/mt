@@ -19,16 +19,7 @@ public class StoreServiceImpl implements StoreService {
 
     @Override
     public List<Store> getStore(int page, int size) {
-        List<Store> res = store.getAllStore();
-        int l = (page - 1) * size;
-        int r = page * size;
-        //get [L, r)
-        if (res.size() < l) {
-            res.clear();
-        } else if (res.size() < r) {
-            r = res.size();
-        }
-        return res.subList(l, r);
+        return store.getAllStore((page - 1) * size, size);
     }
 
     @Override
@@ -49,5 +40,10 @@ public class StoreServiceImpl implements StoreService {
     public boolean delStore(int id) {
         int effRow = store.delStoreWithId(id);
         return effRow > 0;
+    }
+
+    @Override
+    public List<Store> getAllStoreName() {
+        return store.getAllStoreName();
     }
 }

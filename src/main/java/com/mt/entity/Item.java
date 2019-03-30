@@ -4,12 +4,30 @@ public class Item {
     private int id;
     private String itemName;
     private int storeId;
+    private String storeName;
     private double price;
     private String itemImg;
     private int totalSale;
     private int inventory;
     private String createdAt;
     private String updatedAt;
+    private int star;
+
+    public int getStar() {
+        return star;
+    }
+
+    public void setStar(int star) {
+        this.star = star;
+    }
+
+    public String getStoreName() {
+        return storeName;
+    }
+
+    public void setStoreName(String storeName) {
+        this.storeName = storeName;
+    }
 
     public int getId() {
         return id;
@@ -68,7 +86,7 @@ public class Item {
     }
 
     public String getCreatedAt() {
-        return createdAt;
+        return createdAt.substring(0, 19);
     }
 
     public void setCreatedAt(String createdAt) {
@@ -76,10 +94,11 @@ public class Item {
     }
 
     public String getUpdatedAt() {
-        return updatedAt;
+        return updatedAt.substring(0, 19);
     }
 
     public void setUpdatedAt(String updatedAt) {
         this.updatedAt = updatedAt;
     }
+
 }

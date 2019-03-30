@@ -14,4 +14,6 @@ public interface StoreService {
     boolean addStore(Store store);
 
     boolean delStore(int id);
+
+    List<Store> getAllStoreName();
 }

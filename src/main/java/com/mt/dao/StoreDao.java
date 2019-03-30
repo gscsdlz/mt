@@ -6,7 +6,9 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface StoreDao {
-    List<Store> getAllStore();
+    List<Store> getAllStore(@Param("offset") int offset, @Param("limit") int limit);
+
+    List<Store> getAllStoreName();
 
     List<Store> getAllStoreByType(@Param("type_id") int typeId);
 

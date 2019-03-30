@@ -22,17 +22,6 @@ public class AdminItemApiController {
     @Autowired
     private ItemService itemService;
 
-    @RequestMapping("/get")
-    private NormalResponse<List<Item>> getList(@RequestParam Map<String, Object> param) {
-        NormalResponse<List<Item>> response = new NormalResponse<>();
-        ParamUtils p = new ParamUtils(param);
-        int page = p.getInteger("page", 1);
-        int size = p.getInteger("size", 15);
-        int storeId = p.getInteger("storeId", 0);
-        response.setData(itemService.getItem(page, size, storeId));
-        return response;
-    }
-
     @RequestMapping("/modify")
     private NormalResponse<String> modifyItem(@RequestParam Map<String, Object> param) throws CustomException {
         NormalResponse<String> response = new NormalResponse<>();

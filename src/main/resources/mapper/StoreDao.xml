@@ -8,7 +8,11 @@
         FROM m_store
                  JOIN m_city ON (m_store.city_id = m_city.id)
                  JOIN m_type ON (m_type.id = m_store.type_id)
-        WHERE 1;
+        LIMIT ${offset}, ${limit};
+    </select>
+
+    <select id="getAllStoreName" resultType="Store">
+        SELECT id, store_name FROM m_store;
     </select>
 
     <delete id="delStoreWithId">

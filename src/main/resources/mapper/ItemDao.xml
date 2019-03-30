@@ -3,16 +3,35 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mt.dao.ItemDao">
+    <select id="getAllItemByStore" resultType="Item">
+        SELECT m_item.*, store_name
+        FROM m_item
+                 LEFT JOIN m_store ON (m_item.store_id = m_store.id)
+        WHERE store_id = #{store_id}
+        LIMIT ${offset}, ${limit};
+    </select>
     <select id="getAllItem" resultType="Item">
-        SELECT * FROM m_item WHERE store_id = #{store_id} LIMIT ${offset}, ${limit};
+        SELECT m_item.*, store_name
+        FROM m_item
+                 LEFT JOIN m_store ON (m_item.store_id = m_store.id)
+        LIMIT ${offset}, ${limit};
     </select>
     <insert id="addItem">
-        INSERT INTO m_item (item_name, store_id, old_price, price, item_img) VALUES (#{item_name}, #{store_id}, #{old_price}, #{price}, #{item_img});
+        INSERT INTO m_item (item_name, store_id, price, item_img, inventory)
+        VALUES (#{item_name}, #{store_id}, #{price}, #{item_img}, #{inventory});
     </insert>
     <update id="updateItem">
-        UPDATE m_item SET item_name = #{item_name}, item_img = #{item_img}, old_price = #{old_price}, price = #{price} WHERE id = #{id};
+        UPDATE m_item
+        SET item_name = #{item_name},
+            item_img  = #{item_img},
+            price     = #{price},
+            inventory = #{inventory},
+            store_id = #{store_id}
+        WHERE id = #{id};
     </update>
     <delete id="delItem">
-        DELETE FROM m_item WHERE id = #{id};
+        DELETE
+        FROM m_item
+        WHERE id = #{id};
     </delete>
 </mapper>
