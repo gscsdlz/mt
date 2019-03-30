@@ -3,27 +3,21 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mt.dao.AccountDao">
-    <select id="getUserByUsername" resultType="Account" parameterType="String">
-        SELECT * FROM account WHERE username = #{username};
-    </select>
-
-    <insert id="addUser">
-        INSERT INTO account (username, password, act) VALUES (#{username}, SHA1(#{password}), #{act});
+    <insert id="addAccount">
+        INSERT INTO m_account (username, password, pri, disabled) VALUES (#{username}, #{password}, #{pri}, #{disabled});
     </insert>
 
-    <update id="resetPassword">
-        UPDATE account SET password = SHA1('123456') WHERE account_id = #{account_id};
+    <update id="updatePassword">
+        UPDATE m_account SET password = #{password} WHERE id = #{id};
     </update>
 
-    <select id="countJoin" resultType="int">
-        SELECT TIMESTAMPDIFF(DAY,created_at,NOW()) FROM account WHERE account_id = #{account_id};
-    </select>
-
-    <update id="disable">
-        UPDATE account SET disable = #{disable} WHERE account_id = #{account_id};
+    <update id="updateAdmin">
+        UPDATE m_account SET pri = #{pri}, disabled = #{disabled}, username = #{username} WHERE id = #{id};
     </update>
-
-    <select id="getAllAccount" resultType="Account">
-        SELECT * FROM account;
+    <select id="getAllAccountByPri" resultType="Account">
+        SELECT * FROM m_account WHERE pri = #{pri} LIMIT #{offset}, #{limit};
     </select>
+    <delete id="delAccount">
+        DELETE FROM m_account WHERE id = #{id};
+    </delete>
 </mapper>

@@ -1,11 +1,16 @@
 package com.mt.web;
 
+import com.mt.entity.Account;
+import com.mt.enums.AccountType;
 import com.mt.service.AccountService;
+import com.mt.utils.ParamUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -16,12 +21,24 @@ public class AdminAccountController {
     private AccountService accountService;
 
     @RequestMapping("/normal")
-    private String normalAccount(@RequestParam Map<String, Object> param) {
+    private String normalAccount(@RequestParam Map<String, Object> param, Model model) {
+        ParamUtils p = new ParamUtils(param);
+        int page = p.getInteger("page", 1);
+        int size = p.getInteger("size", 15);
+        List<Account> res = accountService.getAllAccount(AccountType.USER, page, size);
+        model.addAttribute("data", res);
+        model.addAttribute("menu", "");
         return "/admin/normal_account_manage";
     }
 
     @RequestMapping("/admin")
-    private String adminAccount(@RequestParam Map<String, Object> param) {
+    private String adminAccount(@RequestParam Map<String, Object> param, Model model) {
+        ParamUtils p = new ParamUtils(param);
+        int page = p.getInteger("page", 1);
+        int size = p.getInteger("size", 15);
+        List<Account> res = accountService.getAllAccount(AccountType.ADMIN, page, size);
+        model.addAttribute("data", res);
+        model.addAttribute("menu", "");
         return "/admin/admin_account_manage";
     }
 

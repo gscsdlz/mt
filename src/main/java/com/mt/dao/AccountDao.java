@@ -1,20 +1,33 @@
 package com.mt.dao;
 
 import com.mt.entity.Account;
+import com.mt.utils.ParamUtils;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 public interface AccountDao {
-    Account getUserByUsername(String username);
 
-    int addUser(@Param("username") String username, @Param("password") String password, @Param("act") int act);
+    List<Account> getAllAccountByPri(@Param("pri") int pri, @Param("offset") int offset, @Param("limit") int limit);
 
-    int countJoin(@Param("account_id") int accountId);
+    int addAccount(
+            @Param("username") String username,
+            @Param("pri") int pri,
+            @Param("disabled") int disabled,
+            @Param("password") String password
+    );
 
-    int disable(@Param("account_id") int accountId, @Param("disable") int disable);
+    int updatePassword(
+            @Param("id") int id,
+            @Param("password") String password
+    );
 
-    int resetPassword(@Param("account_id") int accountId);
+    int updateAdmin(
+            @Param("id") int id,
+            @Param("pri") int pri,
+            @Param("disabled") int disabled,
+            @Param("username") String username
+    );
 
-    List<Account> getAllAccount();
+    int delAccount(@Param("id") int id);
 }

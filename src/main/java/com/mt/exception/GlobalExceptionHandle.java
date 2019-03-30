@@ -11,7 +11,7 @@ public class GlobalExceptionHandle implements HandlerExceptionResolver {
     @Override
     public ModelAndView resolveException(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) {
 
-        String message = "";
+        String message = "Uncaught Exception " + e.getMessage();
         if (e instanceof CustomException) {
             message = e.getMessage();
         }

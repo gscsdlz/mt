@@ -1,15 +1,18 @@
 package com.mt.service;
 
 import com.mt.entity.Account;
+import com.mt.enums.AccountType;
+import com.mt.enums.AccountUpdateOption;
+import com.mt.exception.CustomException;
 
 import java.util.List;
 
 public interface AccountService {
-    List<Account> getAllAccount(int pri, int page, int size);
+    List<Account> getAllAccount(AccountType pri, int page, int size);
 
-    boolean addAccount(Account account);
+    boolean addAccount(Account account) throws CustomException;
 
-    boolean updateAccount(Account account);
+    boolean updateAccount(Account account, AccountUpdateOption op);
 
     boolean delAccount(int id);
 

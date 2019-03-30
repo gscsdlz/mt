@@ -1,5 +1,7 @@
 package com.mt.entity;
 
+import com.mt.enums.AccountType;
+
 public class Account {
     private int id;
     private String username;
@@ -12,8 +14,29 @@ public class Account {
     private String bobby;
     private int constellation;
     private String more;
+    private int disabled;
     private String createdAt;
     private String updatedAt;
+
+    public int getDisabled() {
+        return disabled;
+    }
+
+    public String getDisabledStr() {
+        if (disabled == 0) {
+            return "正常使用";
+        } else {
+            return "禁用";
+        }
+    }
+
+    public String getPriStr() {
+        return AccountType.toString(pri);
+    }
+
+    public void setDisabled(int disabled) {
+        this.disabled = disabled;
+    }
 
     public int getId() {
         return id;
@@ -104,7 +127,7 @@ public class Account {
     }
 
     public String getCreatedAt() {
-        return createdAt;
+        return createdAt.substring(0, 19);
     }
 
     public void setCreatedAt(String createdAt) {
@@ -112,7 +135,7 @@ public class Account {
     }
 
     public String getUpdatedAt() {
-        return updatedAt;
+        return updatedAt.substring(0, 19);
     }
 
     public void setUpdatedAt(String updatedAt) {
