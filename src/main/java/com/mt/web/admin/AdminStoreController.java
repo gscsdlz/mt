@@ -1,4 +1,4 @@
-package com.mt.web;
+package com.mt.web.admin;
 
 import com.mt.entity.Store;
 import com.mt.service.StoreService;

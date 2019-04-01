@@ -1,4 +1,4 @@
-package com.mt.web;
+package com.mt.web.admin;
 
 import com.mt.service.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;

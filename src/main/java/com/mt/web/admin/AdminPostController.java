@@ -1,4 +1,4 @@
-package com.mt.web;
+package com.mt.web.admin;
 
 import com.mt.entity.Post;
 import com.mt.entity.Reply;
