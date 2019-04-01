@@ -3,5 +3,20 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mt.dao.ReplyDao">
+    <select id="getAllReply" resultType="Reply">
+        SELECT m_reply.*, a1.username as username, a2.username as reply_username
+        FROM m_reply
+                 LEFT JOIN m_account as a1 ON (m_reply.account_id = a1.id)
+                 LEFT JOIN m_account as a2 ON (m_reply.reply_id = a2.id)
+        WHERE post_id = #{post_id}
+        LIMIT #{offset}, #{limit};
+    </select>
+
+    <delete id="delReply">
+        DELETE
+        FROM m_reply
+        WHERE id = #{id};
+    </delete>
+
 
 </mapper>

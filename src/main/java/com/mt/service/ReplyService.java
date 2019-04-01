@@ -1,9 +1,13 @@
 package com.mt.service;
 
+import com.mt.entity.Reply;
+
+import java.util.List;
+
 public interface ReplyService {
     boolean addReply();
 
-    boolean delReply();
+    boolean delReply(int replyId);
 
-    boolean getAllReply();
+    List<Reply> getAllReply(int postId, int page, int size);
 }

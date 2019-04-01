@@ -8,6 +8,24 @@ public class Reply {
     private int accountId;
     private String createdAt;
     private String updatedAt;
+    private String username;
+    private String replyUsername;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getReplyUsername() {
+        return replyUsername;
+    }
+
+    public void setReplyUsername(String replyUsername) {
+        this.replyUsername = replyUsername;
+    }
 
     public int getId() {
         return id;
