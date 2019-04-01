@@ -16,4 +16,6 @@ public interface TypeService {
     boolean updateType(Type t);
 
     boolean delType(int typeId);
+
+    boolean delMainType(String mainType);
 }

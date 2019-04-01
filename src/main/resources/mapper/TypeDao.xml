@@ -4,14 +4,34 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mt.dao.TypeDao">
     <select id="getAllSubType" resultType="Type">
-        SELECT id, main_type, type_name FROM m_type WHERE main_type = #{main_type};
+        SELECT id, main_type, type_name
+        FROM m_type
+        WHERE main_type = #{main_type};
     </select>
 
     <select id="getAllType" resultType="Type">
-        SELECT id, main_type, type_name FROM m_type;
+        SELECT id, main_type, type_name
+        FROM m_type;
     </select>
 
     <select id="getAllMainType" resultType="Type">
-        SELECT DISTINCT(main_type) FROM m_type;
-</select>
+        SELECT DISTINCT(main_type)
+        FROM m_type;
+    </select>
+
+    <delete id="delMainType">
+        DELETE FROM m_type WHERE main_type = #{main_type};
+    </delete>
+
+    <insert id="addType">
+        INSERT INTO m_type (main_type, type_name) VALUES (#{main_type}, #{type_name});
+    </insert>
+
+    <update id="updateType">
+        UPDATE m_type SET main_type = #{main_type}, type_name = #{type_name} WHERE id = #{id};
+    </update>
+
+    <delete id="delType">
+        DELETE FROM m_type WHERE id = #{id};
+    </delete>
 </mapper>

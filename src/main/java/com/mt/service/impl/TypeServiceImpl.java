@@ -1,6 +1,5 @@
 package com.mt.service.impl;
 
-import com.mt.dao.StoreDao;
 import com.mt.dao.TypeDao;
 import com.mt.entity.Type;
 import com.mt.service.TypeService;
@@ -14,9 +13,6 @@ import java.util.List;
 public class TypeServiceImpl implements TypeService {
     @Autowired
     private TypeDao typeDao;
-
-    @Autowired
-    private StoreDao storeDao;
 
     public List<Type> getSubType(String mainType) {
         return typeDao.getAllSubType(mainType);
@@ -52,8 +48,20 @@ public class TypeServiceImpl implements TypeService {
 
     @Override
     public boolean delType(int typeId) {
-        if (storeDao.getSizeByType(typeId) == 0 && typeDao.delType(typeId) > 0) {
-            return true;
+        try {
+            return typeDao.delType(typeId) > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
+    public boolean delMainType(String mainType) {
+        try {
+            return typeDao.delMainType(mainType) > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return false;
     }

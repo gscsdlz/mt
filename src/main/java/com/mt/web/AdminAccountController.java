@@ -43,7 +43,9 @@ public class AdminAccountController {
     }
 
     @RequestMapping("/center")
-    private String accountCenter(@RequestParam Map<String, Object> param) {
+    private String accountCenter(@RequestParam Map<String, Object> param, Model model) {
+        Account a = accountService.getAccountById(3);
+        model.addAttribute("account", a);
         return "/admin/account_center";
     }
 }

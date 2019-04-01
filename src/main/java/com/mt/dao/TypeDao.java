@@ -17,4 +17,6 @@ public interface TypeDao {
     int updateType(@Param("id") int id, @Param("main_type") String mainType, @Param("type_name") String typeName);
 
     int delType(@Param("id") int id);
+
+    int delMainType(@Param("main_type") String mainType);
 }
