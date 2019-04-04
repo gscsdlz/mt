@@ -38,7 +38,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public boolean updateOrder(Order o, OrderUpdateOption updateOption) {
         if (updateOption == OrderUpdateOption.UPDATE_COMMIT_ONLY) {
-            return orderDao.updateOrderCommit(o.getId(), o.getRemark()) > 0;
+            return orderDao.updateOrderRemark(o.getId(), o.getRemark()) > 0;
         } else if (updateOption == OrderUpdateOption.UPDATE_STAR_ONLY) {
             return orderDao.updateOrderStar(o.getId(), o.getStar()) > 0;
         } else {

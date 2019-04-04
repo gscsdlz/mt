@@ -42,6 +42,13 @@
                  JOIN m_type ON (m_type.id = m_store.type_id)
         WHERE type_id = #{type_id};
     </select>
+    <select id="getAllStoreByName" resultType="Store">
+        SELECT m_store.*, m_city.province, m_city.city, m_type.main_type, m_type.type_name
+        FROM m_store
+                 JOIN m_city ON (m_store.city_id = m_city.id)
+                 JOIN m_type ON (m_type.id = m_store.type_id)
+        WHERE store_name = #{store_name};
+    </select>
 
     <select id="getSizeByType" resultType="Integer">
         SELECT COUNT(*) as num FROM m_store WHERE type_id = #{type_id};

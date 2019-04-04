@@ -46,4 +46,9 @@ public class StoreServiceImpl implements StoreService {
     public List<Store> getAllStoreName() {
         return store.getAllStoreName();
     }
+
+    @Override
+    public List<Store> searchStoreName(String storeName) {
+        return store.getAllStoreByName(storeName);
+    }
 }

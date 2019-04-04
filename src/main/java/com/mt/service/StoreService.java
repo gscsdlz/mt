@@ -16,4 +16,6 @@ public interface StoreService {
     boolean delStore(int id);
 
     List<Store> getAllStoreName();
+
+    List<Store> searchStoreName(String storeName);
 }

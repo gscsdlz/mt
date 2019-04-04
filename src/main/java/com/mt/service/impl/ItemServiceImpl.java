@@ -37,4 +37,9 @@ public class ItemServiceImpl implements ItemService {
     public boolean modifyItem(Item item) {
         return itemDao.updateItem(item.getId(), item.getItemName(), item.getPrice(), item.getItemImg(), item.getInventory(), item.getStoreId()) > 0;
     }
+
+    @Override
+    public List<Item> searchItemName(String itemName) {
+        return itemDao.getAllItemByName(itemName);
+    }
 }

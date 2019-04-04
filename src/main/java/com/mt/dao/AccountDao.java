@@ -30,4 +30,8 @@ public interface AccountDao {
     );
 
     int delAccount(@Param("id") int id);
+
+    Account getAccountById(@Param("id") int id);
+
+    Account getAccountByName(@Param("username") String username);
 }

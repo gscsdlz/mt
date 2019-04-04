@@ -1,6 +1,10 @@
 package com.mt.entity;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mt.enums.OrderStatus;
+
+import java.util.List;
 
 public class Order {
     private int id;
@@ -88,5 +92,15 @@ public class Order {
 
     public String getStatus() {
         return OrderStatus.values()[this.orderStatus].toString();
+    }
+
+    public List<Item> getItemList() {
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            return mapper.readValue(items, new TypeReference<List<Item>>() {});
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

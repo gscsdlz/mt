@@ -13,4 +13,5 @@ public interface ItemService {
 
     boolean modifyItem(Item item);
 
+    List<Item> searchItemName(String itemName);
 }

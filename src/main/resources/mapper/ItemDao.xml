@@ -10,6 +10,12 @@
         WHERE store_id = #{store_id}
         LIMIT ${offset}, ${limit};
     </select>
+    <select id="getAllItemByName" resultType="Item">
+        SELECT m_item.*, store_name
+        FROM m_item
+                 LEFT JOIN m_store ON (m_item.store_id = m_store.id)
+        WHERE item_name = #{item_name};
+    </select>
     <select id="getAllItem" resultType="Item">
         SELECT m_item.*, store_name
         FROM m_item

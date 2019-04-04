@@ -59,11 +59,11 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public Account getAccountByUserName(String username) {
-        return null;
+        return accountDao.getAccountByName(username);
     }
 
     @Override
     public Account getAccountById(int id) {
-        return null;
+        return accountDao.getAccountById(id);
     }
 }

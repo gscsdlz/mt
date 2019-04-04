@@ -10,6 +10,8 @@ public interface StoreDao {
 
     List<Store> getAllStoreName();
 
+    List<Store> getAllStoreByName(@Param("store_name") String storeName);
+
     List<Store> getAllStoreByType(@Param("type_id") int typeId);
 
     int getSizeByType(@Param("type_id") int typeId);

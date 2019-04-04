@@ -22,7 +22,7 @@ public interface OrderDao {
 
     int updateOrderStar(@Param("id") int id, @Param("star") int star);
 
-    int updateOrderCommit(@Param("id") int id, @Param("commit") String commit);
+    int updateOrderRemark(@Param("id") int id, @Param("commit") String commit);
 
     int updateOrderStatus(@Param("id") int id, @Param("order_status") int orderStatus);
 

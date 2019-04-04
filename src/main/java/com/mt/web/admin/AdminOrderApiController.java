@@ -36,4 +36,17 @@ public class AdminOrderApiController {
         }
         return response;
     }
+
+    @RequestMapping("/del_remark")
+    private NormalResponse<String> delRemark(@RequestParam Map<String, Object> param) {
+        NormalResponse<String> response = new NormalResponse<>();
+        ParamUtils p = new ParamUtils(param);
+        int orderId = p.getInteger("order_id");
+        Order o = new Order();
+        o.setId(orderId);
+        if (!orderService.updateOrder(o, OrderUpdateOption.UPDATE_COMMIT_ONLY)) {
+            response.setInfo("");
+        }
+        return response;
+    }
 }

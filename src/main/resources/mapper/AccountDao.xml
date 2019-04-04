@@ -20,4 +20,12 @@
     <delete id="delAccount">
         DELETE FROM m_account WHERE id = #{id};
     </delete>
+
+    <select id="getAccountById" resultType="Account">
+        SELECT * FROM m_account WHERE id = #{id};
+    </select>
+
+    <select id="getAccountByName" resultType="Account">
+        SELECT * FROM m_account WHERE username = #{username};
+    </select>
 </mapper>
