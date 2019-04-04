@@ -14,15 +14,21 @@ import java.util.Map;
 public class AccountController {
 
     @Autowired
-    private AccountService accountService;
-
-    @Autowired
     private HttpServletRequest request;
 
     @ResponseBody
     @RequestMapping(value = "/login", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
-    private String login(@RequestParam Map<String, Object> param) {
-        return "";
+    private String login()
+    {
+        if (request.getSession().getAttribute("id") == null) {
+            return "login";
+        } else {
+            return "index";
+        }
     }
 
+    @RequestMapping("/center")
+    private String center() {
+        return "me";
+    }
 }

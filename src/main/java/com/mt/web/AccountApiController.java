@@ -38,10 +38,7 @@ public class AccountApiController {
             if (a.getDisabled() == 1) {
                 response.setInfo("");
             } else {
-                request.getSession().setAttribute("username", username);
-                request.getSession().setAttribute("id", a.getId());
-                request.getSession().setAttribute("recent_city", a.getRecentCity());
-                request.getSession().setAttribute("pri", a.getPri());
+                this.setSession(a);
             }
         } else {
             response.setInfo("");
@@ -55,13 +52,30 @@ public class AccountApiController {
         NormalResponse<String> response = new NormalResponse<>();
         String username = p.getString("username");
         String password = p.getString("password");
-
         Account a = new Account();
         a.setUsername(username);
         a.setPassword(password);
+        a.setRecentCity(1);
+        a.setPri(2);
         accountService.addAccount(a);
+        this.setSession(a);
         return response;
     }
 
+    @RequestMapping("/logout")
+    private NormalResponse<String> logout() {
+        NormalResponse<String> response = new NormalResponse<>();
+        request.getSession().removeAttribute("username");
+        request.getSession().removeAttribute("id");
+        request.getSession().removeAttribute("pri");
+        request.getSession().removeAttribute("recent_city");
+        return response;
+    }
 
+    private void setSession(Account a) {
+        request.getSession().setAttribute("username", a.getUsername());
+        request.getSession().setAttribute("id", a.getId());
+        request.getSession().setAttribute("recent_city", a.getRecentCity());
+        request.getSession().setAttribute("pri", a.getPri());
+    }
 }

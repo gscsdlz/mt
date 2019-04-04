@@ -51,4 +51,14 @@ public class StoreServiceImpl implements StoreService {
     public List<Store> searchStoreName(String storeName) {
         return store.getAllStoreByName(storeName);
     }
+
+    @Override
+    public List<Store> getStoreByCity(int cityId, int page, int size) {
+        return null;
+    }
+
+    @Override
+    public List<Store> getStoreByType(int typeId, int cityId, int page, int size) {
+        return null;
+    }
 }

@@ -18,4 +18,8 @@ public interface StoreService {
     List<Store> getAllStoreName();
 
     List<Store> searchStoreName(String storeName);
+
+    List<Store> getStoreByCity(int cityId, int page, int size);
+
+    List<Store> getStoreByType(int typeId, int cityId, int page, int size);
 }
