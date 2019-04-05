@@ -10,8 +10,10 @@
         LIMIT ${offset}, ${limit}
     </select>
     <select id="getAllOrder" resultType="Order">
-        SELECT *
+        SELECT m_order.*, m_account.username, m_store.store_name
         FROM m_order
+                 LEFT JOIN m_account ON (m_order.account_id = m_account.id)
+                 LEFT JOIN m_store ON (m_order.store_id = m_store.id)
         LIMIT ${offset}, ${limit}
     </select>
     <select id="getAllOrderByStore" resultType="Order">
@@ -45,6 +47,9 @@
     </update>
 
     <select id="getHistoryOrder" resultType="Order">
-        SELECT * FROM m_order WHERE order_status = 5 LIMIT #{offset}, #{limit}
+        SELECT *
+        FROM m_order
+        WHERE order_status = 5
+        LIMIT #{offset}, #{limit}
     </select>
 </mapper>

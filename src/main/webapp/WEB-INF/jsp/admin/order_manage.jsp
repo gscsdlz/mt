@@ -38,23 +38,24 @@
                             </tr>
                             </thead>
                             <tbody id="dataArea">
-                            <c:forEach items="${data}" var="account">
+                            <c:forEach items="${data}" var="order">
                                 <tr>
-                                    <td>${account.id}</td>
-                                    <td><img src="${account.accountImg}" width="100%" height="70px">
-                                    </td>
-                                    <td>${account.username}</td>
-                                    <td>********</td>
-                                    <td>${account.priStr}</td>
-                                    <td>${account.disabledStr}</td>
-                                    <td>${account.createdAt}</td>
-                                    <td>${account.updatedAt}</td>
+                                    <td>${order.id}</td>
+                                    <td>${order.storeName}</td>
+                                    <td>${order.username}</td>
+                                    <td>${order.itemDetails}</td>
+                                    <td>￥${order.totalPrice}</td>
+                                    <td>${order.status}</td>
+                                    <td>${order.star}</td>
+                                    <td>${order.remark}</td>
+                                    <td>${order.createdAt}</td>
+                                    <td>${order.updatedAt}</td>
                                     <td>
-                                        <button actionDel="${account.id}" title="删除" class="btn btn-danger btn-sm"
+                                        <button actionDel="${order.id}" title="删除" class="btn btn-danger btn-sm"
                                                 type="button"><span class="mdi mdi-delete mdi-md"></span></button>
-                                        <button actionModify="${account.id}" title="修改" class="btn btn-success btn-sm"
+                                        <button actionChange="${order.id}" title="修改状态" class="btn btn-success btn-sm"
                                                 type="button"><span class="mdi mdi-table-edit mdi-md"></span></button>
-                                        <button actionReset="${account.id}" title="重置密码" class="btn btn-danger btn-sm"
+                                        <button actionClear="${order.id}" title="清空评论" class="btn btn-danger btn-sm"
                                                 type="button"><span class="mdi mdi-autorenew mdi-md"></span></button>
                                     </td>
                                 </tr>

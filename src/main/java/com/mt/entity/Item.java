@@ -12,6 +12,15 @@ public class Item {
     private String createdAt;
     private String updatedAt;
     private int star;
+    private int total;   //order use only
+
+    public int getTotal() {
+        return total;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
+    }
 
     public int getStar() {
         return star;

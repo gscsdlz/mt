@@ -10,6 +10,9 @@ public class Order {
     private int id;
     private String items;
     private int accountId;
+    private String username;
+    private int storeId;
+    private String storeName;
     private int orderStatus;
     private double totalPrice;
     private int star;
@@ -102,5 +105,38 @@ public class Order {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public String getItemDetails() {
+        List<Item> list = this.getItemList();
+        StringBuilder res = new StringBuilder();
+        for (Item item : list) {
+            res.append(item.getItemName()).append(" ").append(item.getTotal()).append("份，共￥").append(item.getPrice() * item.getTotal()).append("\n");
+        }
+        return res.toString();
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public int getStoreId() {
+        return storeId;
+    }
+
+    public void setStoreId(int storeId) {
+        this.storeId = storeId;
+    }
+
+    public String getStoreName() {
+        return storeName;
+    }
+
+    public void setStoreName(String storeName) {
+        this.storeName = storeName;
     }
 }
