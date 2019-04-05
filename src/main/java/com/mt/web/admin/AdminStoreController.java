@@ -26,6 +26,7 @@ public class AdminStoreController {
         int size = p.getInteger("size", 15);
         List<Store> res = storeService.getStore(page, size);
         model.addAttribute("data", res);
+        model.addAttribute("menu", "store");
         return "admin/store_manage";
     }
 

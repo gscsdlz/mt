@@ -27,7 +27,7 @@ public class AdminAccountController {
         int size = p.getInteger("size", 15);
         List<Account> res = accountService.getAllAccount(AccountType.USER, page, size);
         model.addAttribute("data", res);
-        model.addAttribute("menu", "");
+        model.addAttribute("menu", "normal_user");
         return "/admin/normal_account_manage";
     }
 
@@ -38,7 +38,7 @@ public class AdminAccountController {
         int size = p.getInteger("size", 15);
         List<Account> res = accountService.getAllAccount(AccountType.ADMIN, page, size);
         model.addAttribute("data", res);
-        model.addAttribute("menu", "");
+        model.addAttribute("menu", "admin_user");
         return "/admin/admin_account_manage";
     }
 

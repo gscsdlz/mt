@@ -11,7 +11,7 @@
 
     <select id="getAllType" resultType="Type">
         SELECT id, main_type, type_name
-        FROM m_type;
+        FROM m_type ORDER BY id ASC;
     </select>
 
     <select id="getAllMainType" resultType="Type">

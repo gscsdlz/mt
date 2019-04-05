@@ -14,7 +14,6 @@
     <script src="${pageContext.request.contextPath}/assets/js/vendor.bundle.addons.js"></script>
     <script src="${pageContext.request.contextPath}/assets/js/off-canvas.js"></script>
     <script src="${pageContext.request.contextPath}/assets/js/misc.js"></script>
-    <script src="${pageContext.request.contextPath}/assets/js/dashboard.js"></script>
 </head>
 <body>
 <div class="container-scroller">
@@ -57,59 +56,67 @@
     <div class="container-fluid page-body-wrapper">
         <nav class="sidebar sidebar-offcanvas">
             <ul class="nav">
-                <li class="nav-item">
+                <li class="nav-item <c:if test="${menu == \"index\" || menu == \"\"}"> active</c:if>">
                     <a class="nav-link" href="${pageContext.request.contextPath}/admin/index">
                         <span class="menu-title">主页</span>
                         <i class="mdi mdi-home menu-icon"></i>
                     </a>
                 </li>
-                <li class="nav-item active">
+                <li class="nav-item <c:if test="${menu == \"store\"}"> active</c:if>">
                     <a class="nav-link" href="${pageContext.request.contextPath}/admin/store/index">
                         <span class="menu-title">店铺管理</span>
                         <i class="mdi mdi-home menu-icon"></i>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item <c:if test="${menu == \"item\"}"> active</c:if>">
                     <a class="nav-link" href="${pageContext.request.contextPath}/admin/item/index">
                         <span class="menu-title">商品管理</span>
                         <i class="mdi mdi-home menu-icon"></i>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="collapse" href="#order-menu" aria-expanded="false" aria-controls="ui-basic">
+                <li class="nav-item <c:if test="${menu == \"his_order\" || menu == \"order\"}"> active</c:if>">
+                    <a class="nav-link" data-toggle="collapse" href="#order-menu" aria-expanded="true" aria-controls="ui-basic">
                         <span class="menu-title">订单管理</span>
                         <i class="menu-arrow"></i>
                         <i class="mdi mdi-crosshairs-gps menu-icon"></i>
                     </a>
-                    <div class="collapse" id="order-menu">
+                    <div class="collapse show" id="order-menu">
                         <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"> <a class="nav-link" href="${pageContext.request.contextPath}/admin/order/index">未完成订单管理</a></li>
-                            <li class="nav-item"> <a class="nav-link" href="${pageContext.request.contextPath}/admin/order/history">历史订单查询</a></li>
+                            <li class="nav-item">
+                                <a class="nav-link <c:if test="${menu == \"order\"}"> active</c:if>" href="${pageContext.request.contextPath}/admin/order/index">未完成订单管理</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link <c:if test="${menu == \"his_order\"}"> active</c:if>" href="${pageContext.request.contextPath}/admin/order/history">历史订单查询</a>
+                            </li>
                         </ul>
                     </div>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item <c:if test="${menu == \"type\"}"> active</c:if>">
                     <a class="nav-link" href="${pageContext.request.contextPath}/admin/type/index">
                         <span class="menu-title">分类管理</span>
                         <i class="mdi mdi-home menu-icon"></i>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item <c:if test="${menu == \"post\"}"> active</c:if>">
                     <a class="nav-link" href="${pageContext.request.contextPath}/admin/post/index">
                         <span class="menu-title">发帖管理</span>
                         <i class="mdi mdi-format-list-bulleted menu-icon"></i>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="collapse" href="#menu-user" aria-expanded="false" aria-controls="ui-basic">
+                <li class="nav-item <c:if test="${menu == \"normal_user\" || menu == \"admin_user\"}"> active</c:if>">
+                    <a class="nav-link" data-toggle="collapse" href="#menu-user" aria-expanded="true" aria-controls="ui-basic">
                         <span class="menu-title">用户管理</span>
                         <i class="menu-arrow"></i>
                         <i class="mdi mdi-crosshairs-gps menu-icon"></i>
                     </a>
-                    <div class="collapse" id="menu-user">
+                    <div class="collapse show" id="menu-user">
                         <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"> <a class="nav-link" href="${pageContext.request.contextPath}/admin/account/normal">普通用户管理</a></li>
-                            <li class="nav-item"> <a class="nav-link" href="${pageContext.request.contextPath}/admin/account/admin">管理员管理</a></li>
+                            <li class="nav-item">
+                                <a class="nav-link  <c:if test="${menu == \"normal_user\"}"> active</c:if>" href="${pageContext.request.contextPath}/admin/account/normal">普通用户管理</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link  <c:if test="${menu == \"admin_user\"}"> active</c:if>" href="${pageContext.request.contextPath}/admin/account/admin">管理员管理</a>
+                            </li>
                         </ul>
                     </div>
                 </li>

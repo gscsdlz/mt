@@ -30,7 +30,7 @@ public class AdminItemController {
         int size = p.getInteger("size", 15);
         int storeId = p.getInteger("store", 0);
         List<Item> res = itemService.getItem(page, size, storeId);
-        model.addAttribute("menu", "store");
+        model.addAttribute("menu", "item");
         model.addAttribute("data", res);
         model.addAttribute("stores", storeService.getAllStoreName());
         return "admin/item_manage";
