@@ -22,7 +22,7 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public List<Account> getAllAccount(AccountType pri, int page, int size) {
-        if (pri.ordinal() == 0) {
+        if (pri.ordinal() == 2) {
             return accountDao.getAllAccountByPri(AccountType.USER.ordinal(), (page - 1) * size, size);
         } else {
             List<Account> l1 = accountDao.getAllAccountByPri(AccountType.SUPER_ADMIN.ordinal(), (page - 1) * size, size);
@@ -48,6 +48,8 @@ public class AccountServiceImpl implements AccountService {
             return accountDao.updatePassword(account.getId(), account.getPassword()) > 0;
         } else if (op == AccountUpdateOption.UPDATE_ADMIN_INFO) {
             return accountDao.updateAdmin(account.getId(), account.getPri(), account.getDisabled(), account.getUsername()) > 0;
+        } else if (op == AccountUpdateOption.UPDATE_DISABLED) {
+            return accountDao.updateDisabled(account.getId(), account.getDisabled()) > 0;
         }
         return false;
     }

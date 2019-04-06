@@ -86,7 +86,6 @@
                         <label class="col-form-label col-sm-3">权限</label>
                         <div class="col-sm-8">
                             <select class="form-control" id="pri">
-                                <option value="2">普通用户</option>
                                 <option value="1">管理员</option>
                                 <option value="0">超级管理员</option>
                             </select>

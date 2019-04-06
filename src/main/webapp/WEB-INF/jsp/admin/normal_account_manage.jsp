@@ -28,9 +28,13 @@
                                 <th>头像</th>
                                 <th>用户名</th>
                                 <th>密码</th>
-                                <th>权限</th>
                                 <th>状态</th>
-                                <th>创建时间</th>
+                                <th>最近登录城市</th>
+                                <th>性别</th>
+                                <th>生日</th>
+                                <th>星座</th>
+                                <th>爱好</th>
+                                <th>注册时间</th>
                                 <th>上次修改时间</th>
                                 <th>操作</th>
                             </tr>
@@ -43,15 +47,26 @@
                                     </td>
                                     <td>${account.username}</td>
                                     <td>********</td>
-                                    <td>${account.priStr}</td>
                                     <td>${account.disabledStr}</td>
+                                    <td>${account.city}</td>
+                                    <td>${account.sexStr}</td>
+                                    <td>${account.birth}</td>
+                                    <td>${account.constellationStr}</td>
+                                    <td>${account.hobby}</td>
                                     <td>${account.createdAt}</td>
                                     <td>${account.updatedAt}</td>
                                     <td>
                                         <button actionDel="${account.id}" title="删除" class="btn btn-danger btn-sm"
                                                 type="button"><span class="mdi mdi-delete mdi-md"></span></button>
-                                        <button actionModify="${account.id}" title="修改" class="btn btn-success btn-sm"
-                                                type="button"><span class="mdi mdi-table-edit mdi-md"></span></button>
+                                        <c:if test="${account.disabled == 0}">
+                                            <button actionLock="${account.id}" title="禁用" class="btn btn-danger btn-sm"
+                                                    type="button"><span class="mdi mdi-lock mdi-md"></span></button>
+                                        </c:if>
+                                        <c:if test="${account.disabled == 1}">
+                                            <button actionUnlock="${account.id}" title="解除禁用" class="btn btn-danger btn-sm"
+                                                    type="button"><span class="mdi mdi-lock-open mdi-md"></span></button>
+                                        </c:if>
+
                                         <button actionReset="${account.id}" title="重置密码" class="btn btn-danger btn-sm"
                                                 type="button"><span class="mdi mdi-autorenew mdi-md"></span></button>
                                     </td>
@@ -61,57 +76,6 @@
                         </table>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="accountModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content" style="background-color: #fff">
-            <div class="modal-header">
-                <h4>用户操作</h4>
-            </div>
-            <div class="modal-body">
-                <form id="accountForm">
-                    <input type="hidden" id="accountId"/>
-                    <div class="form-group row">
-                        <label class="col-form-label col-sm-3">用户名</label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" placeholder="" id="accountName">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-form-label col-sm-3">权限</label>
-                        <div class="col-sm-8">
-                            <select class="form-control" id="pri">
-                                <option value="2">普通用户</option>
-                                <option value="1">管理员</option>
-                                <option value="0">超级管理员</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-form-label col-sm-3">状态</label>
-                        <div class="col-sm-8">
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" id="d0" name="disabled" value="0"> 正常使用<i
-                                        class="input-helper"></i>
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" id="d1" name="disabled" value="1"> 禁用<i
-                                        class="input-helper"></i>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-primary" id="confirm">确认</button>
             </div>
         </div>
     </div>
@@ -128,33 +92,14 @@
             send("/admin/account_api/reset_password", {id: id});
         });
 
-        $("[actionModify]").click(function () {
-            document.getElementById("accountForm").reset();
-            $("#accountId").val($(this).attr('actionModify'));
-            let target = $(this).parent().parent().children();
-            $("#accountName").val(target.eq(2).html());
-            $("#pri").children().each(function () {
-                if ($(this).html() === target.eq(4).html()) {
-                    $("#pri").val($(this).attr('value'));
-                }
-            });
-            if (target.eq(5).html() === "正常使用") {
-                $("#d0").prop('checked', true);
-            } else {
-                $("#d1").prop("checked", true);
-            }
-            $("#accountModal").modal();
+        $("[actionLock]").click(function () {
+            let id = $(this).attr('actionLock');
+            send("/admin/account_api/lock", {id:id, disabled:1});
         });
 
-        $("#confirm").click(function () {
-            let id = $("#accountId").val();
-            let username = $("#accountName").val();
-            let pri = $("#pri").val();
-            let status = 0;
-            if ($("#d1").prop("checked") === "checked") {
-                status = 1;
-            }
-            send("/admin/account_api/set_adminInfo", {id: id, username: username, pri: pri, disable: status})
+        $("[actionUnlock]").click(function () {
+            let id = $(this).attr('actionUnlock');
+            send("/admin/account_api/lock", {id:id, disabled:0});
         })
     });
 

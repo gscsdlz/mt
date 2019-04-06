@@ -4,28 +4,49 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mt.dao.AccountDao">
     <insert id="addAccount">
-        INSERT INTO m_account (username, password, pri, disabled) VALUES (#{username}, #{password}, #{pri}, #{disabled});
+        INSERT INTO m_account (username, password, pri, disabled)
+        VALUES (#{username}, #{password}, #{pri}, #{disabled});
     </insert>
 
     <update id="updatePassword">
-        UPDATE m_account SET password = #{password} WHERE id = #{id};
+        UPDATE m_account
+        SET password = #{password}
+        WHERE id = #{id};
     </update>
 
     <update id="updateAdmin">
-        UPDATE m_account SET pri = #{pri}, disabled = #{disabled}, username = #{username} WHERE id = #{id};
+        UPDATE m_account
+        SET pri      = #{pri},
+            disabled = #{disabled},
+            username = #{username}
+        WHERE id = #{id};
     </update>
     <select id="getAllAccountByPri" resultType="Account">
-        SELECT * FROM m_account WHERE pri = #{pri} LIMIT #{offset}, #{limit};
+        SELECT m_account.*, city
+        FROM m_account
+            LEFT JOIN m_city ON (m_account.recent_city = m_city.id)
+        WHERE pri = #{pri}
+        LIMIT #{offset}, #{limit};
     </select>
     <delete id="delAccount">
-        DELETE FROM m_account WHERE id = #{id};
+        DELETE
+        FROM m_account
+        WHERE id = #{id};
     </delete>
 
     <select id="getAccountById" resultType="Account">
-        SELECT * FROM m_account WHERE id = #{id};
+        SELECT *
+        FROM m_account
+        WHERE id = #{id};
     </select>
 
     <select id="getAccountByName" resultType="Account">
-        SELECT * FROM m_account WHERE username = #{username};
+        SELECT *
+        FROM m_account
+        WHERE username = #{username};
     </select>
+
+    <update id="updateDisabled">
+        UPDATE m_account SET disabled = #{disabled} WHERE id = #{id};
+    </update>
 </mapper>

@@ -85,4 +85,19 @@ public class AdminAccountApiController {
         }
         return response;
     }
+
+    @RequestMapping("/lock")
+    private NormalResponse<String> lockUser(@RequestParam Map<String, Object> param) {
+        NormalResponse<String> response = new NormalResponse<>();
+        ParamUtils p = new ParamUtils(param);
+        int id = p.getInteger("id");
+        int disabled = p.getInteger("disabled");
+        Account a = new Account();
+        a.setId(id);
+        a.setDisabled(disabled);
+        if (!accountService.updateAccount(a, AccountUpdateOption.UPDATE_DISABLED)) {
+            response.setInfo("更新失败，请重试");
+        }
+        return response;
+    }
 }

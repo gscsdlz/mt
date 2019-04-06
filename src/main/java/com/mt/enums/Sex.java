@@ -1,12 +1,13 @@
 package com.mt.enums;
 
-public enum DBErrorType {
-    SYSTEM_ERROR("数据库系统错误，请重试"),
-    DUPLICATE_KEY("数据冲突");
+public enum Sex {
+    Sex_None("未知"),
+    Sex_Female("女"),
+    Sex_Male("男");
 
     private final String message;
 
-    DBErrorType(String mess) {
+    Sex(String mess) {
         message = mess;
     }
 
@@ -15,6 +16,6 @@ public enum DBErrorType {
     }
 
     public static String toString(int idx) {
-        return DBErrorType.values()[idx].toString();
+        return Sex.values()[idx].toString();
     }
 }

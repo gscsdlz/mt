@@ -34,4 +34,6 @@ public interface AccountDao {
     Account getAccountById(@Param("id") int id);
 
     Account getAccountByName(@Param("username") String username);
+
+    int updateDisabled(@Param("id") int id, @Param("disabled") int disabled);
 }

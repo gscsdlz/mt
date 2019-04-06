@@ -1,6 +1,8 @@
 package com.mt.entity;
 
 import com.mt.enums.AccountType;
+import com.mt.enums.Constellation;
+import com.mt.enums.Sex;
 
 public class Account {
     private int id;
@@ -8,15 +10,23 @@ public class Account {
     private String password;
     private int pri;
     private int recentCity;
+    private String city;
     private String accountImg;
     private int sex;
-    private String date;
-    private String bobby;
+    private String birth;
+    private String hobby;
     private int constellation;
-    private String more;
     private int disabled;
     private String createdAt;
     private String updatedAt;
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
 
     public int getDisabled() {
         return disabled;
@@ -86,6 +96,10 @@ public class Account {
         this.accountImg = accountImg;
     }
 
+    public String getSexStr() {
+        return Sex.toString(sex);
+    }
+
     public int getSex() {
         return sex;
     }
@@ -94,20 +108,24 @@ public class Account {
         this.sex = sex;
     }
 
-    public String getDate() {
-        return date;
+    public String getBirth() {
+        return birth;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setBirth(String birth) {
+        this.birth = birth;
     }
 
-    public String getBobby() {
-        return bobby;
+    public String getHobby() {
+        return hobby;
     }
 
-    public void setBobby(String bobby) {
-        this.bobby = bobby;
+    public void setHobby(String hobby) {
+        this.hobby = hobby;
+    }
+
+    public String getConstellationStr() {
+        return Constellation.toString(constellation);
     }
 
     public int getConstellation() {
@@ -116,14 +134,6 @@ public class Account {
 
     public void setConstellation(int constellation) {
         this.constellation = constellation;
-    }
-
-    public String getMore() {
-        return more;
-    }
-
-    public void setMore(String more) {
-        this.more = more;
     }
 
     public String getCreatedAt() {
