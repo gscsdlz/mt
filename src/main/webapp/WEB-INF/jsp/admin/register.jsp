@@ -37,7 +37,7 @@
                   <input type="password" class="form-control form-control-lg" id="confirmPassword" placeholder="请再次输入密码">
                 </div>
                 <div class="mt-3">
-                  <button type="button" class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn">注册</button>
+                  <button type="button" class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn" id="submit">注册</button>
                 </div>
                 <div class="text-center mt-4 font-weight-light">
                   已有账号？ <a href="${pageContext.request.contextPath}/login" class="text-primary">开始登录</a>
@@ -49,5 +49,28 @@
       </div>
     </div>
   </div>
+  <script>
+    $(document).ready(function () {
+      $("#submit").click(function () {
+        let username = $("#username").val();
+        let password = $("#password").val();
+        if ($("#confirmPassword").val() !== password) {
+          alert("两次输入的密码不匹配");
+        } else {
+          $.post("/account_api/register", {username:username,password:password}, function (resp) {
+            if (resp.status) {
+              window.location.href = "/me";
+            } else {
+              if (resp.info === "数据冲突") {
+                alert("用户名已经存在")
+              } else {
+                alert(resp.info)
+              }
+            }
+          })
+        }
+      })
+    })
+  </script>
 </body>
 </html>

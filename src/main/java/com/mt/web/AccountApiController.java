@@ -62,7 +62,7 @@ public class AccountApiController {
         String password = p.getString("password");
         Account a = new Account();
         a.setUsername(username);
-        a.setPassword(password);
+        a.setPassword(Encrypt.sha1Encode(password));
         a.setRecentCity(1);
         a.setPri(2);
         accountService.addAccount(a);
