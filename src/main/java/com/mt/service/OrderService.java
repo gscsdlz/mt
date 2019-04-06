@@ -18,4 +18,6 @@ public interface OrderService {
     boolean updateOrder(Order o, OrderUpdateOption updateOption);
 
     List<Order> getHistoryOrder(int page, int size);
+
+    boolean delOrder(int id);
 }

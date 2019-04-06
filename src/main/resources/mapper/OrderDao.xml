@@ -3,19 +3,23 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mt.dao.OrderDao">
+
     <select id="getAllOrderByUser" resultType="Order">
         SELECT *
         FROM m_order
         WHERE account_id = #{account_id}
         LIMIT ${offset}, ${limit}
     </select>
+
     <select id="getAllOrder" resultType="Order">
         SELECT m_order.*, m_account.username, m_store.store_name
         FROM m_order
                  LEFT JOIN m_account ON (m_order.account_id = m_account.id)
                  LEFT JOIN m_store ON (m_order.store_id = m_store.id)
+        WHERE order_status != 5
         LIMIT ${offset}, ${limit}
     </select>
+
     <select id="getAllOrderByStore" resultType="Order">
         SELECT *
         FROM m_order
@@ -23,6 +27,7 @@
         WHERE m_item.store_id = #{store_id}
         LIMIT ${offset}, ${limit}
     </select>
+
     <insert id="addOrder">
         INSERT INTO m_order (items, account_id, item_number, item_price, total_price)
         VALUES (#{item_id}, #{account_id}, ${item_number}, #{item_price}, ${total_price})
@@ -34,9 +39,9 @@
         WHERE id = #{id};
     </update>
 
-    <update id="updateOrderCommit">
+    <update id="updateOrderRemark">
         UPDATE m_order
-        SET remark = #{commit}
+        SET remark = #{remark}
         WHERE id = #{id};
     </update>
 
@@ -47,9 +52,15 @@
     </update>
 
     <select id="getHistoryOrder" resultType="Order">
-        SELECT *
+        SELECT m_order.*, m_account.username, m_store.store_name
         FROM m_order
+                 LEFT JOIN m_account ON (m_order.account_id = m_account.id)
+                 LEFT JOIN m_store ON (m_order.store_id = m_store.id)
         WHERE order_status = 5
         LIMIT #{offset}, #{limit}
     </select>
+
+    <delete id="delOrder">
+        DELETE FROM m_order WHERE id = #{id};
+    </delete>
 </mapper>

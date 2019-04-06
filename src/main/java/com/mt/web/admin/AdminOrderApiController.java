@@ -32,7 +32,7 @@ public class AdminOrderApiController {
         o.setId(orderId);
 
         if (!orderService.updateOrder(o, OrderUpdateOption.UPDATE_STATUS_ONLY)) {
-            response.setInfo("");
+            response.setInfo("更新失败，请重试");
         }
         return response;
     }
@@ -41,11 +41,23 @@ public class AdminOrderApiController {
     private NormalResponse<String> delRemark(@RequestParam Map<String, Object> param) {
         NormalResponse<String> response = new NormalResponse<>();
         ParamUtils p = new ParamUtils(param);
-        int orderId = p.getInteger("order_id");
+        int orderId = p.getInteger("id");
         Order o = new Order();
         o.setId(orderId);
+        o.setRemark("");
         if (!orderService.updateOrder(o, OrderUpdateOption.UPDATE_COMMIT_ONLY)) {
-            response.setInfo("");
+            response.setInfo("清空失败，请重试");
+        }
+        return response;
+    }
+
+    @RequestMapping("/del")
+    private NormalResponse<String> del(@RequestParam Map<String, Object> param) {
+        NormalResponse<String> response = new NormalResponse<>();
+        ParamUtils p = new ParamUtils(param);
+        int id = p.getInteger("id");
+        if (!orderService.delOrder(id)) {
+            response.setInfo("删除失败，请重试");
         }
         return response;
     }

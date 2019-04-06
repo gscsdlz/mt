@@ -42,12 +42,17 @@ public class OrderServiceImpl implements OrderService {
         } else if (updateOption == OrderUpdateOption.UPDATE_STAR_ONLY) {
             return orderDao.updateOrderStar(o.getId(), o.getStar()) > 0;
         } else {
-            return orderDao.updateOrderStar(o.getId(), o.getOrderStatus()) > 0;
+            return orderDao.updateOrderStatus(o.getId(), o.getOrderStatus()) > 0;
         }
     }
 
     @Override
     public List<Order> getHistoryOrder(int page, int size) {
         return orderDao.getHistoryOrder((page - 1) * size, size);
+    }
+
+    @Override
+    public boolean delOrder(int id) {
+        return orderDao.delOrder(id) > 0;
     }
 }

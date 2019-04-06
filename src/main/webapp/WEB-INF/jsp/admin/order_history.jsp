@@ -5,13 +5,13 @@
     <div class="content-wrapper">
         <div class="page-header">
             <h3 class="page-title">
-                订单管理
+                历史订单查询
             </h3>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="#">首页</a></li>
                     <li class="breadcrumb-item">订单管理</li>
-                    <li class="breadcrumb-item active" aria-current="page">未完成订单管理</li>
+                    <li class="breadcrumb-item active" aria-current="page">历史订单查询</li>
                 </ol>
             </nav>
         </div>
@@ -51,8 +51,6 @@
                                     <td>${order.createdAt}</td>
                                     <td>${order.updatedAt}</td>
                                     <td>
-                                        <button actionChange="${order.id}" title="修改状态" class="btn btn-success btn-sm"
-                                                type="button"><span class="mdi mdi-table-edit mdi-md"></span></button>
                                         <button actionDel="${order.id}" title="删除" class="btn btn-danger btn-sm"
                                                 type="button"><span class="mdi mdi-delete mdi-md"></span></button>
                                         <button actionClear="${order.id}" title="清空评论" class="btn btn-danger btn-sm"
@@ -68,57 +66,8 @@
         </div>
     </div>
 </div>
-<div class="modal fade" id="statusModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content" style="background-color: #fff">
-            <div class="modal-header">
-                <h4>订单状态</h4>
-            </div>
-            <div class="modal-body">
-                <form id="storeForm">
-                    <input type="hidden" id="orderId"/>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-primary" id="confirm">确认</button>
-            </div>
-        </div>
-    </div>
-</div>
 <script>
-    let statusMapper = [
-        <c:forEach items="${status}" var="item">
-            '${item.toString()}',
-        </c:forEach>
-    ];
-
     $(document).ready(function () {
-        let str = "";
-        for (let i = 0; i <statusMapper.length; i++) {
-            str += '<div class="form-check">' +
-                    '<label class="form-check-label">' +
-                        '<input type="radio" class="form-check-input" name="status" value="'+i+'">'+statusMapper[i]+'<i class="input-helper"></i></label>\n' +
-                    '</div>'
-        }
-        $("#orderId").after(str);
-
-        $("[actionChange]").click(function () {
-            let id = $(this).attr('actionChange');
-            let statusStr = $(this).parent().parent().children().eq(5).html();
-            let statusId = 0;
-            for (let i = 0; i < statusMapper.length; i++) {
-                if (statusMapper[i] === statusStr) {
-                    statusId = i;
-                    break;
-                }
-            }
-
-            $(":radio[name='status'][value='"+statusId+"']").prop("checked", true);
-            $("#orderId").val(id);
-            $("#statusModal").modal();
-        });
-
         $("[actionDel]").click(function () {
             let id = $(this).attr('actionDel');
             send("/admin/order_api/del", {id: id});
@@ -128,12 +77,6 @@
             let id = $(this).attr('actionClear');
             send("/admin/order_api/del_remark", {id: id});
         });
-
-        $("#confirm").click(function () {
-            let id = $("#orderId").val();
-            let status  = $(":radio[name='status']:checked").val();
-            send("/admin/order_api/change_status", {id:id,status:status});
-        })
     });
 
     function send(url, param) {

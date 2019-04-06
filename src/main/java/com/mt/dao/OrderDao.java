@@ -22,9 +22,11 @@ public interface OrderDao {
 
     int updateOrderStar(@Param("id") int id, @Param("star") int star);
 
-    int updateOrderRemark(@Param("id") int id, @Param("commit") String commit);
+    int updateOrderRemark(@Param("id") int id, @Param("remark") String remark);
 
     int updateOrderStatus(@Param("id") int id, @Param("order_status") int orderStatus);
 
     List<Order> getHistoryOrder(@Param("offset") int offset, @Param("limit") int limit);
+
+    int delOrder(@Param("id") int id);
 }
