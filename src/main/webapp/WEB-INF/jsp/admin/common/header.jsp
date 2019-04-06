@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/fonts/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/vendor.bundle.base.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css">
-    <link rel="shortcut icon" href="${pageContext.request.contextPath}/assets/images/favicon.png" />
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/assets/images/default/logo.png" />
     <script src="${pageContext.request.contextPath}/assets/js/vendor.bundle.base.js"></script>
     <script src="${pageContext.request.contextPath}/assets/js/vendor.bundle.addons.js"></script>
     <script src="${pageContext.request.contextPath}/assets/js/off-canvas.js"></script>
@@ -19,19 +19,19 @@
 <div class="container-scroller">
     <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-            <a class="navbar-brand brand-logo" href="index.html"><img src="images/logo.svg" alt="logo"/></a>
-            <a class="navbar-brand brand-logo-mini" href="index.html"><img src="images/logo-mini.svg" alt="logo"/></a>
+            <a class="navbar-brand brand-logo" href="/admin/index"><img src="/assets/images/default/logo.png" alt="logo"/></a>
+            <a class="navbar-brand brand-logo-mini" href="/admin/index"><img src="/assets/images/default/logo.png" alt="logo"/></a>
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-stretch">
             <ul class="navbar-nav navbar-nav-right">
                 <li class="nav-item nav-profile dropdown">
                     <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
                         <div class="nav-profile-img">
-                            <img src="images/faces/face1.jpg" alt="image">
+                            <img src="${sessionScope.get("accountImg").toString()}" alt="image">
                             <span class="availability-status online"></span>
                         </div>
                         <div class="nav-profile-text">
-                            <p class="mb-1 text-black">Admin</p>
+                            <p class="mb-1 text-black">${sessionScope.get("username").toString()}</p>
                         </div>
                     </a>
                     <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">

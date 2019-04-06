@@ -10,7 +10,6 @@
   <link rel="stylesheet" href="/assets/css/style.css">
   <link rel="shortcut icon" href="../../images/favicon.png" />
 </head>
-
 <body>
 <div class="container-scroller">
   <div class="container-fluid page-body-wrapper full-page-wrapper">

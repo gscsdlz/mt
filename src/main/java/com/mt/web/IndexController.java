@@ -33,4 +33,14 @@ public class IndexController {
         request.getSession().setAttribute("recent_city", cityId);
         return "";
     }
+
+    @RequestMapping("/login")
+    private String login(@RequestParam Map<String, Object> param) {
+        return "admin/login";
+    }
+
+    @RequestMapping("/register")
+    private String register(@RequestParam Map<String, Object> param) {
+        return "admin/register";
+    }
 }

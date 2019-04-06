@@ -50,6 +50,17 @@ public class AccountServiceImpl implements AccountService {
             return accountDao.updateAdmin(account.getId(), account.getPri(), account.getDisabled(), account.getUsername()) > 0;
         } else if (op == AccountUpdateOption.UPDATE_DISABLED) {
             return accountDao.updateDisabled(account.getId(), account.getDisabled()) > 0;
+        } else if (op == AccountUpdateOption.UPDATE_NORMAL_INFO) {
+            return accountDao.updateUserInfo(
+                    account.getId(),
+                    account.getUsername(),
+                    account.getRecentCity(),
+                    account.getAccountImg(),
+                    account.getSex(),
+                    account.getBirth(),
+                    account.getConstellation(),
+                    account.getHobby()
+            ) > 0;
         }
         return false;
     }

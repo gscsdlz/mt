@@ -47,6 +47,6 @@ public class AdminAccountController {
     private String accountCenter(@RequestParam Map<String, Object> param, Model model) {
         Account a = accountService.getAccountById(3);
         model.addAttribute("account", a);
-        return "/admin/account_center";
+        return "/admin/me";
     }
 }

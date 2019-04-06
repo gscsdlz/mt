@@ -9,7 +9,7 @@
             </h3>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">首页</a></li>
+                    <li class="breadcrumb-item"><a href="/admin/index">首页</a></li>
                     <li class="breadcrumb-item active" aria-current="page">发帖管理</li>
                 </ol>
             </nav>

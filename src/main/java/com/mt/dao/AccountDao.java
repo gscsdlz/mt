@@ -36,4 +36,15 @@ public interface AccountDao {
     Account getAccountByName(@Param("username") String username);
 
     int updateDisabled(@Param("id") int id, @Param("disabled") int disabled);
+
+    int updateUserInfo(
+            @Param("id") int id,
+            @Param("username") String username,
+            @Param("recent_city") int recentCity,
+            @Param("account_img") String accountImg,
+            @Param("sex") int sex,
+            @Param("birth") String birth,
+            @Param("constellation") int constellation,
+            @Param("hobby") String hobby
+    );
 }

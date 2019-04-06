@@ -24,7 +24,7 @@
     <select id="getAllAccountByPri" resultType="Account">
         SELECT m_account.*, city
         FROM m_account
-            LEFT JOIN m_city ON (m_account.recent_city = m_city.id)
+                 LEFT JOIN m_city ON (m_account.recent_city = m_city.id)
         WHERE pri = #{pri}
         LIMIT #{offset}, #{limit};
     </select>
@@ -47,6 +47,20 @@
     </select>
 
     <update id="updateDisabled">
-        UPDATE m_account SET disabled = #{disabled} WHERE id = #{id};
+        UPDATE m_account
+        SET disabled = #{disabled}
+        WHERE id = #{id};
+    </update>
+
+    <update id="updateUserInfo">
+        UPDATE m_account
+        SET username = #{username},
+            recent_city = #{recent_city},
+            account_img = #{account_img},
+            sex = #{sex},
+            birth = #{birth},
+            constellation = #{constellation},
+            hobby = #{hobby}
+        WHERE id = #{id};
     </update>
 </mapper>

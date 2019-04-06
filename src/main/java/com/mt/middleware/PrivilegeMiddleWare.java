@@ -1,5 +1,9 @@
 package com.mt.middleware;
 
+import com.mt.entity.Account;
+import com.mt.enums.AccountType;
+import com.mt.service.AccountService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -10,33 +14,45 @@ import java.util.List;
 
 public class PrivilegeMiddleWare implements HandlerInterceptor {
 
-    private static List<String> whiteList;
+    @Autowired
+    private AccountService accountService;
+
+    private static List<String> blackList;
 
     static {
-        whiteList = new ArrayList<>();
-        whiteList.add("/login");
+        blackList = new ArrayList<>();
+        blackList.add("/admin");
     }
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-      /*  request.getSession().setAttribute("account_id", 7);
-        request.getSession().setAttribute("username", "familyUser");
-        request.getSession().setAttribute("act", 3);
-        return true;
-*/
-        //登录注册相关接口和默认页面 直接放行
-       /*for (String uri : whiteList) {
+        /*if (request.getSession().getAttribute("id") == null) {
+            Account a = accountService.getAccountById(3);
+
+            request.getSession().setAttribute("username", a.getUsername());
+            request.getSession().setAttribute("id", a.getId());
+            request.getSession().setAttribute("recent_city", a.getRecentCity());
+            request.getSession().setAttribute("pri", a.getPri());
+            request.getSession().setAttribute("accountImg", a.getAccountImg());
+        }*/
+        //return true;
+        //
+        //反向检验 属于黑名单的请求 统一需要认证
+
+        for (String uri : blackList) {
             if (request.getServletPath().startsWith(uri)) {
-                return true;
+                if (request.getSession().getAttribute("id") == null) {
+                    response.sendRedirect("/login");
+                    return false;
+                } else {
+                    if (uri.equals("/admin") && Integer.parseInt(request.getSession().getAttribute("pri").toString()) == AccountType.USER.ordinal()) {
+                        response.sendRedirect("/login");
+                        return false;
+                    }
+                }
             }
         }
-        if (request.getServletPath().equals("/")) {
-            return true;
-        }
-        if (request.getSession().getAttribute("act") == null) {
-            response.sendRedirect("/login");
-            return false;
-        }*/
+        //不在黑名单中的请求直接通过
         return true;
     }
 
