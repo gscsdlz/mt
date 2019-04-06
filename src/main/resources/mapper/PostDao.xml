@@ -6,6 +6,9 @@
     <select id="getAllPost" resultType="Post">
         SELECT m_post.*, m_account.username FROM m_post LEFT JOIN m_account ON (m_account.id = m_post.manager_id) LIMIT #{offset}, #{limit};
     </select>
+    <select id="getPostById" resultType="Post">
+        SELECT m_post.*, m_account.username FROM m_post LEFT JOIN m_account ON (m_account.id = m_post.manager_id) WHERE m_post.id = #{id};
+    </select>
 
     <select id="getAllPostByUser" resultType="Post">
         SELECT m_post.*, m_account.username FROM m_post LEFT JOIN m_account ON (m_account.id = m_post.manager_id) WHERE manager_id = #{manager_id} LIMIT #{offset}, #{limit};
@@ -16,7 +19,7 @@
     </insert>
 
     <delete id="delPost">
-        DELETE FROM m_post WHERE manager_id = #{manager_id};
+        DELETE FROM m_post WHERE id = #{id};
     </delete>
 
     <update id="updatePostTitle">

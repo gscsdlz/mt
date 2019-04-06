@@ -37,4 +37,9 @@ public class PostServiceImpl implements PostService {
     public List<Post> getAllPostByUser(int accountId, int page, int size) {
         return postDao.getAllPostByUser(accountId, (page-1) * size, size);
     }
+
+    @Override
+    public Post getPostById(int postId) {
+        return postDao.getPostById(postId);
+    }
 }

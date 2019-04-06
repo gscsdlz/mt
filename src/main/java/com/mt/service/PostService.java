@@ -14,4 +14,6 @@ public interface PostService {
     List<Post> getAllPost(int page, int size);
 
     List<Post> getAllPostByUser(int accountId, int page, int size);
+
+    Post getPostById(int postId);
 }

@@ -40,7 +40,7 @@ public class AdminPostApiController {
         ParamUtils p = new ParamUtils(param);
         int id = p.getInteger("id");
         if (!replyService.delReply(id)) {
-            response.setInfo("");
+            response.setInfo("删除失败");
         }
         return response;
     }

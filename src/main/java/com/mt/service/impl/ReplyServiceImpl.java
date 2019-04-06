@@ -20,11 +20,16 @@ public class ReplyServiceImpl implements ReplyService {
 
     @Override
     public boolean delReply(int replyId) {
-        return false;
+        return replyDao.delReply(replyId) > 0;
     }
 
     @Override
     public List<Reply> getAllReply(int postId, int page, int size) {
-        return replyDao.getAllReply(postId, (page-1) * size, size);
+        List<Reply> res = replyDao.getAllReply(postId, (page-1) * size, size);
+        int idx = 1;
+        for (Reply r : res) {
+            r.setIdx(idx++);
+        }
+        return res;
     }
 }

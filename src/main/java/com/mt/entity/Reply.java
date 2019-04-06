@@ -8,8 +8,35 @@ public class Reply {
     private int accountId;
     private String createdAt;
     private String updatedAt;
-    private String username;
-    private String replyUsername;
+    private String username;        //发布者名称
+    private String replyUsername;   //被回答者姓名 可能有
+    private String replyContent;
+    private String replyTime;
+    private int idx;
+
+    public int getIdx() {
+        return idx;
+    }
+
+    public void setIdx(int idx) {
+        this.idx = idx;
+    }
+
+    public String getReplyTime() {
+        return replyTime;
+    }
+
+    public void setReplyTime(String replyTime) {
+        this.replyTime = replyTime;
+    }
+
+    public String getReplyContent() {
+        return replyContent;
+    }
+
+    public void setReplyContent(String replyContent) {
+        this.replyContent = replyContent;
+    }
 
     public String getUsername() {
         return username;

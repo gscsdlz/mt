@@ -23,7 +23,7 @@ public class AdminPostController {
     @Autowired
     private ReplyService replyService;
 
-    @RequestMapping("/get_post")
+    @RequestMapping("/index")
     private String getAllPost(@RequestParam Map<String, Object> param, Model model) {
         ParamUtils p = new ParamUtils(param);
         int page = p.getInteger("page", 1);
@@ -34,13 +34,17 @@ public class AdminPostController {
         return "/admin/post_manage";
     }
 
-    @RequestMapping("/get_reply")
+    @RequestMapping("/reply")
     private String getAllReply(@RequestParam Map<String, Object> param, Model model) {
         ParamUtils p = new ParamUtils(param);
         int postId = p.getInteger("post_id");
         int page = p.getInteger("page", 1);
         int size = p.getInteger("size", 15);
         List<Reply> res = replyService.getAllReply(postId, page, size);
+        Post post = postService.getPostById(postId);
+
+        model.addAttribute("post", post);
+        model.addAttribute("menu", "post");
         model.addAttribute("data", res);
         return "/admin/reply_manage";
     }

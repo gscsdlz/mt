@@ -15,4 +15,6 @@ public interface PostDao {
     List<Post> getAllPostByUser(@Param("manager_id") int managerId, @Param("offset") int offset, @Param("limit") int limit);
 
     int updatePostTitle(@Param("id") int postId, @Param("post_title") String postTitle);
+
+    Post getPostById(@Param("id") int id);
 }
