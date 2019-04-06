@@ -64,7 +64,7 @@ public class AccountApiController {
         a.setUsername(username);
         a.setPassword(Encrypt.sha1Encode(password));
         a.setRecentCity(1);
-        a.setPri(2);
+        a.setPri(AccountType.USER.ordinal());
         accountService.addAccount(a);
         this.setSession(a);
         return response;
