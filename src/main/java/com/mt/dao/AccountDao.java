@@ -47,4 +47,6 @@ public interface AccountDao {
             @Param("constellation") int constellation,
             @Param("hobby") String hobby
     );
+
+    int updateRecentCity(@Param("id") int id, @Param("recent_city") int recentCity);
 }

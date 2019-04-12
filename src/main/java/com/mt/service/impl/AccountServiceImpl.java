@@ -79,4 +79,9 @@ public class AccountServiceImpl implements AccountService {
     public Account getAccountById(int id) {
         return accountDao.getAccountById(id);
     }
+
+    @Override
+    public boolean updateRecentCity(int id, int recentCity) {
+        return accountDao.updateRecentCity(id, recentCity) > 0;
+    }
 }

@@ -19,7 +19,8 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">商铺列表</h4>
-                        <button id="add" class="btn btn-sm btn-primary" type="button">新增 <span class="mdi mdi-plus"></span></button>
+                        <button id="add" class="btn btn-sm btn-primary" type="button">新增 <span
+                                class="mdi mdi-plus"></span></button>
                         <hr/>
                         <table class="table table-bordered">
                             <thead>
@@ -29,6 +30,10 @@
                                 <th>名称</th>
                                 <th>城市</th>
                                 <th>类别</th>
+                                <th>显示在首页</th>
+                                <th>商铺电话</th>
+                                <th>商铺地址</th>
+                                <th>营业时间</th>
                                 <th>创建时间</th>
                                 <th>上次修改时间</th>
                                 <th>操作</th>
@@ -43,6 +48,17 @@
                                     <td>${store.storeName}</td>
                                     <td>${store.province} · ${store.city}</td>
                                     <td>${store.mainType} / ${store.typeName}</td>
+                                    <td>
+                                        <c:if test="${store.showIndex == 1}">
+                                            是
+                                        </c:if>
+                                        <c:if test="${store.showIndex != 1}">
+                                            否
+                                        </c:if>
+                                    </td>
+                                    <td>${store.storePhone}</td>
+                                    <td>${store.address}</td>
+                                    <td>${store.workTime}</td>
                                     <td>${store.createdAt}</td>
                                     <td>${store.updatedAt}</td>
                                     <td>
@@ -69,7 +85,7 @@
             </div>
             <div class="modal-body">
                 <form id="storeForm">
-                    <input type="hidden" id="storeId" />
+                    <input type="hidden" id="storeId"/>
                     <div class="row">
                         <div class="col-sm-8">
                             <div class="form-group row">
@@ -86,7 +102,8 @@
                             </div>
                         </div>
                         <div class="col-sm-4">
-                            <img id="storeImg" src="/assets/images/default/empty_img.png" class="img-thumbnail" width="100%"/>
+                            <img id="storeImg" src="/assets/images/default/empty_img.png" class="img-thumbnail"
+                                 width="100%"/>
                         </div>
                     </div>
 
@@ -116,6 +133,40 @@
                             </select>
                         </div>
                     </div>
+                    <div class="form-group row">
+                        <label class="col-form-label col-sm-3">显示控制</label>
+                        <div class="col-sm-8">
+                            <select class="form-control" id="show">
+                                <option value="0">不显示在主页</option>
+                                <option value="1">显示在主页</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label col-sm-3">商铺电话</label>
+                        <div class="col-sm-8">
+                            <input type="text" value="" class="form-control" placeholder="" id="storePhone"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label col-sm-3">商铺地址</label>
+                        <div class="col-sm-8">
+                            <input type="text" value="" class="form-control" placeholder="" id="address"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label col-sm-3">营业时间</label>
+                        <div class="col-sm-4">
+                            <select class="form-control" id="work_start">
+
+                            </select>
+                        </div>
+                        <div class="col-sm-4">
+                            <select class="form-control" id="work_end">
+
+                            </select>
+                        </div>
+                    </div>
                 </form>
             </div>
             <div class="modal-footer">
@@ -132,19 +183,34 @@
     let typeMapper = [];
 
     $(document).ready(function () {
-        $("#confirm").click(function (){
+        let str = '';
+        for (let i = 0; i < 23; i++) {
+            str += '<option value=' + i + ':00>' + i + ':00</option>'
+        }
+        $("#work_start").html(str);
+        $("#work_end").html(str);
+
+        $("#confirm").click(function () {
             let name = $("#storeName").val();
             let city = $("#city").val();
             let type = $("#type").val();
             let img = $("#storeImg").attr('src');
+            let show = $("#show").val();
+            let address = $("#address").val();
+            let storePhone = $("#storePhone").val();
+            let workTime = $("#work_start").val() + "-" + $("#work_end").val();
             let args = {
                 storeName: name,
                 cityId: city,
                 typeId: type,
                 storeImg: img,
+                showIndex: show,
+                address: address,
+                storePhone: storePhone,
+                workTime: workTime,
                 id: parseInt($("#storeId").val())
             };
-            if (parseInt($("#storeId").val()) > 0 ) {
+            if (parseInt($("#storeId").val()) > 0) {
                 //udpate
                 $.post("/admin/store_api/modify", {json_str: JSON.stringify(args)}, function (resp) {
                     if (resp.status) {
@@ -167,7 +233,7 @@
 
         $("#uploadFile").AjaxFileUpload({
             "action": "/upload_api/image",
-            "onComplete": function(filename, response) {
+            "onComplete": function (filename, response) {
                 response = response.substr(5, response.length - 11);
                 response = JSON.parse(response);
                 if (!response.status) {
@@ -189,7 +255,7 @@
                 }
             })
         });
-        
+
         $("[actionModify]").click(function () {
             document.getElementById("storeForm").reset();
             let id = $(this).attr("actionModify");
@@ -197,6 +263,13 @@
             $("#storeId").val(id);
             $("#storeName").val(target.eq(2).html());
             $("#storeImg").attr('src', target.eq(1).children().eq(0).attr('src'));
+            $("#show").val(target.eq(5).html() === "不显示在主页" ? 0 : 1);
+            $("#storePhone").val(target.eq(6).html());
+            $("#address").val(target.eq(7).html());
+            let workTime = target.eq(8).html().split("-");
+            $("#work_start").val(workTime[0]);
+            $("#work_end").val(workTime[1]);
+
             let arr = target.eq(3).html().split(" · ");
             $("#province").val(arr[0]);
             loadCity(arr[0], arr[1]);

@@ -63,4 +63,8 @@
             hobby = #{hobby}
         WHERE id = #{id};
     </update>
+
+    <update id="updateRecentCity">
+        UPDATE m_account SET recent_city = #{recent_city} WHERE id = #{daoid};
+    </update>
 </mapper>

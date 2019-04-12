@@ -6,12 +6,40 @@ public class Store {
     private String storeImg;
     private int cityId;
     private int typeId;
+    private int showIndex;
+    private String address;
+    private String storePhone;
+    private String workTime;
     private String createdAt;
     private String updatedAt;
     private String Province;
     private String city;
     private String mainType;
     private String typeName;
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getStorePhone() {
+        return storePhone;
+    }
+
+    public void setStorePhone(String storePhone) {
+        this.storePhone = storePhone;
+    }
+
+    public String getWorkTime() {
+        return workTime;
+    }
+
+    public void setWorkTime(String workTime) {
+        this.workTime = workTime;
+    }
 
     public String getProvince() {
         return Province;
@@ -99,5 +127,13 @@ public class Store {
 
     public void setUpdatedAt(String updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public int getShowIndex() {
+        return showIndex;
+    }
+
+    public void setShowIndex(int showIndex) {
+        this.showIndex = showIndex;
     }
 }

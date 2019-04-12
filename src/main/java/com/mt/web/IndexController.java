@@ -1,5 +1,6 @@
 package com.mt.web;
 
+import com.mt.service.AccountService;
 import com.mt.utils.ParamUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,9 @@ public class IndexController {
     @Autowired
     private HttpServletRequest request;
 
+    @Autowired
+    private AccountService accountService;
+
     @RequestMapping("/")
     private String index() {
         return "index";
@@ -30,7 +34,12 @@ public class IndexController {
     private String cityChange(@RequestParam Map<String, Object> param) {
         ParamUtils p = new ParamUtils(param);
         int cityId = p.getInteger("id");
-        request.getSession().setAttribute("recent_city", cityId);
+
+        if (request.getSession().getAttribute("id") != null) {
+            request.getSession().setAttribute("recent_city", cityId);
+            int aid = Integer.parseInt(request.getSession().getAttribute("id").toString());
+            accountService.updateRecentCity(aid, cityId);
+        }
         return "";
     }
 

@@ -22,7 +22,10 @@ public interface StoreDao {
             @Param("store_name") String storeName,
             @Param("store_img") String storeImg,
             @Param("city_id") int cityId,
-            @Param("type_id") int typeId
+            @Param("type_id") int typeId,
+            @Param("store_phone") String storePhone,
+            @Param("address") String address,
+            @Param("work_time") String workTime
     );
 
     int updateNewStore(
@@ -30,6 +33,10 @@ public interface StoreDao {
             @Param("store_name") String storeName,
             @Param("store_img") String storeImg,
             @Param("city_id") int cityId,
-            @Param("type_id") int typeId
+            @Param("type_id") int typeId,
+            @Param("show_index") int showIndex,
+            @Param("store_phone") String storePhone,
+            @Param("address") String address,
+            @Param("work_time") String workTime
     );
 }

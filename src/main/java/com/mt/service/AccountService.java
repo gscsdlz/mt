@@ -19,4 +19,6 @@ public interface AccountService {
     Account getAccountByUserName(String username);
 
     Account getAccountById(int id);
+
+    boolean updateRecentCity(int id, int recentCity);
 }

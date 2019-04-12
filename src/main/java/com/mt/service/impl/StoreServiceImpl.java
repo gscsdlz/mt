@@ -25,7 +25,7 @@ public class StoreServiceImpl implements StoreService {
     @Override
     public boolean modifyStore(Store s) throws CustomException {
         try {
-            return store.updateNewStore(s.getId(), s.getStoreName(), s.getStoreImg(), s.getCityId(), s.getTypeId()) > 0;
+            return store.updateNewStore(s.getId(), s.getStoreName(), s.getStoreImg(), s.getCityId(), s.getTypeId(), s.getShowIndex(), s.getStorePhone(), s.getAddress(), s.getWorkTime()) > 0;
         } catch (Exception e) {
             throw new DBSystemError(DBErrorType.SYSTEM_ERROR);
         }
@@ -33,7 +33,7 @@ public class StoreServiceImpl implements StoreService {
 
     @Override
     public boolean addStore(Store s) {
-        return store.addNewStore(s.getStoreName(), s.getStoreImg(), s.getCityId(), s.getTypeId()) > 0;
+        return store.addNewStore(s.getStoreName(), s.getStoreImg(), s.getCityId(), s.getTypeId(),  s.getStorePhone(), s.getAddress(), s.getWorkTime()) > 0;
     }
 
     @Override
@@ -61,4 +61,5 @@ public class StoreServiceImpl implements StoreService {
     public List<Store> getStoreByType(int typeId, int cityId, int page, int size) {
         return null;
     }
+
 }

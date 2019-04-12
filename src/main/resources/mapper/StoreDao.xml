@@ -22,8 +22,8 @@
     </delete>
 
     <insert id="addNewStore">
-        INSERT INTO m_store (store_name, store_img, city_id, type_id)
-        VALUES (#{store_name}, #{store_img}, #{city_id}, #{type_id});
+        INSERT INTO m_store (store_name, store_img, city_id, type_id, store_phone, address, work_time)
+        VALUES (#{store_name}, #{store_img}, #{city_id}, #{type_id}, #{store_phone}, #{address}, #{work_time});
     </insert>
 
     <update id="updateNewStore">
@@ -31,7 +31,10 @@
         SET store_name = #{store_name},
             store_img  = #{store_img},
             city_id    = #{city_id},
-            type_id    = #{type_id}
+            type_id    = #{type_id},
+            store_phone = #{store_phone},
+            address = #{address},
+            work_time = #{work_time}
         WHERE id = #{id};
     </update>
 
@@ -53,4 +56,8 @@
     <select id="getSizeByType" resultType="Integer">
         SELECT COUNT(*) as num FROM m_store WHERE type_id = #{type_id};
     </select>
+
+    <update id="updateShowIndex">
+        UPDATE m_store SET show_index = #{show_index} WHERE id = #{id};
+    </update>
 </mapper>

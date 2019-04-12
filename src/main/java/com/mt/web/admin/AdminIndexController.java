@@ -10,6 +10,7 @@ public class AdminIndexController {
 
     @RequestMapping("/index")
     private String index(Model model) {
+        //TODO 管理后台的主页
         model.addAttribute("menu", "index");
         return "admin/index";
     }
