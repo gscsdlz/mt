@@ -26,20 +26,19 @@ CREATE TABLE `m_account` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(50) NOT NULL,
   `password` varchar(40) NOT NULL,
-  `pri` int(11) NOT NULL,
+  `pri` int(11) NOT NULL DEFAULT '2',
   `recent_city` int(11) NOT NULL DEFAULT '1',
-  `account_img` varchar(100) NOT NULL DEFAULT '',
+  `account_img` varchar(100) NOT NULL DEFAULT '/assets/images/default/user.png',
   `sex` int(11) NOT NULL DEFAULT '0',
-  `birth` date DEFAULT NULL,
-  `more` varchar(1000) DEFAULT NULL,
-  `constellation` int(11) DEFAULT NULL,
+  `birth` date DEFAULT '1970-01-01',
+  `constellation` int(11) DEFAULT '0',
   `hobby` varchar(1000) DEFAULT NULL,
   `disabled` int(11) DEFAULT '0',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -48,7 +47,7 @@ CREATE TABLE `m_account` (
 
 LOCK TABLES `m_account` WRITE;
 /*!40000 ALTER TABLE `m_account` DISABLE KEYS */;
-INSERT INTO `m_account` VALUES (3,'admin','7c4a8d09ca3762af61e59520943dc26494f8941b',1,1,'',0,NULL,NULL,NULL,NULL,0,'2019-03-30 17:54:35','2019-03-30 17:54:35');
+INSERT INTO `m_account` VALUES (3,'admin','7c4a8d09ca3762af61e59520943dc26494f8941b',1,1,'/assets/images/upload/67836a76-594b-4600-abc6-f007935544e7.jpg',0,'1970-01-01',0,NULL,0,'2019-03-30 17:54:35','2019-04-06 19:36:39'),(4,'gscsdlz','7c4a8d09ca3762af61e59520943dc26494f8941b',2,1,'/assets/images/default/user.png',1,'1996-02-21',2,'guess',0,'2019-04-06 15:11:50','2019-04-06 15:43:44'),(5,'Daemon','123',2,1,'/assets/images/default/user.png',0,'1970-01-01',0,NULL,0,'2019-04-06 19:40:02','2019-04-06 19:40:02'),(9,'Daemonn','da39a3ee5e6b4b0d3255bfef95601890afd80709',2,1,'/assets/images/default/user.png',0,'1970-01-01',0,NULL,0,'2019-04-06 19:41:34','2019-04-06 19:41:34');
 /*!40000 ALTER TABLE `m_account` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -105,7 +104,7 @@ CREATE TABLE `m_item` (
 
 LOCK TABLES `m_item` WRITE;
 /*!40000 ALTER TABLE `m_item` DISABLE KEYS */;
-INSERT INTO `m_item` VALUES (2,'cat',3,12.00,'/assets/images/upload/63040c56-04ea-4a2f-9c01-bd6122f978b2.jpg',0,0,13,'2019-03-30 15:48:20','2019-03-30 15:48:20');
+INSERT INTO `m_item` VALUES (2,'cat',3,12.00,'/assets/images/upload/6d90eb39-1770-4441-a88f-df491ba6fa2f.jpg',0,0,13,'2019-03-30 15:48:20','2019-04-06 17:52:54');
 /*!40000 ALTER TABLE `m_item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -120,9 +119,10 @@ CREATE TABLE `m_order` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `items` text NOT NULL,
   `account_id` int(11) NOT NULL,
+  `store_id` int(11) DEFAULT NULL,
   `order_status` int(11) NOT NULL,
   `total_price` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `star` int(11) NOT NULL DEFAULT '10',
+  `star` int(11) NOT NULL DEFAULT '0',
   `remark` varchar(1000) DEFAULT NULL,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_at` datetime NOT NULL,
@@ -178,9 +178,11 @@ CREATE TABLE `m_reply` (
   `content` varchar(1000) NOT NULL,
   `reply_id` int(11) DEFAULT NULL,
   `account_id` int(11) NOT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `post_id` (`post_id`),
+  CONSTRAINT `m_reply_post_id` FOREIGN KEY (`post_id`) REFERENCES `m_post` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -206,6 +208,10 @@ CREATE TABLE `m_store` (
   `store_img` varchar(100) NOT NULL,
   `city_id` int(11) NOT NULL DEFAULT '0',
   `type_id` int(11) NOT NULL,
+  `store_phone` varchar(15) DEFAULT NULL,
+  `address` varchar(15) DEFAULT NULL,
+  `work_time` varchar(15) DEFAULT NULL,
+  `show_index` int(11) DEFAULT '0',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
@@ -220,7 +226,7 @@ CREATE TABLE `m_store` (
 
 LOCK TABLES `m_store` WRITE;
 /*!40000 ALTER TABLE `m_store` DISABLE KEYS */;
-INSERT INTO `m_store` VALUES (3,'肯德基北京总店','/assets/images/upload/9c52e870-7aea-4f29-a90e-7ded986292ec.png',1,1,'2019-03-24 19:09:34','2019-03-24 19:38:41');
+INSERT INTO `m_store` VALUES (3,'肯德基北京总店','/assets/images/upload/03e4aa8a-a0b0-46f8-8266-8941bb2db4c9.jpg',1,1,NULL,NULL,NULL,0,'2019-03-24 19:09:34','2019-04-06 17:52:32');
 /*!40000 ALTER TABLE `m_store` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -237,7 +243,7 @@ CREATE TABLE `m_type` (
   `type_name` varchar(10) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `m_type_index` (`main_type`,`type_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -246,7 +252,7 @@ CREATE TABLE `m_type` (
 
 LOCK TABLES `m_type` WRITE;
 /*!40000 ALTER TABLE `m_type` DISABLE KEYS */;
-INSERT INTO `m_type` VALUES (1,'美食','西式快餐');
+INSERT INTO `m_type` VALUES (3,'美食','中餐'),(1,'美食','快餐');
 /*!40000 ALTER TABLE `m_type` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -259,4 +265,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-04-01 15:30:23
+-- Dump completed on 2019-04-12 16:39:16
