@@ -1,6 +1,7 @@
 package com.mt.dao;
 
 import com.mt.entity.Order;
+import com.mt.entity.StoreStar;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -29,4 +30,6 @@ public interface OrderDao {
     List<Order> getHistoryOrder(@Param("offset") int offset, @Param("limit") int limit);
 
     int delOrder(@Param("id") int id);
+
+    StoreStar getStoreStar(@Param("store_id") int storeId);
 }

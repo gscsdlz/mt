@@ -199,8 +199,8 @@
 
 @font-face {
     font-family: com_header;
-    src: url(../font/header.eot?t=1501036445556);
-    src: url(../font/header.eot?t=1501036445556#iefix) format('embedded-opentype'), url(../font/header.woff?t=1501036445556) format('woff'), url(../font/header.ttf?t=1501036445556) format('truetype'), url(../font/header.svg?t=1501036445556#iconfont) format('svg')
+    src: url(../fonts/header.eot?t=1501036445556);
+    src: url(../fonts/header.eot?t=1501036445556#iefix) format('embedded-opentype'), url(../fonts/header.woff?t=1501036445556) format('woff')
 }
 
 .com-header {

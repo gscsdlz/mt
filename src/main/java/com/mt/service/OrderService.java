@@ -1,6 +1,7 @@
 package com.mt.service;
 
 import com.mt.entity.Order;
+import com.mt.entity.StoreStar;
 import com.mt.enums.OrderUpdateOption;
 
 import java.util.List;
@@ -20,4 +21,6 @@ public interface OrderService {
     List<Order> getHistoryOrder(int page, int size);
 
     boolean delOrder(int id);
+
+    StoreStar getStoreStar(int storeId);
 }

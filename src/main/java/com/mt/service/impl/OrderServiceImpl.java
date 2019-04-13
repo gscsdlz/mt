@@ -2,6 +2,7 @@ package com.mt.service.impl;
 
 import com.mt.dao.OrderDao;
 import com.mt.entity.Order;
+import com.mt.entity.StoreStar;
 import com.mt.enums.OrderUpdateOption;
 import com.mt.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,5 +55,10 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public boolean delOrder(int id) {
         return orderDao.delOrder(id) > 0;
+    }
+
+    @Override
+    public StoreStar getStoreStar(int storeId) {
+        return orderDao.getStoreStar(storeId);
     }
 }

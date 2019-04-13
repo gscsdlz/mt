@@ -6,6 +6,7 @@ public class Store {
     private String storeImg;
     private int cityId;
     private int typeId;
+    private int hot;
     private int showIndex;
     private String address;
     private String storePhone;
@@ -16,6 +17,23 @@ public class Store {
     private String city;
     private String mainType;
     private String typeName;
+    private StoreStar storeStar;
+
+    public StoreStar getStoreStar() {
+        return storeStar;
+    }
+
+    public void setStoreStar(StoreStar storeStar) {
+        this.storeStar = storeStar;
+    }
+
+    public int getHot() {
+        return hot;
+    }
+
+    public void setHot(int hot) {
+        this.hot = hot;
+    }
 
     public String getAddress() {
         return address;

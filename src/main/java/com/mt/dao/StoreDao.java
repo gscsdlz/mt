@@ -39,4 +39,6 @@ public interface StoreDao {
             @Param("address") String address,
             @Param("work_time") String workTime
     );
+
+    List<Store> getHotStore(@Param("city_id") int cityId, @Param("limit") int limit);
 }

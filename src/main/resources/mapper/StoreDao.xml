@@ -60,4 +60,8 @@
     <update id="updateShowIndex">
         UPDATE m_store SET show_index = #{show_index} WHERE id = #{id};
     </update>
+
+    <select id="getHotStore" resultType="Store">
+        SELECT * FROM m_store WHERE city_id = #{city_id} ORDER BY hot DESC LIMIT 0, ${limit}
+    </select>
 </mapper>

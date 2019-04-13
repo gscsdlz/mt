@@ -1,6 +1,7 @@
 package com.mt.web;
 
 import com.mt.service.AccountService;
+import com.mt.service.StoreService;
 import com.mt.utils.ParamUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +20,9 @@ public class IndexController {
 
     @Autowired
     private AccountService accountService;
+
+    @Autowired
+    private StoreService storeService;
 
     @RequestMapping("/")
     private String index() {
