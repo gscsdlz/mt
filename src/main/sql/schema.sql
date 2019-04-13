@@ -124,10 +124,10 @@ CREATE TABLE `m_order` (
   `total_price` decimal(10,2) NOT NULL DEFAULT '0.00',
   `star` int(11) NOT NULL DEFAULT '0',
   `remark` varchar(1000) DEFAULT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `created_at` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -136,6 +136,7 @@ CREATE TABLE `m_order` (
 
 LOCK TABLES `m_order` WRITE;
 /*!40000 ALTER TABLE `m_order` DISABLE KEYS */;
+INSERT INTO `m_order` VALUES (1,'\"\"',3,3,1,24.00,4,'1','2019-04-12 06:26:34','2019-04-13 18:46:53'),(2,'\"\"',3,3,1,41.00,6,'1','2019-04-12 06:26:34','2019-04-13 18:46:53'),(3,'\"\"',3,3,1,47.00,6,'1','2019-04-12 06:26:34','2019-04-13 18:46:53');
 /*!40000 ALTER TABLE `m_order` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -211,6 +212,7 @@ CREATE TABLE `m_store` (
   `store_phone` varchar(15) DEFAULT NULL,
   `address` varchar(15) DEFAULT NULL,
   `work_time` varchar(15) DEFAULT NULL,
+  `hot` int(11) DEFAULT '0',
   `show_index` int(11) DEFAULT '0',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -226,7 +228,7 @@ CREATE TABLE `m_store` (
 
 LOCK TABLES `m_store` WRITE;
 /*!40000 ALTER TABLE `m_store` DISABLE KEYS */;
-INSERT INTO `m_store` VALUES (3,'肯德基北京总店','/assets/images/upload/03e4aa8a-a0b0-46f8-8266-8941bb2db4c9.jpg',1,1,NULL,NULL,NULL,0,'2019-03-24 19:09:34','2019-04-06 17:52:32');
+INSERT INTO `m_store` VALUES (3,'肯德基北京总店','/assets/images/upload/03e4aa8a-a0b0-46f8-8266-8941bb2db4c9.jpg',1,1,NULL,NULL,NULL,0,0,'2019-03-24 19:09:34','2019-04-06 17:52:32');
 /*!40000 ALTER TABLE `m_store` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -243,7 +245,7 @@ CREATE TABLE `m_type` (
   `type_name` varchar(10) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `m_type_index` (`main_type`,`type_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -252,7 +254,7 @@ CREATE TABLE `m_type` (
 
 LOCK TABLES `m_type` WRITE;
 /*!40000 ALTER TABLE `m_type` DISABLE KEYS */;
-INSERT INTO `m_type` VALUES (3,'美食','中餐'),(1,'美食','快餐');
+INSERT INTO `m_type` VALUES (4,'旅游','境内游'),(5,'旅游','境外游'),(3,'美食','中餐'),(1,'美食','快餐');
 /*!40000 ALTER TABLE `m_type` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -265,4 +267,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-04-12 16:39:16
+-- Dump completed on 2019-04-13 19:59:10
