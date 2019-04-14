@@ -100,10 +100,16 @@
        getRemark(orderArg, 1, 15);
 
        $("#pagePrev").click(function () {
+           if ($(this).hasClass("disabled")) {
+               return;
+           }
            getRemark(orderArg, remarkCurrPage - 1, 15);
        });
 
        $("#pageNext").click(function () {
+           if ($(this).hasClass("disabled")) {
+               return;
+           }
            getRemark(orderArg, remarkCurrPage + 1, 15);
        });
 

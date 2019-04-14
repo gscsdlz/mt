@@ -4,7 +4,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>自定义标题</title>
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/assets/images/default/logo.png" />
     <link rel="stylesheet" href="/assets/css/com_header.css">
     <link rel="stylesheet" href="/assets/css/main.css">
@@ -19,8 +19,8 @@
                 <span class="current-city">北京</span>
                 <a class="change-city" href="#">切换城市</a>
                 <div class="user-entry" style="display: inline-block;">
-                    <a class="growth-entry user-importent" href="#">立即登录</a>
-                    <a class="extra-entry" href="#">注册</a>
+                    <a class="growth-entry user-importent" href="/login">立即登录</a>
+                    <a class="extra-entry" href="/register">注册</a>
                 </div>
             </div>
             <nav class="header-bar-nav">
@@ -51,7 +51,7 @@
         </div>
         <div class="header-search-module">
             <div class="header-search-block">
-                <input class="header-search-input" type="text" placeholder="搜索商家" id="searchText">
+                <input class="header-search-input" type="text" placeholder="搜索商家" id="searchText" value="${search_key}">
                 <button class="header-search-btn" id="search"><span class="header-icon icon-search"></span></button>
             </div>
         </div>
@@ -69,7 +69,7 @@
         $("#search").click(function () {
             let key = $("#searchText").val();
             if (key.length !== 0) {
-                window.location.href = "./";
+                window.location.href = "/store/search?key=" +  key;
             }
         })
     })

@@ -17,11 +17,13 @@ public interface StoreService {
 
     List<Store> getAllStoreName();
 
-    List<Store> searchStoreName(String storeName);
+    List<Store> searchStoreName(String storeName, int page, int size);
 
     List<Store> fetchStore(int typeId, int cityId, String special, StoreFetchOrder orderBy, int page, int size);
 
     List<Store> getHotStore(int cityId, int size);
+
+    List<Store> getShowIndex(int cityId, int size);
 
     List<String> getAllSpecial(int cityId);
 

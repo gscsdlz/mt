@@ -36,8 +36,13 @@
                     </a>
                     <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
                         <a class="dropdown-item" href="${pageContext.request.contextPath}/admin/account/center">
-                            <i class="mdi mdi-cached mr-2 text-success"></i>
+                            <i class="mdi mdi-account-location mr-2 text-success"></i>
                             用户中心
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/">
+                            <i class="mdi mdi-home mr-2 text-primary"></i>
+                            返回前台
                         </a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="${pageContext.request.contextPath}/logout">
@@ -45,6 +50,7 @@
                             退出登录
                         </a>
                     </div>
+
                 </li>
             </ul>
             <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">

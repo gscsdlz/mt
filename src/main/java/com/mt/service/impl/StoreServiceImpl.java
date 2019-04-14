@@ -33,7 +33,7 @@ public class StoreServiceImpl implements StoreService {
     @Override
     public boolean modifyStore(Store s) throws CustomException {
         try {
-            return store.updateNewStore(s.getId(), s.getStoreName(), s.getStoreImg(), s.getCityId(), s.getTypeId(), s.getShowIndex(), s.getStorePhone(), s.getAddress(), s.getWorkTime()) > 0;
+            return store.updateNewStore(s.getId(), s.getStoreName(), s.getStoreImg(), s.getCityId(), s.getTypeId(), s.getShowIndex(), s.getStorePhone(), s.getAddress(), s.getWorkTime(), s.getSpecial()) > 0;
         } catch (Exception e) {
             throw new DBSystemError(DBErrorType.SYSTEM_ERROR);
         }
@@ -41,7 +41,7 @@ public class StoreServiceImpl implements StoreService {
 
     @Override
     public boolean addStore(Store s) {
-        return store.addNewStore(s.getStoreName(), s.getStoreImg(), s.getCityId(), s.getTypeId(),  s.getStorePhone(), s.getAddress(), s.getWorkTime()) > 0;
+        return store.addNewStore(s.getStoreName(), s.getStoreImg(), s.getCityId(), s.getTypeId(), s.getShowIndex(), s.getStorePhone(), s.getAddress(), s.getWorkTime(), s.getSpecial()) > 0;
     }
 
     @Override
@@ -56,8 +56,12 @@ public class StoreServiceImpl implements StoreService {
     }
 
     @Override
-    public List<Store> searchStoreName(String storeName) {
-        return store.getAllStoreByName(storeName);
+    public List<Store> searchStoreName(String storeName, int page, int size) {
+        List<Store> res= store.getAllStoreByName("%" + storeName + "%", (page-1) * size, size);
+        for (Store s : res) {
+            s.setStoreStar(orderDao.getStoreStar(s.getId()));
+        }
+        return res;
     }
 
     @Override
@@ -139,6 +143,15 @@ public class StoreServiceImpl implements StoreService {
     }
 
     @Override
+    public List<Store> getShowIndex(int cityId, int size) {
+        List<Store> res = store.getShowIndex(cityId, size);
+        for (Store s : res) {
+            s.setStoreStar(orderDao.getStoreStar(s.getId()));
+        }
+        return res;
+    }
+
+    @Override
     public List<String> getAllSpecial(int cityId) {
         return store.getAllSpecial(cityId);
     }
@@ -149,5 +162,4 @@ public class StoreServiceImpl implements StoreService {
         s.setStoreStar(orderDao.getStoreStar(s.getId()));
         return s;
     }
-
 }

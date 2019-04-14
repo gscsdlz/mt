@@ -34,6 +34,7 @@
                                 <th>商铺电话</th>
                                 <th>商铺地址</th>
                                 <th>营业时间</th>
+                                <th>特色</th>
                                 <th>创建时间</th>
                                 <th>上次修改时间</th>
                                 <th>操作</th>
@@ -59,6 +60,7 @@
                                     <td>${store.storePhone}</td>
                                     <td>${store.address}</td>
                                     <td>${store.workTime}</td>
+                                    <td>${store.special}</td>
                                     <td>${store.createdAt}</td>
                                     <td>${store.updatedAt}</td>
                                     <td>
@@ -167,6 +169,12 @@
                             </select>
                         </div>
                     </div>
+                    <div class="form-group row">
+                        <label class="col-form-label col-sm-3">特色</label>
+                        <div class="col-sm-8">
+                            <input type="text" value="" class="form-control" placeholder="" id="special"/>
+                        </div>
+                    </div>
                 </form>
             </div>
             <div class="modal-footer">
@@ -199,6 +207,7 @@
             let address = $("#address").val();
             let storePhone = $("#storePhone").val();
             let workTime = $("#work_start").val() + "-" + $("#work_end").val();
+            let special = $("#special").val();
             let args = {
                 storeName: name,
                 cityId: city,
@@ -208,6 +217,7 @@
                 address: address,
                 storePhone: storePhone,
                 workTime: workTime,
+                special: special,
                 id: parseInt($("#storeId").val())
             };
             if (parseInt($("#storeId").val()) > 0) {
@@ -263,9 +273,11 @@
             $("#storeId").val(id);
             $("#storeName").val(target.eq(2).html());
             $("#storeImg").attr('src', target.eq(1).children().eq(0).attr('src'));
-            $("#show").val(target.eq(5).html() === "不显示在主页" ? 0 : 1);
+
+            $("#show").val(target.eq(5).html().trim() === "否" ? 0 : 1);
             $("#storePhone").val(target.eq(6).html());
             $("#address").val(target.eq(7).html());
+            $("#special").val(target.eq(9).html());
             let workTime = target.eq(8).html().split("-");
             $("#work_start").val(workTime[0]);
             $("#work_end").val(workTime[1]);

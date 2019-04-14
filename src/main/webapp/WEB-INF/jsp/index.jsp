@@ -141,7 +141,7 @@
     });
 
     function getHotList() {
-        $.get("/store_api/get_hot", function (resp) {
+        $.get("/store_api/show_index", function (resp) {
             if (resp.status) {
                 const data = resp.data;
                 let str = '';

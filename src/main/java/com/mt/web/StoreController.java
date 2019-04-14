@@ -78,4 +78,21 @@ public class StoreController {
         model.addAttribute("store", s);
         return "store_detail";
     }
+
+    @RequestMapping("/search")
+    private String search(@RequestParam Map<String, Object> param, Model model) {
+        ParamUtils p = new ParamUtils(param);
+        String key = p.getString("key");
+        int page = p.getInteger("page", 1);
+        int size = p.getInteger("size", 50);
+
+        List<Store> stores = storeService.searchStoreName(key, page, size);
+
+        model.addAttribute("search_key", key);
+        model.addAttribute("data", stores);
+        model.addAttribute("curr_page", page);
+        model.addAttribute("total_page", 1);
+        model.addAttribute("page_size", size);
+        return "store_search";
+    }
 }

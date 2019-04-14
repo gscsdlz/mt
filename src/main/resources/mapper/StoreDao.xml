@@ -22,8 +22,8 @@
     </delete>
 
     <insert id="addNewStore">
-        INSERT INTO m_store (store_name, store_img, city_id, type_id, store_phone, address, work_time)
-        VALUES (#{store_name}, #{store_img}, #{city_id}, #{type_id}, #{store_phone}, #{address}, #{work_time});
+        INSERT INTO m_store (store_name, store_img, city_id, type_id, store_phone, address, work_time, special, show_index)
+        VALUES (#{store_name}, #{store_img}, #{city_id}, #{type_id}, #{store_phone}, #{address}, #{work_time}, #{special}, #{show_index});
     </insert>
 
     <update id="updateNewStore">
@@ -32,25 +32,20 @@
             store_img  = #{store_img},
             city_id    = #{city_id},
             type_id    = #{type_id},
+            show_index = #{show_index},
             store_phone = #{store_phone},
             address = #{address},
-            work_time = #{work_time}
+            work_time = #{work_time},
+            special = #{special}
         WHERE id = #{id};
     </update>
 
-    <select id="getAllStoreByType" resultType="Store">
-        SELECT m_store.*, m_city.province, m_city.city, m_type.main_type, m_type.type_name
-        FROM m_store
-                 JOIN m_city ON (m_store.city_id = m_city.id)
-                 JOIN m_type ON (m_type.id = m_store.type_id)
-        WHERE type_id = #{type_id};
-    </select>
     <select id="getAllStoreByName" resultType="Store">
         SELECT m_store.*, m_city.province, m_city.city, m_type.main_type, m_type.type_name
         FROM m_store
                  JOIN m_city ON (m_store.city_id = m_city.id)
                  JOIN m_type ON (m_type.id = m_store.type_id)
-        WHERE store_name = #{store_name};
+        WHERE store_name like #{store_name} LIMIT ${offset}, ${limit};
     </select>
 
     <select id="getSizeByType" resultType="Integer">
@@ -63,6 +58,10 @@
 
     <select id="getHotStore" resultType="Store">
         SELECT * FROM m_store WHERE city_id = #{city_id} ORDER BY hot DESC LIMIT 0, ${limit};
+    </select>
+
+    <select id="getShowIndex" resultType="Store">
+        SELECT * FROM m_store WHERE city_id = #{city_id} AND show_index = 1 ORDER BY hot DESC LIMIT 0, ${limit};
     </select>
 
     <select id="getAllStoreByCity" resultType="Store">

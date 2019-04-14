@@ -10,9 +10,7 @@ public interface StoreDao {
 
     List<Store> getAllStoreName();
 
-    List<Store> getAllStoreByName(@Param("store_name") String storeName);
-
-    int getSizeByType(@Param("type_id") int typeId);
+    List<Store> getAllStoreByName(@Param("store_name") String storeName, @Param("offset") int offset, @Param("limit") int limit);
 
     int delStoreWithId(@Param("id") int id);
 
@@ -21,9 +19,11 @@ public interface StoreDao {
             @Param("store_img") String storeImg,
             @Param("city_id") int cityId,
             @Param("type_id") int typeId,
+            @Param("show_index") int showIndex,
             @Param("store_phone") String storePhone,
             @Param("address") String address,
-            @Param("work_time") String workTime
+            @Param("work_time") String workTime,
+            @Param("special") String special
     );
 
     int updateNewStore(
@@ -35,10 +35,13 @@ public interface StoreDao {
             @Param("show_index") int showIndex,
             @Param("store_phone") String storePhone,
             @Param("address") String address,
-            @Param("work_time") String workTime
+            @Param("work_time") String workTime,
+            @Param("special") String special
     );
 
     List<Store> getHotStore(@Param("city_id") int cityId, @Param("limit") int limit);
+
+    List<Store> getShowIndex(@Param("city_id") int cityId, @Param("limit") int limit);
 
     List<Store> getAllStoreByCity(@Param("city_id") int cityId);
 

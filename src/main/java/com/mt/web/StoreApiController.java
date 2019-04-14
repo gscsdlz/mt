@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -28,15 +29,30 @@ public class StoreApiController {
 
     @RequestMapping("/get_hot")
     private NormalResponse<List<Store>> getHotStore(@RequestParam Map<String, Object> param) {
-        ParamUtils p = new ParamUtils(param);
         NormalResponse<List<Store>> response = new NormalResponse<>();
-        int limit = p.getInteger("limit", 100);
+        List<Integer> res = parseCommonArgs(param);
+        response.setData(storeService.getHotStore(res.get(0), res.get(1)));
+        return response;
+    }
 
+    @RequestMapping("/show_index")
+    private NormalResponse<List<Store>> showIndex(@RequestParam Map<String, Object> param) {
+        NormalResponse<List<Store>> response = new NormalResponse<>();
+        List<Integer> res = parseCommonArgs(param);
+        response.setData(storeService.getShowIndex(res.get(0), res.get(1)));
+        return response;
+    }
+
+    protected List<Integer> parseCommonArgs(Map<String, Object> param) {
+        ParamUtils p = new ParamUtils(param);
+        int limit = p.getInteger("limit", 100);
         int cityId = 1;
         if (request.getSession().getAttribute("recent_city") != null) {
             cityId = Integer.parseInt(request.getSession().getAttribute("recent_city").toString());
         }
-        response.setData(storeService.getHotStore(cityId, limit));
-        return response;
+        List<Integer> res = new ArrayList<>();
+        res.add(cityId);
+        res.add(limit);
+        return res;
     }
 }
