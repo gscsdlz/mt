@@ -29,6 +29,12 @@ public class TypeServiceImpl implements TypeService {
     }
 
     @Override
+    public List<Type> getTypeRefId(int typeId) {
+        Type t = typeDao.getTypeById(typeId);
+        return typeDao.getAllSubType(t.getMainType());
+    }
+
+    @Override
     public boolean addType(Type t) {
         try {
             return typeDao.addType(t.getMainType(), t.getTypeName()) > 0;

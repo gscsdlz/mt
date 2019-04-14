@@ -14,6 +14,10 @@
         FROM m_type ORDER BY id ASC;
     </select>
 
+    <select id="getTypeById" resultType="Type">
+        SELECT id, main_type, type_name FROM m_type WHERE id = #{id};
+    </select>
+
     <select id="getAllMainType" resultType="Type">
         SELECT DISTINCT(main_type)
         FROM m_type;

@@ -11,6 +11,8 @@ public interface TypeService {
 
     List<Type> getAllMainType();
 
+    List<Type> getTypeRefId(int typeId);
+
     boolean addType(Type t);
 
     boolean updateType(Type t);

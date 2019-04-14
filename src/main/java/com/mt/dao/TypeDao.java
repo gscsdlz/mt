@@ -12,6 +12,8 @@ public interface TypeDao {
 
     List<Type> getAllMainType();
 
+    Type getTypeById(@Param("id") int id);
+
     int addType(@Param("main_type") String mainType, @Param("type_name") String typeName);
 
     int updateType(@Param("id") int id, @Param("main_type") String mainType, @Param("type_name") String typeName);

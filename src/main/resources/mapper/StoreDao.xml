@@ -62,6 +62,14 @@
     </update>
 
     <select id="getHotStore" resultType="Store">
-        SELECT * FROM m_store WHERE city_id = #{city_id} ORDER BY hot DESC LIMIT 0, ${limit}
+        SELECT * FROM m_store WHERE city_id = #{city_id} ORDER BY hot DESC LIMIT 0, ${limit};
+    </select>
+
+    <select id="getAllStoreByCity" resultType="Store">
+        SELECT * FROM m_store WHERE city_id = #{city_id};
+    </select>
+
+    <select id="getAllSpecial" resultType="String">
+        SELECT DISTINCT (special) FROM m_store WHERE city_id = #{city_id};
     </select>
 </mapper>

@@ -146,7 +146,7 @@
                 const data = resp.data;
                 let str = '';
                 for (let i = 0; i < data.length; i++) {
-                    str += '<a href="/store/details/' + data[i].id + '" class="link link recommend-item">' +
+                    str += '<a href="/store/details?store_id=' + data[i].id + '" class="link link recommend-item">' +
                         '    <div class="card-container">' +
                         '        <div class="recommend-card-wrapper">' +
                         '            <div class="img-box">' +

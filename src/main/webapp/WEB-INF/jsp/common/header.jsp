@@ -47,7 +47,7 @@
     </div>
     <div class="header-content clearfix">
         <div class="header-title-module">
-            <div class="header-title"><img src="/assets/images/default/logo.png" alt=""></div>
+            <div class="header-title"><img src="/assets/images/default/logo.png" alt="" style="cursor: pointer" onclick="window.location.href='/'"></div>
         </div>
         <div class="header-search-module">
             <div class="header-search-block">

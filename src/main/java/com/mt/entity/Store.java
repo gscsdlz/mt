@@ -17,7 +17,16 @@ public class Store {
     private String city;
     private String mainType;
     private String typeName;
+    private String special;
     private StoreStar storeStar;
+
+    public String getSpecial() {
+        return special;
+    }
+
+    public void setSpecial(String special) {
+        this.special = special;
+    }
 
     public StoreStar getStoreStar() {
         return storeStar;

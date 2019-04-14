@@ -12,8 +12,6 @@ public interface StoreDao {
 
     List<Store> getAllStoreByName(@Param("store_name") String storeName);
 
-    List<Store> getAllStoreByType(@Param("type_id") int typeId);
-
     int getSizeByType(@Param("type_id") int typeId);
 
     int delStoreWithId(@Param("id") int id);
@@ -41,4 +39,8 @@ public interface StoreDao {
     );
 
     List<Store> getHotStore(@Param("city_id") int cityId, @Param("limit") int limit);
+
+    List<Store> getAllStoreByCity(@Param("city_id") int cityId);
+
+    List<String> getAllSpecial(@Param("city_id") int cityId);
 }

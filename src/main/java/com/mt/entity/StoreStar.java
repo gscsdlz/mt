@@ -1,12 +1,15 @@
 package com.mt.entity;
 
+import java.math.BigDecimal;
+
 public class StoreStar {
     private double avgStar;
     private int totalRemark;
     private double avgPrice;
 
     public double getAvgStar() {
-        return avgStar;
+        BigDecimal b = new BigDecimal(avgStar);
+        return b.setScale(1, BigDecimal.ROUND_HALF_UP).doubleValue();
     }
 
     public void setAvgStar(double avgStar) {
@@ -21,8 +24,8 @@ public class StoreStar {
         this.totalRemark = totalRemark;
     }
 
-    public double getAvgPrice() {
-        return avgPrice;
+    public int getAvgPrice() {
+        return (int) avgPrice;
     }
 
     public void setAvgPrice(double avgPrice) {
