@@ -35,7 +35,7 @@
                     <button type="button" class="normal-btn" onclick="window.location.href='/login?redirect=' + window.location.pathname + window.location.search">开始下单</button>
                 </c:if>
                 <c:if test="${sessionScope.get(\"id\") != null}">
-                    <button type="button" class="normal-btn">开始下单</button>
+                    <button type="button" class="normal-btn" >开始下单</button>
                 </c:if>
             </div>
             <div class="btm-cont clear">
@@ -97,6 +97,8 @@
         </div>
     </section>
 </div>
+
+
 <script>
     let remarkCurrPage = 1;
     let orderArg = 0;
