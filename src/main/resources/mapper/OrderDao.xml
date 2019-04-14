@@ -61,10 +61,36 @@
     </select>
 
     <delete id="delOrder">
-        DELETE FROM m_order WHERE id = #{id};
+        DELETE
+        FROM m_order
+        WHERE id = #{id};
     </delete>
 
     <select id="getStoreStar" resultType="StoreStar">
-        SELECT COUNT(*) as total_remark, AVG(star) AS avg_star, AVG(total_price) as avg_price FROM m_order WHERE store_id = #{store_id};
+        SELECT COUNT(*) as total_remark, AVG(star) AS avg_star, AVG(total_price) as avg_price
+        FROM m_order
+        WHERE store_id = #{store_id};
+    </select>
+
+    <select id="getRemarkOrderByDate" resultType="UserRemark">
+        SELECT m_account.account_img, m_account.username, m_order.star, m_order.remark, m_order.created_at
+        FROM m_order
+                 LEFT JOIN m_account ON (m_account.id = m_order.account_id)
+        WHERE store_id = #{store_id}
+        ORDER BY m_order.created_at DESC
+        LIMIT ${offset}, ${limit}
+    </select>
+
+    <select id="getRemarkOrderByStar" resultType="UserRemark">
+        SELECT m_account.account_img, m_account.username, m_order.star, m_order.remark, m_order.created_at
+        FROM m_order
+                 LEFT JOIN m_account ON (m_account.id = m_order.account_id)
+        WHERE store_id = #{store_id}
+        ORDER BY m_order.star DESC
+        LIMIT ${offset}, ${limit}
+    </select>
+
+    <select id="getRemarkInfo" resultType="Integer">
+        SELECT star FROM m_order WHERE store_id = #{store_id};
     </select>
 </mapper>

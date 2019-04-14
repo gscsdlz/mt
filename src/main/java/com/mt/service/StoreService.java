@@ -24,4 +24,6 @@ public interface StoreService {
     List<Store> getHotStore(int cityId, int size);
 
     List<String> getAllSpecial(int cityId);
+
+    Store getStoreById(int storeId);
 }

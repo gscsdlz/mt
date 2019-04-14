@@ -56,7 +56,7 @@
                             <c:forEach items="${data}" var="store">
                                 <li class="clear btm">
                                     <div class="img">
-                                        <a href="/store/details?store_id=${store.id}">
+                                        <a href="/store/detail?store_id=${store.id}">
                                             <div class="fl-count"></div>
                                             <div class="imgbox" style="height: 125px; width: 220px;">
                                                 <img src="${store.storeImg}">
@@ -64,7 +64,7 @@
                                         </a>
                                     </div>
                                     <div class="info">
-                                        <a href="/store/details?store_id=${store.id}">
+                                        <a href="/store/detail?store_id=${store.id}">
                                             <h4>${store.storeName}</h4>
                                             <div class="source clear">
                                                 <div class="star-cont">
@@ -195,7 +195,7 @@
                 let str = '';
                 for (let i = 0; i < data.length; i++) {
                     str += ' <li>' +
-                        '  <a href="/store/details?store_id='+data[i].id+'">' +
+                        '  <a href="/store/detail?store_id='+data[i].id+'">' +
                         '  <div class="pic"><div class="imgbox" style="height:100%;width:100%;"><img src="'+data[i].storeImg+'"></div></div>' +
                         '  <p class="name">'+data[i].storeName+'</p>' +
                         '  <p class="desc">'+data[i].address+'</p>' +

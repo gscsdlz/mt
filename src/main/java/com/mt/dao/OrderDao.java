@@ -2,9 +2,12 @@ package com.mt.dao;
 
 import com.mt.entity.Order;
 import com.mt.entity.StoreStar;
+import com.mt.entity.UserRemark;
+import com.mt.utils.ParamUtils;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 public interface OrderDao {
     List<Order> getAllOrderByUser(@Param("account_id") int accountId, @Param("offset") int offset, @Param("limit") int limit);
@@ -32,4 +35,10 @@ public interface OrderDao {
     int delOrder(@Param("id") int id);
 
     StoreStar getStoreStar(@Param("store_id") int storeId);
+
+    List<UserRemark> getRemarkOrderByDate(@Param("store_id") int storeId, @Param("offset") int offset, @Param("limit") int limit);
+
+    List<UserRemark> getRemarkOrderByStar(@Param("store_id") int storeId, @Param("offset") int offset, @Param("limit") int limit);
+
+    List<Integer> getRemarkInfo(@Param("store_id") int storeId);
 }

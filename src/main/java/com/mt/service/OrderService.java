@@ -2,9 +2,12 @@ package com.mt.service;
 
 import com.mt.entity.Order;
 import com.mt.entity.StoreStar;
+import com.mt.entity.UserRemark;
 import com.mt.enums.OrderUpdateOption;
+import com.mt.enums.RemarkOrder;
 
 import java.util.List;
+import java.util.Map;
 
 public interface OrderService {
 
@@ -23,4 +26,8 @@ public interface OrderService {
     boolean delOrder(int id);
 
     StoreStar getStoreStar(int storeId);
+
+    List<UserRemark> getRemark(int storeId, int page, int size, RemarkOrder orderBy);
+
+    Map<String, Integer> getRemarkInfo(int storeId);
 }

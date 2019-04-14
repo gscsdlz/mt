@@ -39,7 +39,7 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public List<Item> searchItemName(String itemName) {
-        return itemDao.getAllItemByName(itemName);
+    public List<Item> getHotItem(int storeId) {
+        return itemDao.getHotItem(storeId);
     }
 }

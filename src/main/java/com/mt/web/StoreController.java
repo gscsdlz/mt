@@ -1,8 +1,10 @@
 package com.mt.web;
 
+import com.mt.entity.Item;
 import com.mt.entity.Store;
 import com.mt.entity.Type;
 import com.mt.enums.StoreFetchOrder;
+import com.mt.service.ItemService;
 import com.mt.service.StoreService;
 import com.mt.service.TypeService;
 import com.mt.utils.ParamUtils;
@@ -25,6 +27,9 @@ public class StoreController {
 
     @Autowired
     private TypeService typeService;
+
+    @Autowired
+    private ItemService itemService;
 
     @Autowired
     private HttpServletRequest request;
@@ -60,5 +65,17 @@ public class StoreController {
         model.addAttribute("types", types);
         model.addAttribute("special", specials);
         return "store_list";
+    }
+
+    @RequestMapping("/detail")
+    private String detail(@RequestParam Map<String, Object> param, Model model) {
+        ParamUtils p = new ParamUtils(param);
+        int storeId = p.getInteger("store_id");
+        Store s = storeService.getStoreById(storeId);
+        List<Item> hotItem = itemService.getHotItem(storeId);
+
+        model.addAttribute("hotItem", hotItem);
+        model.addAttribute("store", s);
+        return "store_detail";
     }
 }

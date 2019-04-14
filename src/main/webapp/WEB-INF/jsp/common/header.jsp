@@ -51,7 +51,7 @@
         </div>
         <div class="header-search-module">
             <div class="header-search-block">
-                <input class="header-search-input" type="text" placeholder="搜索商家或商品" id="searchText">
+                <input class="header-search-input" type="text" placeholder="搜索商家" id="searchText">
                 <button class="header-search-btn" id="search"><span class="header-icon icon-search"></span></button>
             </div>
         </div>

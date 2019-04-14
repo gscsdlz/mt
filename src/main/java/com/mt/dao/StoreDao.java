@@ -43,4 +43,6 @@ public interface StoreDao {
     List<Store> getAllStoreByCity(@Param("city_id") int cityId);
 
     List<String> getAllSpecial(@Param("city_id") int cityId);
+
+    Store getStoreById(@Param("id") int id);
 }

@@ -3,12 +3,16 @@ package com.mt.service.impl;
 import com.mt.dao.OrderDao;
 import com.mt.entity.Order;
 import com.mt.entity.StoreStar;
+import com.mt.entity.UserRemark;
 import com.mt.enums.OrderUpdateOption;
+import com.mt.enums.RemarkOrder;
 import com.mt.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -60,5 +64,35 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public StoreStar getStoreStar(int storeId) {
         return orderDao.getStoreStar(storeId);
+    }
+
+    @Override
+    public List<UserRemark> getRemark(int storeId, int page, int size, RemarkOrder orderBy) {
+        if (orderBy == RemarkOrder.ORDER_BY_DATE) {
+            return orderDao.getRemarkOrderByDate(storeId, (page-1) * size, size);
+        } else {
+            return orderDao.getRemarkOrderByStar(storeId, (page-1) * size, size);
+        }
+    }
+
+    @Override
+    public Map<String, Integer> getRemarkInfo(int storeId) {
+        List<Integer> stars = orderDao.getRemarkInfo(storeId);
+        Map<String, Integer> res = new HashMap<>();
+        res.put("total", stars.size());
+        int r1 = 0, r2 = 0, r3 = 0;
+        for (Integer s : stars) {
+            if (s >= 8) {
+                r1++;
+            } else if (s > 4) {
+                r2++;
+            } else {
+                r3++;
+            }
+        }
+        res.put("r1", r1);
+        res.put("r2", r2);
+        res.put("r3", r3);
+        return res;
     }
 }

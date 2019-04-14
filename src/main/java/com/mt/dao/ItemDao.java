@@ -29,5 +29,5 @@ public interface ItemDao {
 
     int delItem(@Param("id") int id);
 
-    List<Item> getAllItemByName(@Param("item_name") String itemName);
+    List<Item> getHotItem(@Param("store_id") int storeId);
 }

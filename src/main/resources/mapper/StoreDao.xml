@@ -72,4 +72,8 @@
     <select id="getAllSpecial" resultType="String">
         SELECT DISTINCT (special) FROM m_store WHERE city_id = #{city_id};
     </select>
+
+    <select id="getStoreById" resultType="Store">
+        SELECT * FROM m_store WHERE id = #{id};
+    </select>
 </mapper>

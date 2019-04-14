@@ -143,4 +143,11 @@ public class StoreServiceImpl implements StoreService {
         return store.getAllSpecial(cityId);
     }
 
+    @Override
+    public Store getStoreById(int storeId) {
+        Store s = store.getStoreById(storeId);
+        s.setStoreStar(orderDao.getStoreStar(s.getId()));
+        return s;
+    }
+
 }
