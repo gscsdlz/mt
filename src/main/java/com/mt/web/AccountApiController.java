@@ -42,11 +42,13 @@ public class AccountApiController {
                 response.setInfo("账号已被禁用");
             } else {
                 this.setSession(a);
+
                 if (a.getPri() == AccountType.USER.ordinal()) {
                     response.setData("/");
                 } else {
                     response.setData("/admin/index");
                 }
+
             }
         } else {
             response.setInfo("用户名或者密码错误");

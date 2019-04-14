@@ -51,9 +51,22 @@
       $("#login").click(function () {
         let username = $("#username").val();
         let password = $("#password").val();
+        let redirect =  "";
+        let queryList = window.location.search.substr(1).split("&");
+        for (let k in queryList) {
+          if (queryList.hasOwnProperty(k)) {
+            if (queryList[k].startsWith("redirect=")) {
+              redirect = queryList[k].substr(9);
+            }
+          }
+        }
         $.post("/account_api/login", {username:username, password:password}, function (resp) {
           if (resp.status) {
-            window.location.href = resp.data;
+            if (redirect !== "") {
+              window.location.href = redirect;
+            } else {
+              window.location.href = resp.data;
+            }
           } else {
             alert(resp.info);
           }

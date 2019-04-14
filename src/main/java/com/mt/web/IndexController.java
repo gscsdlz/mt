@@ -49,11 +49,31 @@ public class IndexController {
 
     @RequestMapping("/login")
     private String login(@RequestParam Map<String, Object> param) {
+        if (isLogin()) {
+            return  "redirect:/";
+        }
         return "admin/login";
     }
 
     @RequestMapping("/register")
     private String register(@RequestParam Map<String, Object> param) {
+        if (isLogin()) {
+            return  "redirect:/";
+        }
         return "admin/register";
+    }
+
+    protected boolean isLogin() {
+        return request.getSession().getAttribute("id") != null;
+    }
+
+    @RequestMapping("/logout")
+    private String logout() {
+        request.getSession().removeAttribute("username");
+        request.getSession().removeAttribute("id");
+        request.getSession().removeAttribute("recent_city");
+        request.getSession().removeAttribute("pri");
+        request.getSession().removeAttribute("accountImg");
+        return "index";
     }
 }

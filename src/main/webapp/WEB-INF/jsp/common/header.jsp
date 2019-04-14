@@ -19,13 +19,16 @@
                 <span class="current-city">北京</span>
                 <a class="change-city" href="#">切换城市</a>
                 <div class="user-entry" style="display: inline-block;">
-                    <a class="growth-entry user-importent" href="/login">立即登录</a>
-                    <a class="extra-entry" href="/register">注册</a>
+                    <c:if test="${sessionScope.get(\"id\") == null}">
+                        <a class="growth-entry user-importent" href="/login">立即登录</a>
+                        <a class="extra-entry" href="/register">注册</a>
+                    </c:if>
                 </div>
             </div>
             <nav class="header-bar-nav">
                 <ul class="header-nav-first">
                     <li class="has-child" id="me">
+                        <c:if test="${sessionScope.get(\"id\") != null}">
                         <a rel="nofollow" href="#" target="_blank">个人中心</a>
                         <ul class="header-nav-my header-nav-second" id="meList">
                             <a rel="nofollow" href="#" target="_blank"></a>
@@ -39,7 +42,11 @@
                             <li>
                                 <a rel="nofollow" href="#" target="_blank">账户设置</a>
                             </li>
+                            <li>
+                                <a rel="nofollow" href="/logout">退出登录</a>
+                            </li>
                         </ul>
+                        </c:if>
                     </li>
                 </ul>
             </nav>

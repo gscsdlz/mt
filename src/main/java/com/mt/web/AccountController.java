@@ -1,5 +1,6 @@
 package com.mt.web;
 
+import com.mt.dto.NormalResponse;
 import com.mt.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,18 +17,7 @@ public class AccountController {
     @Autowired
     private HttpServletRequest request;
 
-    @ResponseBody
-    @RequestMapping(value = "/login", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
-    private String login()
-    {
-        if (request.getSession().getAttribute("id") == null) {
-            return "login";
-        } else {
-            return "index";
-        }
-    }
-
-    @RequestMapping("/center")
+    @RequestMapping("/me")
     private String center() {
         return "me";
     }

@@ -22,6 +22,7 @@ public class PrivilegeMiddleWare implements HandlerInterceptor {
     static {
         blackList = new ArrayList<>();
         blackList.add("/admin");
+        blackList.add("/user/me");
     }
 
     @Override

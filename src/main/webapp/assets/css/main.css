@@ -5450,3 +5450,18 @@ body {
     margin-top: 40px
 }
 
+.normal-btn {
+    outline: 0;
+    width: 16%;
+    box-sizing: border-box;
+    line-height: 100%;
+    height: 40px;
+    background: #13D1BE;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.normal-btn:hover {
+    background: rgb(115,225,206);
+}
