@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mt.dto.NormalResponse;
 import com.mt.dto.PaginationResponse;
 import com.mt.entity.Item;
+import com.mt.entity.MiniItem;
 import com.mt.entity.Order;
 import com.mt.entity.UserRemark;
 import com.mt.enums.RemarkOrder;
@@ -66,10 +67,9 @@ public class OrderApiController {
 
         int accountId = Integer.parseInt(request.getSession().getAttribute("id").toString());
         o.setAccountId(accountId);
-        System.out.println(o.getItems());
-        if (!orderService.addOrder(o)) {
-            response.setInfo("");
-        }
+
+        List<MiniItem> items = orderService.generateOrder(o);
+        orderService.insertOrder(o, items);
         return response;
     }
 }

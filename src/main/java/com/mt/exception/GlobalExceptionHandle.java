@@ -12,7 +12,7 @@ public class GlobalExceptionHandle implements HandlerExceptionResolver {
     public ModelAndView resolveException(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) {
 
         e.printStackTrace();
-        String message = "Uncaught Exception " + e.getMessage();
+        String message = e.getMessage();
         if (e instanceof CustomException) {
             message = e.getMessage();
         }

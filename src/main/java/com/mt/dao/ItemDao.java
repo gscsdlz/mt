@@ -31,6 +31,8 @@ public interface ItemDao {
 
     List<Item> getHotItem(@Param("store_id") int storeId);
 
+    List<Item> getAllItemByStoreWithoutPage(@Param("store_id") int storeId);
+
     Item getItemById(@Param("id") int id);
 
     int decreaseInventory(@Param("id") int id, @Param("gap") int gap);

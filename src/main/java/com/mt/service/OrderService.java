@@ -1,10 +1,13 @@
 package com.mt.service;
 
+import com.mt.entity.MiniItem;
 import com.mt.entity.Order;
 import com.mt.entity.StoreStar;
 import com.mt.entity.UserRemark;
 import com.mt.enums.OrderUpdateOption;
 import com.mt.enums.RemarkOrder;
+import com.mt.exception.CustomException;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
@@ -17,7 +20,9 @@ public interface OrderService {
 
     List<Order> getOrder(int page, int size);
 
-    boolean addOrder(Order o);
+    List<MiniItem> generateOrder(Order o);
+
+    boolean insertOrder(Order o, List<MiniItem> newItems);
 
     boolean updateOrder(Order o, OrderUpdateOption updateOption);
 

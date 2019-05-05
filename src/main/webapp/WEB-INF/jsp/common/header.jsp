@@ -30,7 +30,7 @@
                 <ul class="header-nav-first">
                     <li class="has-child" id="me">
                         <c:if test="${sessionScope.get(\"id\") != null}">
-                        <a rel="nofollow" href="#" target="_blank">个人中心</a>
+                        <a rel="nofollow" href="/user/me" target="_blank">个人中心</a>
                         <ul class="header-nav-my header-nav-second" id="meList">
                             <a rel="nofollow" href="#" target="_blank"></a>
                             <li>

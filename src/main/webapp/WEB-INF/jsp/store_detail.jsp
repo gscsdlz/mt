@@ -35,44 +35,31 @@
                     <button type="button" class="normal-btn" onclick="window.location.href='/login?redirect=' + window.location.pathname + window.location.search">开始下单</button>
                 </c:if>
                 <c:if test="${sessionScope.get(\"id\") != null}">
-                    <button type="button" class="normal-btn">开始下单</button>
-                    <button typy="button" class="normal-btn" id="submitOrder">提交订单</button>
+                    <button type="button" class="normal-btn" id="startOrder">开始下单</button>
+                    <button typy="button" class="normal-btn" id="submitOrder" hidden>提交订单</button>
                 </c:if>
-                <div class="shadow-border" style="margin-top: 10px">
+                <div class="shadow-border" style="margin-top: 10px" hidden>
                     <table id="menuList">
                         <tbody>
+                        <c:forEach items="${data}" var="item">
                         <tr style="width: 100%">
                             <td style="width: 20%">
                                 <div class="img-with-label">
                                     <div class="img-box">
-                                        <img src="/assets/images/upload/6d90eb39-1770-4441-a88f-df491ba6fa2f.jpg">
+                                        <img src="${item.itemImg}">
                                     </div>
                                     <div class="label">
-                                        <span>cat <b>￥12.0</b></span>
+                                        <span>${item.itemName} <b>￥${item.price}</b></span>
                                     </div>
                                 </div>
                             </td>
                             <td class="price-label" style="text-align: left;font-size: 14px">￥0.0</td>
-                            <td style="width: 5%"><img itemSub="12.5" class="img-button" src="/assets/images/ui/minus.png"></td>
-                            <td style="width: 10%" class="price-label" itemId="2">0</td>
-                            <td style="width: 5%"><img itemAdd="12.5" class="img-button" src="/assets/images/ui/plus.png"></td>
+                            <td class="price-label" style="text-align: left;font-size: 14px">库存 ${item.inventory}</td>
+                            <td style="width: 5%"><img itemSub="${item.price}" class="img-button" src="/assets/images/ui/minus.png"></td>
+                            <td style="width: 10%" class="price-label" itemId="${item.id}">0</td>
+                            <td style="width: 5%"><img itemAdd="${item.price}" class="img-button" src="/assets/images/ui/plus.png"></td>
                         </tr>
-                        <tr style="width: 100%">
-                            <td style="width: 20%">
-                                <div class="img-with-label">
-                                    <div class="img-box">
-                                        <img src="/assets/images/upload/6d90eb39-1770-4441-a88f-df491ba6fa2f.jpg">
-                                    </div>
-                                    <div class="label">
-                                        <span>cat <b>￥12.0</b></span>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="price-label" style="text-align: left;font-size: 14px">￥0.0</td>
-                            <td style="width: 5%"><img itemSub="12" class="img-button" src="/assets/images/ui/minus.png"></td>
-                            <td style="width: 10%" class="price-label" itemId="1">0</td>
-                            <td style="width: 5%"><img itemAdd="12" class="img-button" src="/assets/images/ui/plus.png"></td>
-                        </tr>
+                        </c:forEach>
                         </tbody>
                     </table>
                 </div>
@@ -175,7 +162,7 @@
 
        $("[itemAdd]").click(function () {
            let price = $(this).attr("itemAdd");
-           let count = parseInt($(this).parent().parent().children().eq(3).html());
+           let count = parseInt($(this).parent().parent().children().eq(4).html());
            if (count === 99) {
                count = 99;
            } else {
@@ -183,12 +170,12 @@
            }
            let total = count * price;
            $(this).parent().parent().children().eq(1).html("￥" + total);
-           $(this).parent().parent().children().eq(3).html(count);
+           $(this).parent().parent().children().eq(4).html(count);
        });
 
         $("[itemSub]").click(function () {
-            let price = $(this).attr("itemAdd");
-            let count = parseInt($(this).parent().parent().children().eq(3).html());
+            let price = $(this).attr("itemSub");
+            let count = parseInt($(this).parent().parent().children().eq(4).html());
             if (count === 0) {
                 count = 0;
             } else {
@@ -196,14 +183,14 @@
             }
             let total = count * price;
             $(this).parent().parent().children().eq(1).html("￥" + total);
-            $(this).parent().parent().children().eq(3).html(count);
+            $(this).parent().parent().children().eq(4).html(count);
         });
 
         $("#submitOrder").click(function () {
             let items = [];
             $("#menuList").children().eq(0).children().each(function () {
-                let itemId = $(this).children().eq(3).attr('itemId');
-                let count = parseInt($(this).children().eq(3).html());
+                let itemId = $(this).children().eq(4).attr('itemId');
+                let count = parseInt($(this).children().eq(4).html());
                 if (count !== 0) {
                     items.push({
                         id: itemId,
@@ -224,6 +211,16 @@
                 }
             })
         });
+
+        $("#startOrder").click(function () {
+            if ($(this).html() === "开始下单") {
+                $("#submitOrder").show();
+                $(this).html("取消");
+                $("#menuList").parent().show();
+            } else {
+                window.location.reload();
+            }
+        })
     });
 
     function getRemarkInfo() {

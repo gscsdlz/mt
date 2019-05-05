@@ -73,8 +73,10 @@ public class StoreController {
         int storeId = p.getInteger("store_id");
         Store s = storeService.getStoreById(storeId);
         List<Item> hotItem = itemService.getHotItem(storeId);
+        List<Item> allItem = itemService.getAllItem(storeId);
 
         model.addAttribute("hotItem", hotItem);
+        model.addAttribute("data", allItem);
         model.addAttribute("store", s);
         return "store_detail";
     }

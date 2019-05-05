@@ -13,11 +13,20 @@ public class Order {
     private String username;
     private int storeId;
     private String storeName;
+    private String storeImg;
     private int orderStatus;
     private double totalPrice;
     private int star;
     private String remark;
     private String updatedAt;
+
+    public String getStoreImg() {
+        return storeImg;
+    }
+
+    public void setStoreImg(String storeImg) {
+        this.storeImg = storeImg;
+    }
 
     public String getItems() {
         return items;

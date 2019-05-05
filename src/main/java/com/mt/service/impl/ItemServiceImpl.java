@@ -42,4 +42,9 @@ public class ItemServiceImpl implements ItemService {
     public List<Item> getHotItem(int storeId) {
         return itemDao.getHotItem(storeId);
     }
+
+    @Override
+    public List<Item> getAllItem(int storeId) {
+        return itemDao.getAllItemByStoreWithoutPage(storeId);
+    }
 }

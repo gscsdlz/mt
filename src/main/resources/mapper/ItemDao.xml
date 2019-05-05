@@ -41,4 +41,16 @@
     <select id="getItemById" resultType="Item">
         SELECT * FROM m_item WHERE id = #{id};
     </select>
+
+    <select id="getAllItemByStoreWithoutPage" resultType="Item">
+        SELECT m_item.* FROM m_item WHERE store_id = #{store_id} ORDER BY total_sale
+    </select>
+
+    <update id="decreaseInventory">
+        UPDATE m_item SET inventory = inventory - #{gap} WHERE id = #{id};
+    </update>
+
+    <update id="increaseTotalSale">
+        UPDATE m_item SET total_sale = total_sale + #{gap} WHERE id = #{id};
+    </update>
 </mapper>

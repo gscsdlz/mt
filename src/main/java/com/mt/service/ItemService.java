@@ -14,4 +14,6 @@ public interface ItemService {
     boolean modifyItem(Item item);
 
     List<Item> getHotItem(int storeId);
+
+    List<Item> getAllItem(int storeId);
 }

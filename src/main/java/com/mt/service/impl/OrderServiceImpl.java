@@ -9,6 +9,7 @@ import com.mt.enums.RemarkOrder;
 import com.mt.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -40,10 +41,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public boolean addOrder(Order o) {
+    public List<MiniItem> generateOrder(Order o) {
         List<Item> items = o.getItemList();
         List<MiniItem> newItems = new ArrayList<>();
         double totalPrice = 0;
+
         for (Item item : items) {
             MiniItem m = new MiniItem();
             Item tmp = itemDao.getItemById(item.getId());
@@ -53,7 +55,6 @@ public class OrderServiceImpl implements OrderService {
             m.setItemName(tmp.getItemName());
 
             totalPrice += item.getTotal() * tmp.getPrice();
-
             newItems.add(m);
         }
         ObjectMapper mapper = new ObjectMapper();
@@ -65,8 +66,30 @@ public class OrderServiceImpl implements OrderService {
         }
         o.setItems(itemStr);
         o.setTotalPrice(totalPrice);
-        return orderDao.addOrder(o.getItems(), o.getAccountId(), o.getStoreId(), o.getTotalPrice()) > 0;
+        return newItems;
+    }
 
+    @Transactional
+    @Override
+    public boolean insertOrder(Order o, List<MiniItem> ids) {
+        int row = orderDao.addOrder(o.getItems(), o.getAccountId(), o.getStoreId(), o.getTotalPrice());
+        if (row > 0) {
+            for (MiniItem item : ids) {
+                Item i = itemDao.getItemById(item.getId());
+                if (i.getInventory() < item.getTotal()) {
+                    throw new RuntimeException(item.getItemName() + " 库存不足");
+                }
+                int effRow1 = itemDao.decreaseInventory(item.getId(), item.getTotal());
+                int effRow2 = itemDao.increaseTotalSale(item.getId(), item.getTotal());
+
+                if (effRow1 <= 0 || effRow2 <= 0) {
+                    throw new RuntimeException("系统错误，请重试");
+                }
+            }
+        } else {
+            throw new RuntimeException("系统错误，请重试");
+        }
+        return true;
     }
 
     @Override
@@ -108,17 +131,18 @@ public class OrderServiceImpl implements OrderService {
     public Map<String, Integer> getRemarkInfo(int storeId) {
         List<Integer> stars = orderDao.getRemarkInfo(storeId);
         Map<String, Integer> res = new HashMap<>();
-        res.put("total", stars.size());
+
         int r1 = 0, r2 = 0, r3 = 0;
         for (Integer s : stars) {
             if (s >= 8) {
                 r1++;
             } else if (s > 4) {
                 r2++;
-            } else {
+            } else if (s > 0) {
                 r3++;
             }
         }
+        res.put("total", r1+r2+r3);
         res.put("r1", r1);
         res.put("r2", r2);
         res.put("r3", r3);
