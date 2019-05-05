@@ -1,0 +1,53 @@
+.img-button {
+    width: 40px;
+    cursor: pointer
+}
+
+.price-label {
+    font-size: 22px;
+    color: #f60;
+    text-align: center;
+}
+
+.img-with-label {
+    position: relative;
+    width: 130px;
+    height: 100px;
+}
+
+.img-with-label .img-box {
+    width: 100px;
+    height: 100px;
+    display: block
+}
+
+.img-with-label .label {
+    width: 100px;
+    height: 30px;
+    background: rgba(0, 0, 0, .3);
+    font-size: 14px;
+    color: #fff;
+    text-align: center;
+    position: absolute;
+    left: 0;
+    bottom: 0
+}
+
+.img-with-label .label span {
+    line-height: 30px;
+    font-size: 14px;
+}
+
+.img-with-label .label span b {
+    font-weight: normal;
+    font-size: 16px;
+}
+
+.shadow-border {
+    color: #666;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px 20px 33px;
+    border: 1px solid #e5e5e5;
+    box-shadow: 0 5px 14px 0 rgba(0, 0, 0, .1);
+}

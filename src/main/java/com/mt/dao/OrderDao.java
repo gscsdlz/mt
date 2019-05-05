@@ -17,10 +17,9 @@ public interface OrderDao {
     List<Order> getAllOrder(@Param("offset") int offset, @Param("limit") int limit);
 
     int addOrder(
-            @Param("item_id") int itemId,
+            @Param("items") String itemId,
             @Param("account_id") int accountId,
-            @Param("item_number") int itemNumber,
-            @Param("item_price") double itemPrice,
+            @Param("store_id") int storeId,
             @Param("total_price") double totalPrice
     );
 

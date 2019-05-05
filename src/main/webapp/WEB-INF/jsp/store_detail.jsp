@@ -35,9 +35,49 @@
                     <button type="button" class="normal-btn" onclick="window.location.href='/login?redirect=' + window.location.pathname + window.location.search">开始下单</button>
                 </c:if>
                 <c:if test="${sessionScope.get(\"id\") != null}">
-                    <button type="button" class="normal-btn" >开始下单</button>
+                    <button type="button" class="normal-btn">开始下单</button>
+                    <button typy="button" class="normal-btn" id="submitOrder">提交订单</button>
                 </c:if>
+                <div class="shadow-border" style="margin-top: 10px">
+                    <table id="menuList">
+                        <tbody>
+                        <tr style="width: 100%">
+                            <td style="width: 20%">
+                                <div class="img-with-label">
+                                    <div class="img-box">
+                                        <img src="/assets/images/upload/6d90eb39-1770-4441-a88f-df491ba6fa2f.jpg">
+                                    </div>
+                                    <div class="label">
+                                        <span>cat <b>￥12.0</b></span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="price-label" style="text-align: left;font-size: 14px">￥0.0</td>
+                            <td style="width: 5%"><img itemSub="12.5" class="img-button" src="/assets/images/ui/minus.png"></td>
+                            <td style="width: 10%" class="price-label" itemId="2">0</td>
+                            <td style="width: 5%"><img itemAdd="12.5" class="img-button" src="/assets/images/ui/plus.png"></td>
+                        </tr>
+                        <tr style="width: 100%">
+                            <td style="width: 20%">
+                                <div class="img-with-label">
+                                    <div class="img-box">
+                                        <img src="/assets/images/upload/6d90eb39-1770-4441-a88f-df491ba6fa2f.jpg">
+                                    </div>
+                                    <div class="label">
+                                        <span>cat <b>￥12.0</b></span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="price-label" style="text-align: left;font-size: 14px">￥0.0</td>
+                            <td style="width: 5%"><img itemSub="12" class="img-button" src="/assets/images/ui/minus.png"></td>
+                            <td style="width: 10%" class="price-label" itemId="1">0</td>
+                            <td style="width: 5%"><img itemAdd="12" class="img-button" src="/assets/images/ui/plus.png"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
+
             <div class="btm-cont clear">
                 <div class="btm-left">
                     <div class="recommend"><h3>推荐菜</h3>
@@ -97,8 +137,6 @@
         </div>
     </section>
 </div>
-
-
 <script>
     let remarkCurrPage = 1;
     let orderArg = 0;
@@ -134,6 +172,58 @@
            orderArg = 0;
            getRemark(orderArg, 1, 15);
        });
+
+       $("[itemAdd]").click(function () {
+           let price = $(this).attr("itemAdd");
+           let count = parseInt($(this).parent().parent().children().eq(3).html());
+           if (count === 99) {
+               count = 99;
+           } else {
+               count++;
+           }
+           let total = count * price;
+           $(this).parent().parent().children().eq(1).html("￥" + total);
+           $(this).parent().parent().children().eq(3).html(count);
+       });
+
+        $("[itemSub]").click(function () {
+            let price = $(this).attr("itemAdd");
+            let count = parseInt($(this).parent().parent().children().eq(3).html());
+            if (count === 0) {
+                count = 0;
+            } else {
+                count--;
+            }
+            let total = count * price;
+            $(this).parent().parent().children().eq(1).html("￥" + total);
+            $(this).parent().parent().children().eq(3).html(count);
+        });
+
+        $("#submitOrder").click(function () {
+            let items = [];
+            $("#menuList").children().eq(0).children().each(function () {
+                let itemId = $(this).children().eq(3).attr('itemId');
+                let count = parseInt($(this).children().eq(3).html());
+                if (count !== 0) {
+                    items.push({
+                        id: itemId,
+                        total: count,
+                    })
+                }
+            });
+            let order = {
+                storeId: ${store.id},
+                items: JSON.stringify(items),
+            };
+
+            $.post("/order_api/add_order", {json_str:JSON.stringify(order)}, function (resp) {
+                if (resp.status) {
+                    alert("下单成功");
+                } else {
+                    alert(resp.info);
+                }
+            })
+        });
     });
 
     function getRemarkInfo() {

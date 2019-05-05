@@ -37,4 +37,8 @@
         FROM m_item
         WHERE id = #{id};
     </delete>
+
+    <select id="getItemById" resultType="Item">
+        SELECT * FROM m_item WHERE id = #{id};
+    </select>
 </mapper>

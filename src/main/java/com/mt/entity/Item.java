@@ -95,7 +95,11 @@ public class Item {
     }
 
     public String getCreatedAt() {
-        return createdAt.substring(0, 19);
+        if (createdAt != null && createdAt.length() >= 20) {
+            return createdAt.substring(0, 19);
+        } else {
+            return "";
+        }
     }
 
     public void setCreatedAt(String createdAt) {
@@ -103,7 +107,11 @@ public class Item {
     }
 
     public String getUpdatedAt() {
-        return updatedAt.substring(0, 19);
+        if (updatedAt != null) {
+            return updatedAt.substring(0, 19);
+        } else {
+            return "";
+        }
     }
 
     public void setUpdatedAt(String updatedAt) {

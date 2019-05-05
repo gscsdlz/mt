@@ -8,6 +8,7 @@
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/assets/images/default/logo.png" />
     <link rel="stylesheet" href="/assets/css/com_header.css">
     <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="/assets/css/custom.css">
     <script src="/assets/js/jquery.min.js"></script>
 </head>
 <body>

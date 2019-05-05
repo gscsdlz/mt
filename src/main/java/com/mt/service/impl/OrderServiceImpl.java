@@ -1,15 +1,16 @@
 package com.mt.service.impl;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mt.dao.ItemDao;
 import com.mt.dao.OrderDao;
-import com.mt.entity.Order;
-import com.mt.entity.StoreStar;
-import com.mt.entity.UserRemark;
+import com.mt.entity.*;
 import com.mt.enums.OrderUpdateOption;
 import com.mt.enums.RemarkOrder;
 import com.mt.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +20,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private OrderDao orderDao;
+
+    @Autowired
+    private ItemDao itemDao;
 
     @Override
     public List<Order> getOrderByUser(int accountId, int page, int size) {
@@ -37,7 +41,32 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public boolean addOrder(Order o) {
-        return false;
+        List<Item> items = o.getItemList();
+        List<MiniItem> newItems = new ArrayList<>();
+        double totalPrice = 0;
+        for (Item item : items) {
+            MiniItem m = new MiniItem();
+            Item tmp = itemDao.getItemById(item.getId());
+            m.setId(item.getId());
+            m.setTotal(item.getTotal());
+            m.setPrice(tmp.getPrice());
+            m.setItemName(tmp.getItemName());
+
+            totalPrice += item.getTotal() * tmp.getPrice();
+
+            newItems.add(m);
+        }
+        ObjectMapper mapper = new ObjectMapper();
+        String itemStr = "";
+        try {
+            itemStr = mapper.writeValueAsString(newItems);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        o.setItems(itemStr);
+        o.setTotalPrice(totalPrice);
+        return orderDao.addOrder(o.getItems(), o.getAccountId(), o.getStoreId(), o.getTotalPrice()) > 0;
+
     }
 
     @Override

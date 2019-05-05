@@ -1,10 +1,14 @@
 package com.mt.web;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mt.dto.NormalResponse;
 import com.mt.dto.PaginationResponse;
+import com.mt.entity.Item;
+import com.mt.entity.Order;
 import com.mt.entity.UserRemark;
-import com.mt.enums.OrderStatus;
 import com.mt.enums.RemarkOrder;
+import com.mt.exception.CustomException;
 import com.mt.service.OrderService;
 import com.mt.utils.ParamUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
@@ -23,6 +28,9 @@ import java.util.Map;
 public class OrderApiController {
     @Autowired
     private OrderService orderService;
+
+    @Autowired
+    private HttpServletRequest request;
 
     @RequestMapping("/get_remark")
     private PaginationResponse<List<UserRemark>> getRemark(@RequestParam Map<String, Object> param) {
@@ -47,6 +55,21 @@ public class OrderApiController {
         ParamUtils p = new ParamUtils(param);
         int storeId = p.getInteger("store_id");
         response.setData(orderService.getRemarkInfo(storeId));
+        return response;
+    }
+
+    @RequestMapping("/add_order")
+    private NormalResponse<String> addOrder(@RequestParam Map<String, Object> param) throws CustomException {
+        NormalResponse<String> response = new NormalResponse<>();
+        ParamUtils p = new ParamUtils(param);
+        Order o = p.parseJson("json_str", Order.class);
+
+        int accountId = Integer.parseInt(request.getSession().getAttribute("id").toString());
+        o.setAccountId(accountId);
+        System.out.println(o.getItems());
+        if (!orderService.addOrder(o)) {
+            response.setInfo("");
+        }
         return response;
     }
 }
