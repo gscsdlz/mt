@@ -42,6 +42,11 @@
                             <li>
                                 <a rel="nofollow" href="/user/info">账户设置</a>
                             </li>
+                            <c:if test="${!sessionScope.get(\"pri\").toString().equals(\"0\")}">
+                                <li>
+                                    <a rel="nofollow" href="/admin/index">管理后台</a>
+                                </li>
+                            </c:if>
                             <li>
                                 <a rel="nofollow" href="/logout">退出登录</a>
                             </li>

@@ -20,9 +20,8 @@
             </div>
             <div class="right-banner">
                 <div class="home-header-links">
-                    <a href="/store/hot" class="link waimai-link">热门店铺</a>
                     <a href="/post/index" class="link waimai-link">贴吧平台</a>
-                    <a href="/me" class="link waimai-link">个人中心</a>
+                    <a href="/user/me" class="link waimai-link">个人中心</a>
                     <a href="/register" class="link waimai-link">注册账号</a>
                 </div>
                 <div class="banner-row clearfix">
@@ -49,7 +48,7 @@
                                 <c:if test="${sessionScope.get(\"id\") != null }">
                                     <div class="default" style="display:block;text-align: center">
                                         <div class="head-img-row">
-                                            <a href="/user/me"><img src="/assets/images/default/user.png" alt=""></a>
+                                            <a href="/user/me"><img src="${sessionScope.get("accountImg").toString()}" alt=""></a>
                                         </div>
                                         <div class="nickname-row">
                                             <a href="/user/me"><p class="user-name">你好</p></a>
