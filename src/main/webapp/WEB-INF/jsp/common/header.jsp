@@ -42,7 +42,8 @@
                             <li>
                                 <a rel="nofollow" href="/user/info">账户设置</a>
                             </li>
-                            <c:if test="${!sessionScope.get(\"pri\").toString().equals(\"0\")}">
+                            <c:if test="${Integer.parseInt(sessionScope.get(\"pri\").toString()) != 2}">
+
                                 <li>
                                     <a rel="nofollow" href="/admin/index">管理后台</a>
                                 </li>
