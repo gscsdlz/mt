@@ -100,6 +100,25 @@ public class AccountApiController {
         return response;
     }
 
+    @RequestMapping("/change_password")
+    private NormalResponse<String> changePassword(@RequestParam Map<String, Object> param) {
+        NormalResponse<String> response = new NormalResponse<>();
+        ParamUtils p = new ParamUtils(param);
+        String password = p.getString("password");
+        int uid = Integer.parseInt(request.getSession().getAttribute("id").toString());
+
+        Account a = accountService.getAccountById(uid);
+        a.setPassword(Encrypt.sha1Encode(password));
+        if (!accountService.updateAccount(a, AccountUpdateOption.UPDATE_PASSWORD)) {
+            response.setInfo("密码更新失败，请重试");
+        } else {
+            response.setInfo("密码设置成功，请重新登录");
+            clearSession();
+        }
+        return response;
+    }
+
+
     @RequestMapping("/update")
     private NormalResponse<String> update(@RequestParam Map<String, Object> param) throws CustomException {
         NormalResponse<String> response = new NormalResponse<>();

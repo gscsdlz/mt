@@ -22,8 +22,8 @@
     <div class="link-group"><p class="title">
         <a href="/user/info">个人信息</a></p>
         <ul class="link-ul">
-            <li><a href="#">信息修改</a><i class="icon-right"></i></li>
-            <li><a href="#">安全中心</a><i class="icon-right"></i></li>
+            <li><a href="/user/info">信息修改</a><i class="icon-right"></i></li>
+            <li><a href="/user/sec">安全中心</a><i class="icon-right"></i></li>
         </ul>
     </div>
 </div>

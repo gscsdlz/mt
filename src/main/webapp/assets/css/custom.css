@@ -51,3 +51,36 @@
     border: 1px solid #e5e5e5;
     box-shadow: 0 5px 14px 0 rgba(0, 0, 0, .1);
 }
+
+.input-form {
+    border: none;
+    line-height: 100%;
+    box-sizing: border-box;
+    display: inline-block !important;
+    padding: 10px;
+    font-size: 15px;
+    height: 100%;
+    background: 0 0;
+    width: 100%;
+}
+
+.input-form::-webkit-input-placeholder {
+    color: #999
+}
+
+.input-form:-ms-input-placeholder {
+    color: #999
+}
+
+.input-form::placeholder {
+    color: #999
+}
+
+.input-form-block {
+    width: 400px;
+    text-align: left;
+    height: 40px;
+    border: 1px solid #13D1BE;
+    background: #fff;
+    border-radius: 4px;
+}

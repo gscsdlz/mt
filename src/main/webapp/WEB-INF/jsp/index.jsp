@@ -31,14 +31,14 @@
 
                         </div>
                     </div>
-                    <a href="#" class="link" target="_blank">
+                    <a href="#" class="link">
                         <div class="item pic-1 shadow" style="background-image:url('')"></div>
                     </a>
                     <div class="item banner-logincard">
                         <div style="float:left">
                             <div class="login-container">
                                 <c:if test="${sessionScope.get(\"id\") == null }">
-                                    <div class="default" style="display:block">
+                                    <div class="default" style="display:block;text-align: center">
                                         <div class="head-img-row">
                                             <img src="/assets/images/default/user.png" alt="">
                                         </div>
@@ -47,32 +47,30 @@
                                     </div>
                                 </c:if>
                                 <c:if test="${sessionScope.get(\"id\") != null }">
-                                    <div class="default">
+                                    <div class="default" style="display:block;text-align: center">
                                         <div class="head-img-row">
-                                            <a href="#" target="_blank"><img src="/assets/images/default/user.png"
-                                                                             alt=""></a>
+                                            <a href="/user/me"><img src="/assets/images/default/user.png" alt=""></a>
                                         </div>
                                         <div class="nickname-row">
-                                            <a href="#" target="_blank"><p class="user-name">你好</p></a>
-                                            <a href="#" target="_blank"><i
-                                                    class="iconfont iconfont_level icon-lable_level_undefined"></i></a>
+                                            <a href="/user/me"><p class="user-name">你好</p></a>
+                                            <a href="/user/me"><i class="iconfont iconfont_level icon-lable_level_undefined"></i></a>
                                         </div>
                                         <div class="fn-row clearfix">
                                             <div class="fn-item">
-                                                <a href="#" target="_blank">
+                                                <a href="/user/order#statusAll">
                                                     <div class="icon"><i class="iconfont icon-order_iconx"></i></div>
                                                     <p class="fn-name">我的订单</p>
                                                 </a>
                                             </div>
                                             <div class="fn-item">
-                                                <a href="#" target="_blank">
+                                                <a href="/user/post">
                                                     <div class="icon"><i class="iconfont icon-collection_iconx"></i>
                                                     </div>
                                                     <p class="fn-name">我的帖子</p>
                                                 </a>
                                             </div>
                                             <div class="fn-item">
-                                                <a href="#" target="_blank">
+                                                <a href="/user/info">
                                                     <div class="icon"><i class="iconfont icon-ticket_iconx"></i></div>
                                                     <p class="fn-name">账号设置</p>
                                                 </a>

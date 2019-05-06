@@ -45,4 +45,24 @@ public class AccountController {
         model.addAttribute("data", orders);
         return "me_order";
     }
+
+    @RequestMapping("/info")
+    private String info(Model model) {
+
+        int uid = Integer.parseInt(request.getSession().getAttribute("id").toString());
+        Account a = accountService.getAccountById(uid);
+
+        model.addAttribute("account", a);
+        return "me_info";
+    }
+
+    @RequestMapping("/sec")
+    private String sec(Model model) {
+
+        int uid = Integer.parseInt(request.getSession().getAttribute("id").toString());
+        Account a = accountService.getAccountById(uid);
+
+        model.addAttribute("account", a);
+        return "me_sec";
+    }
 }

@@ -30,18 +30,17 @@
                 <ul class="header-nav-first">
                     <li class="has-child" id="me">
                         <c:if test="${sessionScope.get(\"id\") != null}">
-                        <a rel="nofollow" href="/user/me" target="_blank">个人中心</a>
+                        <a rel="nofollow" href="/user/me">个人中心</a>
                         <ul class="header-nav-my header-nav-second" id="meList">
-                            <a rel="nofollow" href="#" target="_blank"></a>
+                            <a rel="nofollow" href="#"></a>
                             <li>
-                                <a rel="nofollow" href="#" target="_blank"></a>
-                                <a rel="nofollow" href="#" target="_blank">我的订单</a>
+                                <a rel="nofollow" href="/user/order#statusAll">我的订单</a>
                             </li>
                             <li>
-                                <a rel="nofollow" href="#" target="_blank">我的帖子</a>
+                                <a rel="nofollow" href="/user/post">我的帖子</a>
                             </li>
                             <li>
-                                <a rel="nofollow" href="#" target="_blank">账户设置</a>
+                                <a rel="nofollow" href="/user/info">账户设置</a>
                             </li>
                             <li>
                                 <a rel="nofollow" href="/logout">退出登录</a>
