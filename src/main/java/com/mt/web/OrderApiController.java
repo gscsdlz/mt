@@ -8,6 +8,8 @@ import com.mt.entity.Item;
 import com.mt.entity.MiniItem;
 import com.mt.entity.Order;
 import com.mt.entity.UserRemark;
+import com.mt.enums.OrderStatus;
+import com.mt.enums.OrderUpdateOption;
 import com.mt.enums.RemarkOrder;
 import com.mt.exception.CustomException;
 import com.mt.service.OrderService;
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.sql.ParameterMetaData;
 import java.util.List;
 import java.util.Map;
 
@@ -69,7 +72,50 @@ public class OrderApiController {
         o.setAccountId(accountId);
 
         List<MiniItem> items = orderService.generateOrder(o);
-        orderService.insertOrder(o, items);
+        if (items.size() == 0) {
+            response.setInfo("空订单");
+        } else {
+            orderService.insertOrder(o, items);
+        }
+        return response;
+    }
+
+    @RequestMapping("/update_status")
+    private NormalResponse<String> updateStatus(@RequestParam Map<String, Object> params) {
+        NormalResponse<String> response = new NormalResponse<>();
+        ParamUtils p = new ParamUtils(params);
+        int orderId = p.getInteger("id");
+        int status = p.getInteger("status");
+        Order order = new Order();
+        order.setId(orderId);
+        order.setOrderStatus(status);
+        if (!orderService.updateOrder(order, OrderUpdateOption.UPDATE_STATUS_ONLY)) {
+            response.setInfo("更新失败，请重试");
+        }
+        return response;
+    }
+
+    @RequestMapping("/add_remark")
+    private NormalResponse<String> addRemark(@RequestParam Map<String, Object> param) {
+        NormalResponse<String> response = new NormalResponse<>();
+        ParamUtils p = new ParamUtils(param);
+        int id = p.getInteger("id");
+        int star = p.getInteger("star");
+        String remark = p.getString("remark");
+
+        Order o = new Order();
+        o.setId(id);
+        o.setStar(star);
+        o.setRemark(remark);
+        o.setOrderStatus(OrderStatus.DONE.ordinal());
+
+        boolean ok1 = orderService.updateOrder(o, OrderUpdateOption.UPDATE_COMMIT_ONLY);
+        boolean ok2 = orderService.updateOrder(o, OrderUpdateOption.UPDATE_STAR_ONLY);
+        boolean ok3 = orderService.updateOrder(o, OrderUpdateOption.UPDATE_STATUS_ONLY);
+
+        if (!ok1 || !ok2) {
+            response.setInfo("评价失败，请重试");
+        }
         return response;
     }
 }

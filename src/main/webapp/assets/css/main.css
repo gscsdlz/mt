@@ -2632,7 +2632,8 @@ li {
     background: #fff;
     border: 1px solid #E5E5E5;
     border-radius: 100px;
-    color: #666
+    color: #666;
+    cursor: pointer;
 }
 
 .order-item .order-btn .btn-org {
@@ -3209,7 +3210,8 @@ li {
     text-align: left;
     margin: 3px 0;
     white-space: nowrap;
-    color: #c3c3c3
+    color: #c3c3c3;
+    cursor: pointer;
 }
 
 .star-cont .stars-light li, .star-cont .stars-ul li {

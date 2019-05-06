@@ -71,7 +71,7 @@
     <select id="getStoreStar" resultType="StoreStar">
         SELECT COUNT(*) as total_remark, AVG(star) AS avg_star, AVG(total_price) as avg_price
         FROM m_order
-        WHERE store_id = #{store_id};
+        WHERE store_id = #{store_id} AND order_status = 5;
     </select>
 
     <select id="getRemarkOrderByDate" resultType="UserRemark">

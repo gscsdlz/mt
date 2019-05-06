@@ -34,7 +34,7 @@
                                                     <ul class="stars-ul">
                                                         <li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li>
                                                     </ul>
-                                                    <ul class="stars-ul stars-light" style="width: ${store.storeStar.avgStar * 10}px;">
+                                                    <ul class="stars-ul stars-light" style="width: ${store.storeStar.avgStar * 10}%;">
                                                         <li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li>
                                                     </ul>
                                                 </div>

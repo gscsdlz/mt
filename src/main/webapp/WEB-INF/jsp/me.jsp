@@ -24,16 +24,16 @@
                             <div class="userfn-ls">
                                 <ul class="userfn-ul clearfix">
                                     <li>
-                                        <a href="#"><i class="icon-userinfo icon-orders"></i><span>全部订单</span></a>
+                                        <a href="/user/order#statusAll"><i class="icon-userinfo icon-orders"></i><span>全部订单</span></a>
                                     </li>
                                     <li>
-                                        <a href="#"><i class="icon-userinfo icon-nonpayment"></i><span>待付款</span></a>
+                                        <a href="/user/order#statusPay"><i class="icon-userinfo icon-nonpayment"></i><span>已完成</span></a>
                                     </li>
                                     <li>
-                                        <a href="#"><i class="icon-userinfo icon-comment"></i><span>待评论</span></a>
+                                        <a href="/user/order#statusMark"><i class="icon-userinfo icon-comment"></i><span>待评论</span></a>
                                     </li>
                                     <li>
-                                        <a href="#"><i class="icon-userinfo icon-refund"></i><span>退款/售后</span></a>
+                                        <a href="/user/order#statusDone"><i class="icon-userinfo icon-refund"></i><span>待付款</span></a>
                                     </li>
                                 </ul>
                             </div>

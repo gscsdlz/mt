@@ -12,7 +12,7 @@
                             <ul class="stars-ul">
                                 <li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li>
                             </ul>
-                            <ul class="stars-ul stars-light" style="width: ${store.storeStar.avgStar * 10}px;">
+                            <ul class="stars-ul stars-light" style="width: ${store.storeStar.avgStar * 10}%;">
                                 <li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li>
                             </ul>
                         </div>
@@ -209,6 +209,7 @@
                 } else {
                     alert(resp.info);
                 }
+                window.location.reload();
             })
         });
 
@@ -250,7 +251,7 @@
                         '     <div class="source">' +
                         '         <div class="star-cont">' +
                         '             <ul class="stars-ul"><li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li></ul>' +
-                        '             <ul class="stars-ul stars-light" style="width: '+(data[i].star * 10)+'px;"><li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li></ul>' +
+                        '             <ul class="stars-ul stars-light" style="width: '+(data[i].star * 10)+'%;"><li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li></ul>' +
                         '         </div>' +
                         '     </div>' +
                         '     <div class="desc">'+data[i].remark+'</div>' +
