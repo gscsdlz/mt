@@ -9,4 +9,6 @@ public interface CityDao {
     List<City> getAllCity();
 
     City getCityById(@Param("id") int id);
+
+    List<City> getProvince();
 }

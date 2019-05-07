@@ -10,4 +10,8 @@
     <select id="getCityById" resultType="City">
         SELECT * FROM m_city WHERE id = #{id}
     </select>
+
+    <select id="getProvince" resultType="City">
+        SELECT province, id FROM m_city GROUP BY province ORDER BY id ASC;
+    </select>
 </mapper>

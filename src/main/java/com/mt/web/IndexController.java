@@ -38,13 +38,9 @@ public class IndexController {
     @RequestMapping("/city")
     private String city(Model model) {
         List<City> city = cityService.getAll();
-        Set<String> set = new HashSet<>();
-        for (City c : city) {
-            set.add(c.getProvince());
-        }
-        List<String> p = new ArrayList<>(set);
+        List<City> province = cityService.getProvince();
 
-        model.addAttribute("province", p);
+        model.addAttribute("province", province);
         model.addAttribute("city", city);
         return "city";
     }

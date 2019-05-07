@@ -6,10 +6,10 @@
         <c:forEach items="${province}" var="p">
         <div>
             <div class="city-area">
-                <span class="city-label">${p}</span>
+                <span class="city-label">${p.province}</span>
                 <span class="cities">
                     <c:forEach items="${city}" var="c">
-                        <c:if test="${c.province.equals(p)}">
+                        <c:if test="${c.province.equals(p.province)}">
                             <span href="javascript:;" key="${c.id}">${c.city}</span>
                         </c:if>
                     </c:forEach>

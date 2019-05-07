@@ -17,10 +17,10 @@
         <div class="header-content clearfix">
             <div class="header-bar-position" style="display: block;">
                 <span class="header-icon icon-header_location"></span>
-                <c:if test="${sessionScope.get('recent_city_str') == null}">
+                <c:if test="${sessionScope.get('id') == null}">
                     <span class="current-city">北京</span>
                 </c:if>
-                <c:if test="${sessionScope.get('recent_city_str') != null}">
+                <c:if test="${sessionScope.get('id') != null}">
                     <span class="current-city">${sessionScope.get('recent_city_str').toString()}</span>
                 </c:if>
 

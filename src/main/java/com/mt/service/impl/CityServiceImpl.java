@@ -22,4 +22,9 @@ public class CityServiceImpl implements CityService {
     public City getCityById(int id) {
         return cityDao.getCityById(id);
     }
+
+    @Override
+    public List<City> getProvince() {
+        return cityDao.getProvince();
+    }
 }
