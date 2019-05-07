@@ -22,14 +22,14 @@ public class PrivilegeMiddleWare implements HandlerInterceptor {
     static {
         blackList = new ArrayList<>();
         blackList.add("/admin");
-        blackList.add("/user/me");
+        blackList.add("/user");
+        blackList.add("/city");
     }
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         /*if (request.getSession().getAttribute("id") == null) {
             Account a = accountService.getAccountById(3);
-
             request.getSession().setAttribute("username", a.getUsername());
             request.getSession().setAttribute("id", a.getId());
             request.getSession().setAttribute("recent_city", a.getRecentCity());

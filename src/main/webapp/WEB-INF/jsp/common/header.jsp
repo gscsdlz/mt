@@ -17,8 +17,14 @@
         <div class="header-content clearfix">
             <div class="header-bar-position" style="display: block;">
                 <span class="header-icon icon-header_location"></span>
-                <span class="current-city">北京</span>
-                <a class="change-city" href="#">切换城市</a>
+                <c:if test="${sessionScope.get('recent_city_str') == null}">
+                    <span class="current-city">北京</span>
+                </c:if>
+                <c:if test="${sessionScope.get('recent_city_str') != null}">
+                    <span class="current-city">${sessionScope.get('recent_city_str').toString()}</span>
+                </c:if>
+
+                <a class="change-city" href="/city">切换城市</a>
                 <div class="user-entry" style="display: inline-block;">
                     <c:if test="${sessionScope.get(\"id\") == null}">
                         <a class="growth-entry user-importent" href="/login">立即登录</a>
@@ -43,7 +49,6 @@
                                 <a rel="nofollow" href="/user/info">账户设置</a>
                             </li>
                             <c:if test="${Integer.parseInt(sessionScope.get(\"pri\").toString()) != 2}">
-
                                 <li>
                                     <a rel="nofollow" href="/admin/index">管理后台</a>
                                 </li>

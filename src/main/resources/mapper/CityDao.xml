@@ -6,4 +6,8 @@
     <select id="getAllCity" resultType="City">
         SELECT * FROM m_city;
     </select>
+    
+    <select id="getCityById" resultType="City">
+        SELECT * FROM m_city WHERE id = #{id}
+    </select>
 </mapper>

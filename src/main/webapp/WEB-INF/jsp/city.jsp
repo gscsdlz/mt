@@ -1,37 +1,36 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ include file="./common/header.jsp" %>
+<div style="width: 60%; margin-left: 15%">
+    <div class="shadow-border" style="margin-top: 20px">
+        <c:forEach items="${province}" var="p">
+        <div>
+            <div class="city-area">
+                <span class="city-label">${p}</span>
+                <span class="cities">
+                    <c:forEach items="${city}" var="c">
+                        <c:if test="${c.province.equals(p)}">
+                            <span href="javascript:;" key="${c.id}">${c.city}</span>
+                        </c:if>
+                    </c:forEach>
+                </span>
+            </div>
+        </div>
+        </c:forEach>
+    </div>
+</div>
 <script>
     $(document).ready(function () {
-       //renderCity
-        $.get("", function (resp) {
-            if (resp.status) {
-                const data = resp.data;
-                let res = [];
-                for (let i = 0; i < data.length; i++) {
-                    if (typeof res[data[i].province] === 'undefined') {
-                        res[data[i].province] = [
-                            {
-                                'id': data[i].id,
-                                'city': data[i].city,
-                            }
-                        ]
-                    } else {
-                        res[data[i].province].push({
-                            'id': data[i].id,
-                            'city': data[i].city,
-                        })
-                    }
+        $("[key]").click(function () {
+            let id = $(this).attr("key");
+            $.post("/account_api/change_city", {id:id}, function (resp) {
+                if (resp.status) {
+                    window.location.href = "/";
+                } else {
+                    alert(resp.info)
                 }
-
-                //render
-                for (let p in res) {
-                    if (res.hasOwnProperty(p)) {
-                        //
-                        const data = res[p];
-                        for (let i = 0; i < data.length; i++) {
-                            //
-                        }
-                    }
-                }
-            }
+            })
         })
-    });
+    })
 </script>
+<%@ include file="./common/footer.jsp" %>

@@ -1,15 +1,18 @@
 package com.mt.web;
 
+import com.mt.entity.City;
 import com.mt.service.AccountService;
+import com.mt.service.CityService;
 import com.mt.service.StoreService;
 import com.mt.utils.ParamUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequestMapping("/")
@@ -24,27 +27,26 @@ public class IndexController {
     @Autowired
     private StoreService storeService;
 
+    @Autowired
+    private CityService cityService;
+
     @RequestMapping("/")
     private String index() {
         return "index";
     }
 
     @RequestMapping("/city")
-    private String city() {
-        return "city";
-    }
-
-    @RequestMapping("/change_city")
-    private String cityChange(@RequestParam Map<String, Object> param) {
-        ParamUtils p = new ParamUtils(param);
-        int cityId = p.getInteger("id");
-
-        if (request.getSession().getAttribute("id") != null) {
-            request.getSession().setAttribute("recent_city", cityId);
-            int aid = Integer.parseInt(request.getSession().getAttribute("id").toString());
-            accountService.updateRecentCity(aid, cityId);
+    private String city(Model model) {
+        List<City> city = cityService.getAll();
+        Set<String> set = new HashSet<>();
+        for (City c : city) {
+            set.add(c.getProvince());
         }
-        return "";
+        List<String> p = new ArrayList<>(set);
+
+        model.addAttribute("province", p);
+        model.addAttribute("city", city);
+        return "city";
     }
 
     @RequestMapping("/login")

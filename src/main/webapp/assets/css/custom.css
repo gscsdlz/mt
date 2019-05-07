@@ -198,3 +198,46 @@
 .td-field-value {
     padding: 10px;
 }
+
+.city-area {
+    padding: 13px 30px 13px 10px;
+    border-radius: 10px;
+    -webkit-transition: background-color .5s;
+    -ms-transition: background-color .5s;
+    transition: background-color .5s;
+}
+
+.city-area:hover {
+    background:#F8F8F8;
+}
+
+.city-label {
+    box-sizing: border-box;
+    vertical-align: top;
+    padding-top: 20px;
+    display: inline-block;
+    text-align: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    color: #fff;
+    background: #13D1BE;
+    box-shadow: 0 4px 5px 0 rgba(39, 178, 164, .22);
+}
+
+.cities {
+    display: inline-block;
+    max-width: 1065px;
+}
+
+.cities span {
+    margin: 10px 20px;
+    color: #666;
+    display: inline-block;
+    font-size: 14px;
+    text-decoration: none;
+    cursor: pointer;
+}
+.cities span:hover {
+    color: #13D1BE
+}

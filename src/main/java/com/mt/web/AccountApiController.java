@@ -2,10 +2,12 @@ package com.mt.web;
 
 import com.mt.dto.NormalResponse;
 import com.mt.entity.Account;
+import com.mt.entity.City;
 import com.mt.enums.AccountType;
 import com.mt.enums.AccountUpdateOption;
 import com.mt.exception.CustomException;
 import com.mt.service.AccountService;
+import com.mt.service.CityService;
 import com.mt.utils.Encrypt;
 import com.mt.utils.ParamUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,9 @@ public class AccountApiController {
 
     @Autowired
     private AccountService accountService;
+
+    @Autowired
+    private CityService cityService;
 
     @Autowired
     private HttpServletRequest request;
@@ -172,9 +177,31 @@ public class AccountApiController {
         return response;
     }
 
+    @RequestMapping("/change_city")
+    private NormalResponse<String> cityChange(@RequestParam Map<String, Object> param) {
+        NormalResponse<String> response = new NormalResponse<>();
+
+        ParamUtils p = new ParamUtils(param);
+        int cityId = p.getInteger("id");
+        City city = cityService.getCityById(cityId);
+        if (city == null) {
+            response.setInfo("找不到该城市");
+        } else {
+            if (request.getSession().getAttribute("id") != null) {
+                request.getSession().setAttribute("recent_city", cityId);
+                request.getSession().setAttribute("recent_city_str", city.getCity());
+                int aid = Integer.parseInt(request.getSession().getAttribute("id").toString());
+                accountService.updateRecentCity(aid, cityId);
+            }
+        }
+        return response;
+    }
+
     private void setSession(Account a) {
         request.getSession().setAttribute("username", a.getUsername());
         request.getSession().setAttribute("id", a.getId());
+        City city = cityService.getCityById(a.getRecentCity());
+        request.getSession().setAttribute("recent_city_str", city.getCity());
         request.getSession().setAttribute("recent_city", a.getRecentCity());
         request.getSession().setAttribute("pri", a.getPri());
         request.getSession().setAttribute("accountImg", a.getAccountImg());
@@ -184,6 +211,7 @@ public class AccountApiController {
         request.getSession().removeAttribute("username");
         request.getSession().removeAttribute("id");
         request.getSession().removeAttribute("recent_city");
+        request.getSession().removeAttribute("recent_city_str");
         request.getSession().removeAttribute("pri");
         request.getSession().removeAttribute("accountImg");
     }

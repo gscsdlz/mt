@@ -65,6 +65,6 @@
     </update>
 
     <update id="updateRecentCity">
-        UPDATE m_account SET recent_city = #{recent_city} WHERE id = #{daoid};
+        UPDATE m_account SET recent_city = #{recent_city} WHERE id = #{id};
     </update>
 </mapper>
