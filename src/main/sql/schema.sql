@@ -47,7 +47,7 @@ CREATE TABLE `m_account` (
 
 LOCK TABLES `m_account` WRITE;
 /*!40000 ALTER TABLE `m_account` DISABLE KEYS */;
-INSERT INTO `m_account` VALUES (3,'admin','7c4a8d09ca3762af61e59520943dc26494f8941b',1,1,'/assets/images/upload/67836a76-594b-4600-abc6-f007935544e7.jpg',0,'1970-01-01',0,NULL,0,'2019-03-30 17:54:35','2019-04-06 19:36:39'),(4,'gscsdlz','7c4a8d09ca3762af61e59520943dc26494f8941b',2,1,'/assets/images/default/user.png',1,'1996-02-21',2,'guess',0,'2019-04-06 15:11:50','2019-04-06 15:43:44'),(5,'Daemon','123',2,1,'/assets/images/default/user.png',0,'1970-01-01',0,NULL,0,'2019-04-06 19:40:02','2019-04-06 19:40:02'),(9,'Daemonn','da39a3ee5e6b4b0d3255bfef95601890afd80709',2,1,'/assets/images/default/user.png',0,'1970-01-01',0,NULL,0,'2019-04-06 19:41:34','2019-04-06 19:41:34');
+INSERT INTO `m_account` VALUES (3,'admin','7c4a8d09ca3762af61e59520943dc26494f8941b',1,1,'/assets/images/upload/b60c1875-9b5f-417c-ae20-8c016a76531d.jpg',2,'1996-02-21',12,'没有',0,'2019-03-30 17:54:35','2019-05-07 13:15:12'),(4,'gscsdlz','7c4a8d09ca3762af61e59520943dc26494f8941b',2,1,'/assets/images/default/user.png',1,'1996-02-21',2,'guess',0,'2019-04-06 15:11:50','2019-04-06 15:43:44'),(9,'Daemon','7c4a8d09ca3762af61e59520943dc26494f8941b',2,1,'/assets/images/default/user.png',0,'1970-01-01',0,NULL,0,'2019-04-06 19:41:34','2019-05-06 21:49:06');
 /*!40000 ALTER TABLE `m_account` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -95,7 +95,7 @@ CREATE TABLE `m_item` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -104,7 +104,7 @@ CREATE TABLE `m_item` (
 
 LOCK TABLES `m_item` WRITE;
 /*!40000 ALTER TABLE `m_item` DISABLE KEYS */;
-INSERT INTO `m_item` VALUES (2,'cat',3,12.00,'/assets/images/upload/6d90eb39-1770-4441-a88f-df491ba6fa2f.jpg',0,0,13,'2019-03-30 15:48:20','2019-04-06 17:52:54');
+INSERT INTO `m_item` VALUES (2,'cat',3,12.00,'/assets/images/upload/6d90eb39-1770-4441-a88f-df491ba6fa2f.jpg',3,0,0,'2019-03-30 15:48:20','2019-05-05 20:14:40'),(3,'dog',3,25.00,'/assets/images/upload/0b26c033-421e-45d3-a455-31e74fa538dc.jpg',7,0,3,'2019-05-05 20:14:24','2019-05-06 20:00:07');
 /*!40000 ALTER TABLE `m_item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -120,14 +120,14 @@ CREATE TABLE `m_order` (
   `items` text NOT NULL,
   `account_id` int(11) NOT NULL,
   `store_id` int(11) DEFAULT NULL,
-  `order_status` int(11) NOT NULL,
+  `order_status` int(11) NOT NULL DEFAULT '0',
   `total_price` decimal(10,2) NOT NULL DEFAULT '0.00',
   `star` int(11) NOT NULL DEFAULT '0',
-  `remark` varchar(1000) DEFAULT NULL,
+  `remark` varchar(1000) DEFAULT '',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -136,7 +136,7 @@ CREATE TABLE `m_order` (
 
 LOCK TABLES `m_order` WRITE;
 /*!40000 ALTER TABLE `m_order` DISABLE KEYS */;
-INSERT INTO `m_order` VALUES (1,'\"\"',3,3,1,24.00,4,'1','2019-04-12 06:26:34','2019-04-13 18:46:53'),(2,'\"\"',3,3,1,41.00,6,'1','2019-04-12 06:26:34','2019-04-13 18:46:53'),(3,'\"\"',3,3,1,47.00,6,'1','2019-04-12 06:26:34','2019-04-13 18:46:53');
+INSERT INTO `m_order` VALUES (22,'[{\"id\":2,\"itemName\":\"cat\",\"price\":12.0,\"total\":3},{\"id\":3,\"itemName\":\"dog\",\"price\":25.0,\"total\":3}]',3,3,5,111.00,67,'456789','2019-05-05 20:14:40','2019-05-06 21:31:45'),(23,'[{\"id\":3,\"itemName\":\"dog\",\"price\":25.0,\"total\":2}]',3,3,3,50.00,0,'','2019-05-06 20:00:00','2019-05-06 21:44:15'),(24,'[{\"id\":3,\"itemName\":\"dog\",\"price\":25.0,\"total\":2}]',3,3,3,50.00,0,'','2019-05-06 20:00:07','2019-05-06 21:44:20');
 /*!40000 ALTER TABLE `m_order` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -150,11 +150,12 @@ DROP TABLE IF EXISTS `m_post`;
 CREATE TABLE `m_post` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `post_title` varchar(100) NOT NULL,
+  `reply_num` int(11) DEFAULT '0',
+  `manager_id` int(11) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `manager_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=85 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -163,6 +164,7 @@ CREATE TABLE `m_post` (
 
 LOCK TABLES `m_post` WRITE;
 /*!40000 ALTER TABLE `m_post` DISABLE KEYS */;
+INSERT INTO `m_post` VALUES (55,'test_post——title——_00001',0,3,'2019-05-11 11:27:38','2019-05-11 11:27:38'),(56,'test_post——title——_00002',0,4,'2019-05-11 11:27:38','2019-05-11 11:27:38'),(57,'test_post——title——_00003',0,9,'2019-05-11 11:27:38','2019-05-11 11:27:38'),(58,'test_post——title——_00004',0,3,'2019-05-11 11:27:38','2019-05-11 11:27:38'),(59,'test_post——title——_00005',0,4,'2019-05-11 11:27:38','2019-05-11 11:27:38'),(60,'test_post——title——_00006',0,9,'2019-05-11 11:27:38','2019-05-11 11:27:38'),(61,'test_post——title——_00007',0,3,'2019-05-11 11:27:38','2019-05-11 11:27:38'),(62,'test_post——title——_00008',0,4,'2019-05-11 11:27:38','2019-05-11 11:27:38'),(63,'test_post——title——_00009',0,9,'2019-05-11 11:27:38','2019-05-11 11:27:38'),(64,'test_post——title——_00010',0,3,'2019-05-11 11:27:38','2019-05-11 11:27:38'),(65,'test_post——title——_00011',0,4,'2019-05-11 11:27:38','2019-05-11 11:27:38'),(66,'test_post——title——_00012',0,9,'2019-05-11 11:27:38','2019-05-11 11:27:38'),(67,'test_post——title——_00013',0,3,'2019-05-11 11:27:38','2019-05-11 11:27:38'),(68,'test_post——title——_00014',0,4,'2019-05-11 11:27:38','2019-05-11 11:27:38'),(69,'test_post——title——_00015',0,9,'2019-05-11 11:27:38','2019-05-11 11:27:38'),(70,'test_post——title——_00016',0,3,'2019-05-11 11:27:38','2019-05-11 11:27:38'),(71,'test_post——title——_00017',0,4,'2019-05-11 11:27:38','2019-05-11 11:27:38'),(72,'test_post——title——_00018',0,9,'2019-05-11 11:27:39','2019-05-11 11:27:39'),(73,'test_post——title——_00019',0,3,'2019-05-11 11:27:39','2019-05-11 11:27:39'),(74,'test_post——title——_00020',0,4,'2019-05-11 11:27:39','2019-05-11 11:27:39'),(75,'test_post——title——_00021',0,9,'2019-05-11 11:27:39','2019-05-11 11:27:39'),(76,'test_post——title——_00022',0,3,'2019-05-11 11:27:39','2019-05-11 11:27:39'),(77,'test_post——title——_00023',0,4,'2019-05-11 11:27:39','2019-05-11 11:27:39'),(78,'test_post——title——_00024',0,9,'2019-05-11 11:27:39','2019-05-11 11:27:39'),(79,'test_post——title——_00025',0,3,'2019-05-11 11:27:39','2019-05-11 11:27:39'),(80,'test_post——title——_00026',0,4,'2019-05-11 11:27:39','2019-05-11 11:27:39'),(81,'test_post——title——_00027',0,9,'2019-05-11 11:27:39','2019-05-11 11:27:39'),(82,'test_post——title——_00028',0,3,'2019-05-11 11:27:39','2019-05-11 11:27:39'),(83,'test_post——title——_00029',0,4,'2019-05-11 11:27:39','2019-05-11 11:27:39'),(84,'test_post——title——_00030',0,9,'2019-05-11 11:27:39','2019-05-11 11:27:39');
 /*!40000 ALTER TABLE `m_post` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -209,6 +211,7 @@ CREATE TABLE `m_store` (
   `store_img` varchar(100) NOT NULL,
   `city_id` int(11) NOT NULL DEFAULT '0',
   `type_id` int(11) NOT NULL,
+  `special` varchar(20) DEFAULT '',
   `store_phone` varchar(15) DEFAULT NULL,
   `address` varchar(15) DEFAULT NULL,
   `work_time` varchar(15) DEFAULT NULL,
@@ -219,7 +222,7 @@ CREATE TABLE `m_store` (
   PRIMARY KEY (`id`),
   KEY `m_store_type_fk` (`type_id`),
   CONSTRAINT `m_store_type_fk` FOREIGN KEY (`type_id`) REFERENCES `m_type` (`id`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -228,7 +231,7 @@ CREATE TABLE `m_store` (
 
 LOCK TABLES `m_store` WRITE;
 /*!40000 ALTER TABLE `m_store` DISABLE KEYS */;
-INSERT INTO `m_store` VALUES (3,'肯德基北京总店','/assets/images/upload/03e4aa8a-a0b0-46f8-8266-8941bb2db4c9.jpg',1,1,NULL,NULL,NULL,0,0,'2019-03-24 19:09:34','2019-04-06 17:52:32');
+INSERT INTO `m_store` VALUES (3,'肯德基北京总店','/assets/images/upload/03e4aa8a-a0b0-46f8-8266-8941bb2db4c9.jpg',1,1,'炸鸡3','1008611','某个地方','16:00-10:00',0,1,'2019-03-24 19:09:34','2019-04-14 16:32:25'),(4,'老北京鸡肉卷','/assets/images/upload/2a952592-8938-4e41-af81-a0254d5092f5.jpg',1,3,'好吃','10000000','北京市','9:00-20:00',0,1,'2019-04-14 16:19:21','2019-04-14 16:32:29'),(5,'重庆鸡公煲','/assets/images/upload/b2427b52-3262-4b38-9493-48e2aa26da7b.jpg',4,3,'煲饭','111111','12312312','9:00-22:00',0,1,'2019-05-07 13:14:35','2019-05-07 13:14:35');
 /*!40000 ALTER TABLE `m_store` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -245,7 +248,7 @@ CREATE TABLE `m_type` (
   `type_name` varchar(10) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `m_type_index` (`main_type`,`type_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -254,7 +257,7 @@ CREATE TABLE `m_type` (
 
 LOCK TABLES `m_type` WRITE;
 /*!40000 ALTER TABLE `m_type` DISABLE KEYS */;
-INSERT INTO `m_type` VALUES (4,'旅游','境内游'),(5,'旅游','境外游'),(3,'美食','中餐'),(1,'美食','快餐');
+INSERT INTO `m_type` VALUES (7,'娱乐','电影'),(4,'旅游','境内游'),(5,'旅游','境外游'),(3,'美食','中餐'),(1,'美食','快餐'),(6,'美食','西餐');
 /*!40000 ALTER TABLE `m_type` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -267,4 +270,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-04-13 19:59:10
+-- Dump completed on 2019-05-11 12:06:05
