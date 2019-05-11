@@ -14,4 +14,8 @@ public interface ReplyService {
     int countAllReply();
 
     boolean updateContent(String content, int id);
+
+    List<Reply> getMeReply(int accountId, int page, int size);
+
+    List<Reply> getReplyMe(int accountId, int page, int size);
 }

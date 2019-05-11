@@ -81,4 +81,15 @@
     <select id="countPost" resultType="Integer">
         SELECT COUNT(*) as num FROM m_post;
     </select>
+
+    <update id="addReplyNum">
+        UPDATE m_post SET reply_num = reply_num + 1 WHERE id = #{id};
+    </update>
+
+    <select id="getTitleByIds" resultType="Post">
+        SELECT id, post_title FROM m_post WHERE id IN
+        <foreach collection="ids" index="index" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </select>
 </mapper>

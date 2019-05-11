@@ -13,10 +13,10 @@
         </ul>
     </div>
     <div class="link-group"><p class="title"><a href="/user/post">我的帖子</a></p>
-        <ul class="link-ul">
-            <li><a href="#">我发布的</a><span class="num"></span><i class="icon-right"></i></li>
-            <li><a href="#">我回复的</a><span class="num"></span><i class="icon-right"></i></li>
-            <li><a href="#">回复我的</a><span class="num"></span><i class="icon-right"></i></li>
+        <ul class="link-ul" id="postMenu">
+            <li><a href="/user/post#post">我发布的</a><span class="num"></span><i class="icon-right"></i></li>
+            <li><a href="/user/post#reply">我回复的</a><span class="num"></span><i class="icon-right"></i></li>
+            <li><a href="/user/post#replyMe">回复我的</a><span class="num"></span><i class="icon-right"></i></li>
         </ul>
     </div>
     <div class="link-group"><p class="title">

@@ -2,6 +2,7 @@ package com.mt.web;
 
 import com.mt.entity.Account;
 import com.mt.entity.Order;
+import com.mt.entity.Reply;
 import com.mt.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,8 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequestMapping("/user")
@@ -25,6 +25,12 @@ public class AccountController {
 
     @Autowired
     private OrderService orderService;
+
+    @Autowired
+    private PostService postService;
+
+    @Autowired
+    private ReplyService replyService;
 
     @RequestMapping("/me")
     private String center(Model model) {
@@ -64,5 +70,32 @@ public class AccountController {
 
         model.addAttribute("account", a);
         return "me_sec";
+    }
+
+    @RequestMapping("/post")
+    private String post(Model model) {
+        int uid = Integer.parseInt(request.getSession().getAttribute("id").toString());
+
+        List<Reply> meReply = replyService.getMeReply(uid, 1, 30);
+        List<Reply> replyMe = replyService.getReplyMe(uid, 1, 30);
+        Set<Integer> ids = new HashSet<>();
+
+        if (meReply.size() > 0) {
+            for (Reply r : meReply) {
+                ids.add(r.getPostId());
+            }
+        }
+        if (replyMe.size() > 0) {
+            for (Reply r : replyMe) {
+                ids.add(r.getPostId());
+            }
+        }
+        Map<Integer, String> postMap = postService.getMultiTitle(ids);
+
+        model.addAttribute("my_post", postService.getAllPostByUser(uid, 1, 30));
+        model.addAttribute("me_reply", meReply);
+        model.addAttribute("reply_me", replyMe);
+        model.addAttribute("postMap", postMap);
+        return "me_post";
     }
 }

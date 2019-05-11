@@ -1,110 +1,14 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-    <link rel="stylesheet" href="./assets/css/com_header.css">
-    <link rel="stylesheet" href="./assets/css/main.css">
-    <link rel="stylesheet" href="./assets/css/me.css">
-    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-</head>
-<body>
-<header class="com-header">
-    <div class="header-bar">
-        <div class="header-content clearfix">
-            <div class="header-bar-position" style="display: block;">
-                <span class="header-icon icon-header_location"></span>
-                <span class="current-city">北京</span>
-                <a class="change-city" href="#">切换城市</a>
-                <div class="user-entry" style="display: inline-block;">
-                    <a class="growth-entry user-importent" href="#">立即登录</a>
-                    <a class="extra-entry" href="#">注册</a>
-                </div>
-            </div>
-            <nav class="header-bar-nav">
-                <ul class="header-nav-first">
-                    <li class="has-child" id="me">
-                        <a rel="nofollow" href="#" target="_blank">个人中心</a>
-                        <ul class="header-nav-my header-nav-second" id="meList">
-                            <a rel="nofollow" href="#" target="_blank"></a>
-                            <li>
-                                <a rel="nofollow" href="#" target="_blank"></a>
-                                <a rel="nofollow" href="#" target="_blank">我的订单</a>
-                            </li>
-                            <li>
-                                <a rel="nofollow" href="#" target="_blank">我的帖子</a>
-                            </li>
-                            <li>
-                                <a rel="nofollow" href="#" target="_blank">账户设置</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </div>
-    <div class="header-content clearfix">
-        <div class="header-title-module">
-            <div class="header-title"><img src="./assets/images/default/logo.png" alt=""></div>
-        </div>
-        <div class="header-search-module">
-            <div class="header-search-block">
-                <input class="header-search-input" type="text" placeholder="搜索商家或商品" id="searchText">
-                <button class="header-search-btn" id="search"><span class="header-icon icon-search"></span></button>
-            </div>
-        </div>
-    </div>
-</header>
-<script>
-    $(document).ready(function () {
-        $("#me").mouseover(function () {
-            $("#meList").show();
-        })
-            .mouseleave(function () {
-                $("#meList").hide();
-            });
-
-        $("#search").click(function () {
-            let key = $("#searchText").val();
-            if (key.length !== 0) {
-                window.location.href = "./";
-            }
-        })
-    })
-</script>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ include file="./common/header.jsp" %>
 <div>
-    <div class="page index" data-reactroot="">
-        <div class="userexinfo-container">
+    <div class="page index"  style="margin-top: -70px">
+        <div class="orders-container">
             <div class="clearfix">
                 <div style="float:left">
-                    <div class="orders-link-box">
-                        <div class="link-group"><p class="title">
-                            <a href="#">我的美团</a></p>
-                            <p class="title"><a href="#">我的订单</a></p>
-                            <ul class="link-ul">
-                                <li><a href="#">全部订单</a><i class="icon-right"></i></li>
-                                <li><a href="#">待付款</a><i class="icon-right"></i></li>
-                                <li><a href="#">待评价</a><i class="icon-right"></i></li>
-                                <li><a href="#">退款/售后</a><i class="icon-right"></i></li>
-                            </ul>
-                        </div>
-                        <div class="link-group"><p class="title"><a href="#">我的帖子</a></p>
-                            <ul class="link-ul">
-                                <li><a href="#">我发布的</a><span class="num"></span><i class="icon-right"></i></li>
-                                <li><a href="#">我回复的</a><span class="num"></span><i class="icon-right"></i></li>
-                                <li><a href="#">回复我的</a><span class="num"></span><i class="icon-right"></i></li>
-                            </ul>
-                        </div>
-                        <div class="link-group"><p class="title">
-                            <a href="#">个人信息</a></p>
-                            <ul class="link-ul">
-                                <li><a href="#">信息修改</a><i class="icon-right"></i></li>
-                                <li><a href="#">安全中心</a><i class="icon-right"></i></li>
-                            </ul>
-                        </div>
-                    </div>
+                    <%@ include file="./common/me_left_menu.jsp"%>
                 </div>
-                <div class="orders-box clearfix">
+                <div class="orders-box">
                     <div class="orders">
                         <div class="orders-head">
                             <ul class="orders-ul clearfix">
@@ -115,38 +19,47 @@
                         </div>
                         <div class="orders-body" id="post">
                             <div>
+                                <c:forEach items="${my_post}" var="post">
                                 <div class="order-item clearfix">
                                     <div class="order-info">
+
                                         <div class="info-box">
-                                            <a href="#" class="link" target="_blank"><p class="order-title">话题名称</p></a>
-                                            <p class="info">发布时间: 2019-04-16</p></div>
+                                            <a href="/post/show?id=${post.id}" class="link"><p class="order-title">${post.postTitle}</p></a>
+                                            <p class="info">发布时间: ${post.createdAt.substring(0, 10)}</p>
+                                        </div>
+
                                     </div>
-                                    <div class="order-price">回复数: 0</div>
+                                    <div class="order-price">回复数: ${post.replyNum}</div>
                                 </div>
+                                </c:forEach>
                             </div>
                         </div>
                         <div class="orders-body" id="reply" hidden>
                             <div>
+                                <c:forEach items="${me_reply}" var="reply">
                                 <div class="order-item clearfix">
                                     <div class="order-info">
                                         <div class="info-box">
-                                            <a href="#" class="link" target="_blank"><p class="order-title">话题名称</p></a>
-                                            <p class="info">发布时间: 2019-04-16</p></div>
+                                            <a href="/post/show?id=${reply.postId}" class="link"><p class="order-title">${postMap[reply.postId]}</p></a>
+                                            <p class="info">回复时间: ${reply.createdAt.substring(0, 10)}</p></div>
                                     </div>
-                                    <div class="order-price">我的回复。。。。。。。。</div>
+                                    <div class="order-price">我的回复${reply.contentText}</div>
                                 </div>
+                                </c:forEach>
                             </div>
                         </div>
                         <div class="orders-body" id="replyMe" hidden>
                             <div>
-                                <div class="order-item clearfix">
-                                    <div class="order-info">
-                                        <div class="info-box">
-                                            <a href="#" class="link" target="_blank"><p class="order-title">话题名称</p></a>
-                                            <p class="info">发布时间: 2019-04-16</p></div>
+                                <c:forEach items="${reply_me}" var="reply">
+                                    <div class="order-item clearfix">
+                                        <div class="order-info">
+                                            <div class="info-box">
+                                                <a href="/post/show?id=${reply.postId}" class="link"><p class="order-title">${postMap[reply.postId]}</p></a>
+                                                <p class="info">回复时间: ${reply.createdAt.substring(0, 10)}</p></div>
+                                        </div>
+                                        <div class="order-price">他的回复${reply.contentText}</div>
                                     </div>
-                                    <div class="order-price">我的回复。。。。。。。。</div>
-                                </div>
+                                </c:forEach>
                             </div>
                         </div>
                         <div class="btn-box">
@@ -161,6 +74,19 @@
 </div>
 <script>
     $(document).ready(function () {
+
+        handleURL();
+
+        $("#postMenu").children().each(function () {
+            let href = $(this).children().eq(0).attr('href');
+            $(this).children().eq(0).attr('tab-key', href.substr(href.indexOf("#")));
+            $(this).children().eq(0).attr('href', 'javascript:;');
+        }).children().click(function () {
+            let id = $(this).attr('tab-key');
+            window.location.href = window.location.href.substr(0, location.href.indexOf("#")) + id;
+            handleURL()
+        });
+
         $("[tab-target]").click(function() {
             $(this).parent().children().removeClass('active');
             $(this).addClass('active');
@@ -168,8 +94,20 @@
             let id = $(this).attr('tab-target');
             $('.orders-body').hide();
             $('#'+id).show();
-        })
-    })
+            window.location.href = window.location.href.substr(0, location.href.indexOf("#"))+"#" + id;
+        });
+    });
+    function handleURL() {
+        let tag = window.location.href.substr(window.location.href.indexOf("#") + 1);
+        if (window.location.href.indexOf("#") === -1) {
+            tag = "post";
+        }
+        $("[tab-target]").parent().children().removeClass('active');
+        let key = "[tab-target='"+tag+"']";
+        $(key).addClass('active');
+        let id = $(key).attr('tab-target');
+        $('.orders-body').hide();
+        $('#'+id).show();
+    }
 </script>
-</body>
-</html>
+<%@ include file="./common/footer.jsp" %>

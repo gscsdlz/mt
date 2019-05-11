@@ -34,7 +34,7 @@
                             <button class="modal-btn btn-primary" type="button" onclick="window.location.href='/login'">我要发帖</button>
                         </c:if>
                         <c:if test="${sessionScope.get('id') != null}">
-                            <button class="modal-btn btn-primary" type="button">我要发帖</button>
+                            <button class="modal-btn btn-primary" type="button" onclick="$('#postModal').fadeIn()">我要发帖</button>
                         </c:if>
                     </div>
                     <div class="guess-you-like" style="margin-top: 10px">
@@ -80,8 +80,37 @@
         </div>
     </section>
 </div>
+<div class="modal" id="postModal" hidden>
+    <div class="modal-dialog">
+        <div class="modal-content" style="background-color: #fff">
+            <div class="modal-body">
+                <h3 style="padding-bottom:10px; margin-bottom: 10px;border-bottom: 1px solid #e5e5e5">发帖</h3>
+                <div class="input-form-block">
+                    <input type="text" class="input-form" id="title"/>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn btn-primary" type="button" id="addPost">确认</button>
+                <button class="modal-btn btn-danger" type="button" onclick="$('#postModal').fadeOut()">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
 <script>
     $(document).ready(function () {
+
+        $("#addPost").click(function () {
+            let title = $("#title").val();
+            $.post("/post_api/add_post", {title:title}, function (resp) {
+                if (resp.status) {
+                    alert("添加成功");
+                    window.location.reload();
+                } else {
+                    alert(resp.info);
+                }
+            })
+        });
+
         $.get("/post_api/get_hot_date", function (resp) {
             if (resp.status) {
                 renderData(resp.data, $("#hotDate"));

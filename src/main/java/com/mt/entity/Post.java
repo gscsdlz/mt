@@ -8,6 +8,15 @@ public class Post {
     private int managerId;
     private String username;
     private String accountImg;
+    private int replyNum;
+
+    public int getReplyNum() {
+        return replyNum;
+    }
+
+    public void setReplyNum(int replyNum) {
+        this.replyNum = replyNum;
+    }
 
     public String getAccountImg() {
         return accountImg;

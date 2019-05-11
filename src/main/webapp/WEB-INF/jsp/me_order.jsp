@@ -282,7 +282,7 @@
 
     function handleURL() {
         let tag = window.location.href.substr(window.location.href.indexOf("#") + 1);
-        if (tag.length <= 0) {
+        if (window.location.href.indexOf("#") === -1) {
             tag = "statusAll";
         }
         $("[tab-target]").parent().children().removeClass('active');

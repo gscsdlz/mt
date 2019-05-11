@@ -4,6 +4,7 @@ import com.mt.entity.Post;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 public interface PostDao {
     int addPost(@Param("post_title") String postTitle, @Param("manager_id") int managerId);
@@ -22,11 +23,13 @@ public interface PostDao {
 
     List<Post> getHotPostByReply();
 
-    int setReplyNum(@Param("reply_num") int replyNum, @Param("id") int id);
+    int addReplyNum(@Param("id") int id);
 
     int countPostByDate(@Param("created_at_l") String createdAtL, @Param("created_at_r") String createdAtR);
 
     int countPost();
 
     List<Post> getPostByDate(@Param("created_at_l") String createdAtL, @Param("created_at_r") String createdAtR);
+
+    List<Post> getTitleByIds(@Param("ids") List<Integer> ids);
 }

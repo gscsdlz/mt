@@ -6,7 +6,7 @@ import com.mt.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.*;
 
 @Service
 public class PostServiceImpl implements PostService {
@@ -19,8 +19,8 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public boolean addPost(String PostTitle, int accountId) {
-        return postDao.addPost(PostTitle, accountId) > 0;
+    public int addPost(String PostTitle, int accountId) {
+        return postDao.addPost(PostTitle, accountId);
     }
 
     @Override
@@ -66,5 +66,16 @@ public class PostServiceImpl implements PostService {
     @Override
     public List<Post> getPostByDate(String date) {
         return postDao.getPostByDate(date + " 00:00:00", date + " 23:59:59");
+    }
+
+    @Override
+    public Map<Integer, String> getMultiTitle(Set<Integer> ids) {
+        List<Post> res = postDao.getTitleByIds(new ArrayList<>(ids));
+        Map<Integer, String> m = new HashMap<>();
+
+        for (Post p : res) {
+            m.put(p.getId(), p.getPostTitle());
+        }
+        return m;
     }
 }

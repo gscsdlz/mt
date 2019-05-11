@@ -20,4 +20,8 @@ public interface ReplyDao {
 
     int updateContent(@Param("content") String content, @Param("id") int id);
 
+    List<Reply> getMeReply(@Param("account_id") int accountId, @Param("offset") int offset, @Param("limit") int limit);
+
+    List<Reply> getReplyMe(@Param("account_id") int accountId, @Param("offset") int offset, @Param("limit") int limit);
+
 }

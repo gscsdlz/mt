@@ -119,4 +119,11 @@ public class Reply {
     public void setUpdatedAt(String updatedAt) {
         this.updatedAt = updatedAt;
     }
+
+    public String getContentText() {
+        String newstr = "";
+        newstr = content.replaceAll("<[.[^>]]*>","");
+        newstr = newstr.replaceAll(" ", "");
+        return newstr;
+    }
 }

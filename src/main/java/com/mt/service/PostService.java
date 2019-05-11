@@ -3,11 +3,13 @@ package com.mt.service;
 import com.mt.entity.Post;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public interface PostService {
     boolean updatePostTitle(String postTitle, int postId);
 
-    boolean addPost(String PostTitle, int accountId);
+    int addPost(String PostTitle, int accountId);
 
     boolean delPost(int postId);
 
@@ -26,4 +28,6 @@ public interface PostService {
     int countPost();
 
     List<Post> getPostByDate(String date);
+
+    Map<Integer, String> getMultiTitle(Set<Integer> ids);
 }

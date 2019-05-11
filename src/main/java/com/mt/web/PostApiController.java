@@ -149,4 +149,20 @@ public class PostApiController {
         }
         return response;
     }
+
+    @RequestMapping("/add_post")
+    private NormalResponse<String> addPost(@RequestParam Map<String, Object> param) {
+        NormalResponse<String> response = new NormalResponse<>();
+        ParamUtils p = new ParamUtils(param);
+        String title  = p.getString("title");
+        int accountId = Integer.parseInt(request.getSession().getAttribute("id").toString());
+
+        int id = postService.addPost(title, accountId);
+        if (id > 0) {
+            response.setData(Integer.toString(id));
+        } else {
+            response.setInfo("添加失败");
+        }
+        return response;
+    }
 }
