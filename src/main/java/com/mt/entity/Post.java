@@ -7,6 +7,15 @@ public class Post {
     private String updatedAt;
     private int managerId;
     private String username;
+    private String accountImg;
+
+    public String getAccountImg() {
+        return accountImg;
+    }
+
+    public void setAccountImg(String accountImg) {
+        this.accountImg = accountImg;
+    }
 
     public String getUsername() {
         return username;

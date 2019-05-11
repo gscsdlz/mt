@@ -27,14 +27,8 @@ public class PostController {
 
     @RequestMapping("/index")
     private String index(Model model) {
-
         String today = DateTime.dateNow().substring(0, 10);
-
-        List<Post> dateP = postService.getHotPostByDate();
-        List<Post> replyP = postService.getHotPostByReply();
         List<Post> todayP = postService.getPostByDate(today);
-        model.addAttribute("dateP", dateP);
-        model.addAttribute("replyP", replyP);
         model.addAttribute("todayP", todayP);
         return "post";
     }
@@ -53,5 +47,28 @@ public class PostController {
         model.addAttribute("page", page);
         model.addAttribute("total", 1);
         return "reply";
+    }
+
+    @RequestMapping("/all")
+    private String all(@RequestParam Map<String, Object> param, Model  model) {
+        ParamUtils p = new ParamUtils(param);
+        int page = p.getInteger("page", 1);
+        int size = p.getInteger("size", 15);
+        int total = postService.countPost();
+        int totalPage = (total - 1) / size + 1;
+        String today = DateTime.dateNow().substring(0, 10);
+
+        List<Post> data = postService.getAllPost(page, size);
+        List<Post> todayP = postService.getPostByDate(today);
+
+        model.addAttribute("todayP", todayP);
+        model.addAttribute("data", data);
+        model.addAttribute("page", page);
+        model.addAttribute("size", size);
+        model.addAttribute("page", page);
+        model.addAttribute("total", totalPage);
+
+
+        return "all_post";
     }
 }

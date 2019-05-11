@@ -4,20 +4,20 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mt.dao.PostDao">
     <select id="getAllPost" resultType="Post">
-        SELECT m_post.*, m_account.username
+        SELECT m_post.*, m_account.username, m_account.account_img
         FROM m_post
                  LEFT JOIN m_account ON (m_account.id = m_post.manager_id)
         LIMIT #{offset}, #{limit};
     </select>
     <select id="getPostById" resultType="Post">
-        SELECT m_post.*, m_account.username
+        SELECT m_post.*, m_account.username, m_account.account_img
         FROM m_post
                  LEFT JOIN m_account ON (m_account.id = m_post.manager_id)
         WHERE m_post.id = #{id};
     </select>
 
     <select id="getAllPostByUser" resultType="Post">
-        SELECT m_post.*, m_account.username
+        SELECT m_post.*, m_account.username, m_account.account_img
         FROM m_post
                  LEFT JOIN m_account ON (m_account.id = m_post.manager_id)
         WHERE manager_id = #{manager_id}
@@ -48,7 +48,7 @@
     </update>
 
     <select id="getHotPostByDate" resultType="Post">
-        SELECT m_post.*, m_account.username
+        SELECT m_post.*, m_account.username, m_account.account_img
         FROM m_post
                  LEFT JOIN m_account ON (m_account.id = m_post.manager_id)
         ORDER BY m_post.created_at
@@ -56,7 +56,7 @@
     </select>
 
     <select id="getHotPostByReply" resultType="Post">
-        SELECT m_post.*, m_account.username
+        SELECT m_post.*, m_account.username, m_account.account_img
         FROM m_post
                  LEFT JOIN m_account ON (m_account.id = m_post.manager_id)
         ORDER BY reply_num
@@ -66,16 +66,16 @@
     <select id="countPostByDate" resultType="Integer">
         SELECT COUNT(*) as num
         FROM m_post
-        WHERE SUBSTR(created_at, 0, 10) = #{created_at};
+        WHERE m_post.created_at >= #{created_at_l} AND m_post.created_at &lt;= #{created_at_r}
     </select>
 
     <select id="getPostByDate" resultType="Post">
-        SELECT m_post.*, m_account.username
+        SELECT m_post.*, m_account.username, m_account.account_img
         FROM m_post
                  LEFT JOIN m_account ON (m_account.id = m_post.manager_id)
-        WHERE SUBSTR(m_post.created_at, 0, 10) = #{created_at}
+        WHERE m_post.created_at >= #{created_at_l} AND m_post.created_at &lt;= #{created_at_r}
         ORDER BY m_post.created_at
-        LIMIT 20
+        LIMIT 10
     </select>
 
     <select id="countPost" resultType="Integer">

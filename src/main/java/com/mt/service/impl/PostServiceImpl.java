@@ -55,7 +55,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public int countPostByDate(String date) {
-        return postDao.countPostByDate(date);
+        return postDao.countPostByDate(date + " 00:00:00", date + " 23:59:59");
     }
 
     @Override
@@ -65,6 +65,6 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public List<Post> getPostByDate(String date) {
-        return postDao.getPostByDate(date);
+        return postDao.getPostByDate(date + " 00:00:00", date + " 23:59:59");
     }
 }

@@ -24,9 +24,9 @@ public interface PostDao {
 
     int setReplyNum(@Param("reply_num") int replyNum, @Param("id") int id);
 
-    int countPostByDate(@Param("created_at") String createdAt);
+    int countPostByDate(@Param("created_at_l") String createdAtL, @Param("created_at_r") String createdAtR);
 
     int countPost();
 
-    List<Post> getPostByDate(@Param("created_at") String createdAt);
+    List<Post> getPostByDate(@Param("created_at_l") String createdAtL, @Param("created_at_r") String createdAtR);
 }

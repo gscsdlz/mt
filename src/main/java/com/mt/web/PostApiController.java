@@ -4,8 +4,7 @@ import com.mt.dto.NormalResponse;
 import com.mt.entity.Post;
 import com.mt.service.PostService;
 import com.mt.service.ReplyService;
-import javafx.geometry.Pos;
-import org.omg.PortableServer.POA;
+import com.mt.utils.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @ResponseBody
@@ -45,8 +46,17 @@ public class PostApiController {
         return response;
     }
 
+    @RequestMapping("/static")
+    private NormalResponse<Map<String, Integer>> getStatic() {
+        NormalResponse<Map<String, Integer>> response = new NormalResponse<>();
+        Map<String, Integer> info = new HashMap<>();
 
+        String today = DateTime.dateNow().substring(0, 10);
 
-
-
+        info.put("total_post", postService.countPost());
+        info.put("today_post", postService.countPostByDate(today));
+        info.put("all_reply", replyService.countAllReply());
+        response.setData(info);
+        return response;
+    }
 }
