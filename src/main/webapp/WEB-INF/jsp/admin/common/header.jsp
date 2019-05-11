@@ -71,20 +71,20 @@
                 <li class="nav-item <c:if test="${menu == \"store\"}"> active</c:if>">
                     <a class="nav-link" href="${pageContext.request.contextPath}/admin/store/index">
                         <span class="menu-title">店铺管理</span>
-                        <i class="mdi mdi-home menu-icon"></i>
+                        <i class="mdi mdi-store menu-icon"></i>
                     </a>
                 </li>
                 <li class="nav-item <c:if test="${menu == \"item\"}"> active</c:if>">
                     <a class="nav-link" href="${pageContext.request.contextPath}/admin/item/index">
                         <span class="menu-title">商品管理</span>
-                        <i class="mdi mdi-home menu-icon"></i>
+                        <i class="mdi mdi-food menu-icon"></i>
                     </a>
                 </li>
                 <li class="nav-item <c:if test="${menu == \"his_order\" || menu == \"order\"}"> active</c:if>">
                     <a class="nav-link" data-toggle="collapse" href="#order-menu" aria-expanded="true" aria-controls="ui-basic">
                         <span class="menu-title">订单管理</span>
                         <i class="menu-arrow"></i>
-                        <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+                        <i class="mdi mdi-image-filter-vintage menu-icon"></i>
                     </a>
                     <div class="collapse show" id="order-menu">
                         <ul class="nav flex-column sub-menu">
@@ -100,7 +100,7 @@
                 <li class="nav-item <c:if test="${menu == \"type\"}"> active</c:if>">
                     <a class="nav-link" href="${pageContext.request.contextPath}/admin/type/index">
                         <span class="menu-title">分类管理</span>
-                        <i class="mdi mdi-home menu-icon"></i>
+                        <i class="mdi mdi-animation menu-icon"></i>
                     </a>
                 </li>
                 <li class="nav-item <c:if test="${menu == \"post\"}"> active</c:if>">
@@ -113,7 +113,7 @@
                     <a class="nav-link" data-toggle="collapse" href="#menu-user" aria-expanded="true" aria-controls="ui-basic">
                         <span class="menu-title">用户管理</span>
                         <i class="menu-arrow"></i>
-                        <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+                        <i class=" mdi mdi-account-multiple  menu-icon"></i>
                     </a>
                     <div class="collapse show" id="menu-user">
                         <ul class="nav flex-column sub-menu">

@@ -16,4 +16,6 @@ public interface ItemService {
     List<Item> getHotItem(int storeId);
 
     List<Item> getAllItem(int storeId);
+
+    int countItem();
 }

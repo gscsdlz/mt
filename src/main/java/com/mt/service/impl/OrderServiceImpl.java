@@ -11,10 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -147,5 +144,20 @@ public class OrderServiceImpl implements OrderService {
         res.put("r2", r2);
         res.put("r3", r3);
         return res;
+    }
+
+    @Override
+    public int countOrder() {
+        return orderDao.countOrder();
+    }
+
+    @Override
+    public int countUnOrder() {
+        return orderDao.countUnOrder();
+    }
+
+    @Override
+    public List<String> groupByMonth(String lastTime) {
+        return  orderDao.getOrderCreatedAt(lastTime + " 00:00:00");
     }
 }

@@ -53,4 +53,8 @@
     <update id="increaseTotalSale">
         UPDATE m_item SET total_sale = total_sale + #{gap} WHERE id = #{id};
     </update>
+
+    <select id="countItem" resultType="Integer">
+        SELECT COUNT(*) FROM m_item;
+    </select>
 </mapper>

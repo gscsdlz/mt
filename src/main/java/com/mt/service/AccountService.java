@@ -21,4 +21,6 @@ public interface AccountService {
     Account getAccountById(int id);
 
     boolean updateRecentCity(int id, int recentCity);
+
+    List<String> groupByMonth(String lastTime);
 }

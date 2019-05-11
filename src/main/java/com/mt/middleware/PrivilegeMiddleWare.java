@@ -28,16 +28,16 @@ public class PrivilegeMiddleWare implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        /*if (request.getSession().getAttribute("id") == null) {
-            Account a = accountService.getAccountById(3);
-            request.getSession().setAttribute("username", a.getUsername());
-            request.getSession().setAttribute("id", a.getId());
-            request.getSession().setAttribute("recent_city", a.getRecentCity());
-            request.getSession().setAttribute("pri", a.getPri());
-            request.getSession().setAttribute("accountImg", a.getAccountImg());
-        }*/
-        //return true;
-        //
+//        if (request.getSession().getAttribute("id") == null) {
+//            Account a = accountService.getAccountById(3);
+//            request.getSession().setAttribute("username", a.getUsername());
+//            request.getSession().setAttribute("id", a.getId());
+//            request.getSession().setAttribute("recent_city", a.getRecentCity());
+//            request.getSession().setAttribute("pri", a.getPri());
+//            request.getSession().setAttribute("accountImg", a.getAccountImg());
+//        }
+//        //return true;
+//        //
         //反向检验 属于黑名单的请求 统一需要认证
 
         for (String uri : blackList) {

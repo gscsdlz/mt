@@ -75,4 +75,8 @@
     <select id="getStoreById" resultType="Store">
         SELECT * FROM m_store WHERE id = #{id};
     </select>
+
+    <select id="countStore" resultType="Integer">
+        SELECT COUNT(*) FROM m_store;
+    </select>
 </mapper>

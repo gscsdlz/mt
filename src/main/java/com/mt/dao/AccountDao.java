@@ -49,4 +49,6 @@ public interface AccountDao {
     );
 
     int updateRecentCity(@Param("id") int id, @Param("recent_city") int recentCity);
+
+    List<String> getAccountCreatedTime(@Param("date") String date);
 }

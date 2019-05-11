@@ -67,4 +67,8 @@
     <update id="updateRecentCity">
         UPDATE m_account SET recent_city = #{recent_city} WHERE id = #{id};
     </update>
+
+    <select id="getAccountCreatedTime" resultType="String">
+        SELECT created_at FROM m_account WHERE created_at >= #{date};
+    </select>
 </mapper>

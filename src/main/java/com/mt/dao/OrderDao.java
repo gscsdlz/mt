@@ -40,4 +40,10 @@ public interface OrderDao {
     List<UserRemark> getRemarkOrderByStar(@Param("store_id") int storeId, @Param("offset") int offset, @Param("limit") int limit);
 
     List<Integer> getRemarkInfo(@Param("store_id") int storeId);
+
+    int countOrder();
+
+    int countUnOrder();
+
+    List<String> getOrderCreatedAt(@Param("date") String date);
 }

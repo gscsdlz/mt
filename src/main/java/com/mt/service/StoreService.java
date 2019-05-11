@@ -28,4 +28,6 @@ public interface StoreService {
     List<String> getAllSpecial(int cityId);
 
     Store getStoreById(int storeId);
+
+    int countStore();
 }

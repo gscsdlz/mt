@@ -162,4 +162,9 @@ public class StoreServiceImpl implements StoreService {
         s.setStoreStar(orderDao.getStoreStar(s.getId()));
         return s;
     }
+
+    @Override
+    public int countStore() {
+        return store.countStore();
+    }
 }

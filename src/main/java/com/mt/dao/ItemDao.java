@@ -38,4 +38,6 @@ public interface ItemDao {
     int decreaseInventory(@Param("id") int id, @Param("gap") int gap);
 
     int increaseTotalSale(@Param("id") int id, @Param("gap") int gap);
+
+    int countItem();
 }

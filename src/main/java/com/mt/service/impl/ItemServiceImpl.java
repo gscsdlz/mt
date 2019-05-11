@@ -47,4 +47,9 @@ public class ItemServiceImpl implements ItemService {
     public List<Item> getAllItem(int storeId) {
         return itemDao.getAllItemByStoreWithoutPage(storeId);
     }
+
+    @Override
+    public int countItem() {
+        return itemDao.countItem();
+    }
 }

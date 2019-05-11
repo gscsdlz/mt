@@ -95,4 +95,16 @@
     <select id="getRemarkInfo" resultType="Integer">
         SELECT star FROM m_order WHERE store_id = #{store_id};
     </select>
+
+    <select id="countOrder" resultType="Integer">
+        SELECT COUNT(*) FROM m_order;
+    </select>
+
+    <select id="countUnOrder" resultType="Integer">
+        SELECT COUNT(*) FROM m_order WHERE order_status = 5;
+    </select>
+
+    <select id="getOrderCreatedAt" resultType="String">
+        SELECT created_at FROM m_order WHERE created_at >= #{date};
+    </select>
 </mapper>

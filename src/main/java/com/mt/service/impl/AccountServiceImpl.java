@@ -84,4 +84,9 @@ public class AccountServiceImpl implements AccountService {
     public boolean updateRecentCity(int id, int recentCity) {
         return accountDao.updateRecentCity(id, recentCity) > 0;
     }
+
+    @Override
+    public List<String> groupByMonth(String lastTime) {
+        return accountDao.getAccountCreatedTime(lastTime + " 00:00:00");
+    }
 }
