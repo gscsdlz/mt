@@ -4,6 +4,7 @@ import com.mt.dao.ReplyDao;
 import com.mt.entity.Reply;
 import com.mt.service.ReplyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,5 +32,10 @@ public class ReplyServiceImpl implements ReplyService {
             r.setIdx(idx++);
         }
         return res;
+    }
+
+    @Override
+    public int countAllReply() {
+        return replyDao.countAllReply();
     }
 }

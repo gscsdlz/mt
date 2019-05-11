@@ -16,4 +16,14 @@ public interface PostService {
     List<Post> getAllPostByUser(int accountId, int page, int size);
 
     Post getPostById(int postId);
+
+    List<Post> getHotPostByDate();
+
+    List<Post> getHotPostByReply();
+
+    int countPostByDate(String date);
+
+    int countPost();
+
+    List<Post> getPostByDate(String date);
 }

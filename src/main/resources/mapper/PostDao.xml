@@ -4,25 +4,81 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mt.dao.PostDao">
     <select id="getAllPost" resultType="Post">
-        SELECT m_post.*, m_account.username FROM m_post LEFT JOIN m_account ON (m_account.id = m_post.manager_id) LIMIT #{offset}, #{limit};
+        SELECT m_post.*, m_account.username
+        FROM m_post
+                 LEFT JOIN m_account ON (m_account.id = m_post.manager_id)
+        LIMIT #{offset}, #{limit};
     </select>
     <select id="getPostById" resultType="Post">
-        SELECT m_post.*, m_account.username FROM m_post LEFT JOIN m_account ON (m_account.id = m_post.manager_id) WHERE m_post.id = #{id};
+        SELECT m_post.*, m_account.username
+        FROM m_post
+                 LEFT JOIN m_account ON (m_account.id = m_post.manager_id)
+        WHERE m_post.id = #{id};
     </select>
 
     <select id="getAllPostByUser" resultType="Post">
-        SELECT m_post.*, m_account.username FROM m_post LEFT JOIN m_account ON (m_account.id = m_post.manager_id) WHERE manager_id = #{manager_id} LIMIT #{offset}, #{limit};
+        SELECT m_post.*, m_account.username
+        FROM m_post
+                 LEFT JOIN m_account ON (m_account.id = m_post.manager_id)
+        WHERE manager_id = #{manager_id}
+        LIMIT #{offset}, #{limit};
     </select>
 
     <insert id="addPost">
-        INSERT INTO m_post (post_title, manager_id) VALUES (#{post_title}, #{manager_id});
+        INSERT INTO m_post (post_title, manager_id)
+        VALUES (#{post_title}, #{manager_id});
     </insert>
 
     <delete id="delPost">
-        DELETE FROM m_post WHERE id = #{id};
+        DELETE
+        FROM m_post
+        WHERE id = #{id};
     </delete>
 
     <update id="updatePostTitle">
-        UPDATE m_post SET post_title = #{post_title} WHERE id = #{id};
+        UPDATE m_post
+        SET post_title = #{post_title}
+        WHERE id = #{id};
     </update>
+
+    <update id="setReplyNum">
+        UPDATE m_post
+        SET reply_num = #{reply_num}
+        WHERE id = #{id};
+    </update>
+
+    <select id="getHotPostByDate" resultType="Post">
+        SELECT m_post.*, m_account.username
+        FROM m_post
+                 LEFT JOIN m_account ON (m_account.id = m_post.manager_id)
+        ORDER BY m_post.created_at
+        LIMIT 20;
+    </select>
+
+    <select id="getHotPostByReply" resultType="Post">
+        SELECT m_post.*, m_account.username
+        FROM m_post
+                 LEFT JOIN m_account ON (m_account.id = m_post.manager_id)
+        ORDER BY reply_num
+        LIMIT 20;
+    </select>
+
+    <select id="countPostByDate" resultType="Integer">
+        SELECT COUNT(*) as num
+        FROM m_post
+        WHERE SUBSTR(created_at, 0, 10) = #{created_at};
+    </select>
+
+    <select id="getPostByDate" resultType="Post">
+        SELECT m_post.*, m_account.username
+        FROM m_post
+                 LEFT JOIN m_account ON (m_account.id = m_post.manager_id)
+        WHERE SUBSTR(m_post.created_at, 0, 10) = #{created_at}
+        ORDER BY m_post.created_at
+        LIMIT 20
+    </select>
+
+    <select id="countPost" resultType="Integer">
+        SELECT COUNT(*) as num FROM m_post;
+    </select>
 </mapper>

@@ -42,4 +42,29 @@ public class PostServiceImpl implements PostService {
     public Post getPostById(int postId) {
         return postDao.getPostById(postId);
     }
+
+    @Override
+    public List<Post> getHotPostByDate() {
+        return postDao.getHotPostByDate();
+    }
+
+    @Override
+    public List<Post> getHotPostByReply() {
+        return postDao.getHotPostByReply();
+    }
+
+    @Override
+    public int countPostByDate(String date) {
+        return postDao.countPostByDate(date);
+    }
+
+    @Override
+    public int countPost() {
+        return postDao.countPost();
+    }
+
+    @Override
+    public List<Post> getPostByDate(String date) {
+        return postDao.getPostByDate(date);
+    }
 }

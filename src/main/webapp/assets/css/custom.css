@@ -241,3 +241,28 @@
 .cities span:hover {
     color: #13D1BE
 }
+
+.post-td-img {
+    width: 5%;
+    text-align: right;
+    vertical-align: middle;
+    padding: 10px 0;
+}
+
+.post-td-img img {
+    width: 20px;
+}
+
+.post-td-title {
+    width: 45%;
+    text-align: left;
+}
+
+.post-td-title span:hover {
+    cursor: pointer;
+    color: #13D1BE;
+}
+
+hr {
+    color: rgba(0,0,0,.3);
+}

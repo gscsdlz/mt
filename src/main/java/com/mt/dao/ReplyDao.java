@@ -12,4 +12,6 @@ public interface ReplyDao {
 
     int addReply();
 
+    int countAllReply();
+
 }

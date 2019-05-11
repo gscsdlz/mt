@@ -10,4 +10,6 @@ public interface ReplyService {
     boolean delReply(int replyId);
 
     List<Reply> getAllReply(int postId, int page, int size);
+
+    int countAllReply();
 }

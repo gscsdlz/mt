@@ -19,5 +19,8 @@
         WHERE id = #{id};
     </delete>
 
+    <select id="countAllReply" resultType="Integer">
+        SELECT COUNT(*) FROM m_reply;
+    </select>
 
 </mapper>
