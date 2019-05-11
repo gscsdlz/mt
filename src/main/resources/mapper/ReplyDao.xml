@@ -4,12 +4,18 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mt.dao.ReplyDao">
     <select id="getAllReply" resultType="Reply">
-        SELECT r1.*, a1.username as username, a2.username as reply_username, r2.content as reply_content, r2.created_at as reply_time
+        SELECT r1.*,
+               a1.username   as username,
+               a2.username   as reply_username,
+               r2.content    as reply_content,
+               r2.created_at as reply_time,
+               a1.account_img
         FROM m_reply as r1
-            LEFT JOIN m_account as a1 ON (r1.account_id = a1.id)
-            LEFT JOIN m_reply as r2 ON (r1.reply_id = r2.id)
-            LEFT JOIN m_account as a2 ON (r2.account_id = a2.id)
+                 LEFT JOIN m_account as a1 ON (r1.account_id = a1.id)
+                 LEFT JOIN m_reply as r2 ON (r1.reply_id = r2.id)
+                 LEFT JOIN m_account as a2 ON (r2.account_id = a2.id)
         WHERE r1.post_id = #{post_id}
+        ORDER BY r1.created_at ASC
         LIMIT #{offset}, #{limit};
     </select>
 
@@ -20,7 +26,17 @@
     </delete>
 
     <select id="countAllReply" resultType="Integer">
-        SELECT COUNT(*) FROM m_reply;
+        SELECT COUNT(*)
+        FROM m_reply;
     </select>
+
+    <insert id="addReply">
+        INSERT INTO m_reply (post_id, content, reply_id, account_id)
+        VALUES (#{post_id}, '${content}', #{reply_id}, #{account_id});
+    </insert>
+
+    <update id="updateContent">
+        UPDATE m_reply SET content = #{content} WHERE id = #{id};
+    </update>
 
 </mapper>

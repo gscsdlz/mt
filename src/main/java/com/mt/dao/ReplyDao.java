@@ -10,8 +10,14 @@ public interface ReplyDao {
 
     int delReply(@Param("id") int id);
 
-    int addReply();
+    int addReply(
+            @Param("post_id") int postId,
+            @Param("content") String content,
+            @Param("reply_id") int replyId,
+            @Param("account_id") int accountId);
 
     int countAllReply();
+
+    int updateContent(@Param("content") String content, @Param("id") int id);
 
 }

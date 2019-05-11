@@ -30,7 +30,12 @@
                         <button class="modal-btn btn-primary" type="button" onclick="window.location.href='/post/all'">全部帖子</button>
                     </div>
                     <div class="guess-you-like" style="padding: 10px;text-align: center;margin-top: 10px">
-                        <button class="modal-btn btn-primary" type="button">我要发帖</button>
+                        <c:if test="${sessionScope.get('id') == null}">
+                            <button class="modal-btn btn-primary" type="button" onclick="window.location.href='/login'">我要发帖</button>
+                        </c:if>
+                        <c:if test="${sessionScope.get('id') != null}">
+                            <button class="modal-btn btn-primary" type="button">我要发帖</button>
+                        </c:if>
                     </div>
                     <div class="guess-you-like" style="margin-top: 10px">
                         <h4 style="text-align: center">统计信息</h4>

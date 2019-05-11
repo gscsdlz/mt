@@ -6,6 +6,7 @@ public class Reply {
     private String content;
     private int replyId;
     private int accountId;
+    private String accountImg;
     private String createdAt;
     private String updatedAt;
     private String username;        //发布者名称
@@ -13,6 +14,15 @@ public class Reply {
     private String replyContent;
     private String replyTime;
     private int idx;
+
+
+    public String getAccountImg() {
+        return accountImg;
+    }
+
+    public void setAccountImg(String accountImg) {
+        this.accountImg = accountImg;
+    }
 
     public int getIdx() {
         return idx;

@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/assets/css/com_header.css">
     <link rel="stylesheet" href="/assets/css/main.css">
     <link rel="stylesheet" href="/assets/css/custom.css">
+    <link rel="stylesheet" href="/assets/js/themes/default/css/umeditor.css">
     <script src="/assets/js/jquery.min.js"></script>
 </head>
 <body>

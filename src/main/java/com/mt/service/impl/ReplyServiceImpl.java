@@ -15,8 +15,8 @@ public class ReplyServiceImpl implements ReplyService {
     private ReplyDao replyDao;
 
     @Override
-    public boolean addReply() {
-        return false;
+    public boolean addReply(Reply r) {
+        return replyDao.addReply(r.getPostId(), r.getContent(), r.getReplyId(), r.getAccountId()) > 0;
     }
 
     @Override
@@ -37,5 +37,10 @@ public class ReplyServiceImpl implements ReplyService {
     @Override
     public int countAllReply() {
         return replyDao.countAllReply();
+    }
+
+    @Override
+    public boolean updateContent(String content, int id) {
+        return replyDao.updateContent(content, id) > 0;
     }
 }
