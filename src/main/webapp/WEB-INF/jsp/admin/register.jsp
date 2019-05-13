@@ -59,7 +59,7 @@
         } else {
           $.post("/account_api/register", {username:username,password:password}, function (resp) {
             if (resp.status) {
-              window.location.href = "/me";
+              window.location.href = "/user/me";
             } else {
               if (resp.info === "数据冲突") {
                 alert("用户名已经存在")
