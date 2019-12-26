@@ -89,17 +89,17 @@
 <script>
     let statusMapper = [
         <c:forEach items="${status}" var="item">
-            '${item.toString()}',
+        '${item.toString()}',
         </c:forEach>
     ];
 
     $(document).ready(function () {
         let str = "";
-        for (let i = 0; i <statusMapper.length; i++) {
+        for (let i = 0; i < statusMapper.length; i++) {
             str += '<div class="form-check">' +
-                    '<label class="form-check-label">' +
-                        '<input type="radio" class="form-check-input" name="status" value="'+i+'">'+statusMapper[i]+'<i class="input-helper"></i></label>\n' +
-                    '</div>'
+                '<label class="form-check-label">' +
+                '<input type="radio" class="form-check-input" name="status" value="' + i + '">' + statusMapper[i] + '<i class="input-helper"></i></label>\n' +
+                '</div>'
         }
         $("#orderId").after(str);
 
@@ -114,7 +114,7 @@
                 }
             }
 
-            $(":radio[name='status'][value='"+statusId+"']").prop("checked", true);
+            $(":radio[name='status'][value='" + statusId + "']").prop("checked", true);
             $("#orderId").val(id);
             $("#statusModal").modal();
         });
@@ -131,8 +131,8 @@
 
         $("#confirm").click(function () {
             let id = $("#orderId").val();
-            let status  = $(":radio[name='status']:checked").val();
-            send("/admin/order_api/change_status", {id:id,status:status});
+            let status = $(":radio[name='status']:checked").val();
+            send("/admin/order_api/change_status", {id: id, status: status});
         })
     });
 

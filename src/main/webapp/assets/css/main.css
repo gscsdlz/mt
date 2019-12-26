@@ -5460,6 +5460,7 @@ body {
     cursor: pointer;
     border-radius: 5px;
 }
+
 .normal-btn:hover {
-    background: rgb(115,225,206);
+    background: rgb(115, 225, 206);
 }

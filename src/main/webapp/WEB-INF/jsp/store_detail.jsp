@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ include file="./common/header.jsp"%>
+<%@ include file="./common/header.jsp" %>
 <div style="margin-top: 10px">
     <section class="detail-wrap">
         <div class="content">
@@ -10,10 +10,18 @@
                     <div class="score clear">
                         <div class="star-cont">
                             <ul class="stars-ul">
-                                <li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li>
+                                <li><i class="iconfont icon-star_icon"></i></li>
+                                <li><i class="iconfont icon-star_icon"></i></li>
+                                <li><i class="iconfont icon-star_icon"></i></li>
+                                <li><i class="iconfont icon-star_icon"></i></li>
+                                <li><i class="iconfont icon-star_icon"></i></li>
                             </ul>
                             <ul class="stars-ul stars-light" style="width: ${store.storeStar.avgStar * 10}%;">
-                                <li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li>
+                                <li><i class="iconfont icon-star_icon"></i></li>
+                                <li><i class="iconfont icon-star_icon"></i></li>
+                                <li><i class="iconfont icon-star_icon"></i></li>
+                                <li><i class="iconfont icon-star_icon"></i></li>
+                                <li><i class="iconfont icon-star_icon"></i></li>
                             </ul>
                         </div>
                         <p>${store.storeStar.avgStar}分<span> 人均￥${store.storeStar.avgPrice}</span></p>
@@ -42,23 +50,27 @@
                     <table id="menuList">
                         <tbody>
                         <c:forEach items="${data}" var="item">
-                        <tr style="width: 100%">
-                            <td style="width: 20%">
-                                <div class="img-with-label">
-                                    <div class="img-box">
-                                        <img src="${item.itemImg}">
+                            <tr style="width: 100%">
+                                <td style="width: 20%">
+                                    <div class="img-with-label">
+                                        <div class="img-box">
+                                            <img src="${item.itemImg}">
+                                        </div>
+                                        <div class="label">
+                                            <span>${item.itemName} <b>￥${item.price}</b></span>
+                                        </div>
                                     </div>
-                                    <div class="label">
-                                        <span>${item.itemName} <b>￥${item.price}</b></span>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="price-label" style="text-align: left;font-size: 14px">￥0.0</td>
-                            <td class="price-label" style="text-align: left;font-size: 14px">库存 ${item.inventory}</td>
-                            <td style="width: 5%"><img itemSub="${item.price}" class="img-button" src="/assets/images/ui/minus.png"></td>
-                            <td style="width: 10%" class="price-label" itemId="${item.id}">0</td>
-                            <td style="width: 5%"><img itemAdd="${item.price}" class="img-button" src="/assets/images/ui/plus.png"></td>
-                        </tr>
+                                </td>
+                                <td class="price-label" style="text-align: left;font-size: 14px">￥0.0</td>
+                                <td class="price-label" style="text-align: left;font-size: 14px">库存 ${item.inventory}</td>
+                                <td style="width: 5%">
+                                    <img itemSub="${item.price}" class="img-button" src="/assets/images/ui/minus.png">
+                                </td>
+                                <td style="width: 10%" class="price-label" itemId="${item.id}">0</td>
+                                <td style="width: 5%">
+                                    <img itemAdd="${item.price}" class="img-button" src="/assets/images/ui/plus.png">
+                                </td>
+                            </tr>
                         </c:forEach>
                         </tbody>
                     </table>
@@ -71,16 +83,16 @@
                         <div class="cont">
                             <ul class="clear">
                                 <c:forEach items="${hotItem}" var="item">
-                                <li>
-                                    <div class="pic">
-                                        <div class="imgbox" style="height: 100%; width: 100%;">
-                                            <img src="${item.itemImg}">
+                                    <li>
+                                        <div class="pic">
+                                            <div class="imgbox" style="height: 100%; width: 100%;">
+                                                <img src="${item.itemImg}">
+                                            </div>
+                                            <div class="desc">
+                                                <span class="truncate">${item.itemName}</span> <b>￥${item.price}</b>
+                                            </div>
                                         </div>
-                                        <div class="desc">
-                                            <span class="truncate">${item.itemName}</span> <b>￥${item.price}</b>
-                                        </div>
-                                    </div>
-                                </li>
+                                    </li>
                                 </c:forEach>
                             </ul>
                             <!--<div class="list clear">
@@ -128,50 +140,50 @@
     let remarkCurrPage = 1;
     let orderArg = 0;
     $(document).ready(function () {
-       getHot();
-       getRemarkInfo();
-       getRemark(orderArg, 1, 15);
+        getHot();
+        getRemarkInfo();
+        getRemark(orderArg, 1, 15);
 
-       $("#pagePrev").click(function () {
-           if ($(this).hasClass("disabled")) {
-               return;
-           }
-           getRemark(orderArg, remarkCurrPage - 1, 15);
-       });
+        $("#pagePrev").click(function () {
+            if ($(this).hasClass("disabled")) {
+                return;
+            }
+            getRemark(orderArg, remarkCurrPage - 1, 15);
+        });
 
-       $("#pageNext").click(function () {
-           if ($(this).hasClass("disabled")) {
-               return;
-           }
-           getRemark(orderArg, remarkCurrPage + 1, 15);
-       });
+        $("#pageNext").click(function () {
+            if ($(this).hasClass("disabled")) {
+                return;
+            }
+            getRemark(orderArg, remarkCurrPage + 1, 15);
+        });
 
-       $("#orderDate").click(function () {
-           $(this).addClass('on');
-           $("#orderStar").removeClass("on");
-           orderArg = 1;
-           getRemark(orderArg, 1, 15);
-       });
+        $("#orderDate").click(function () {
+            $(this).addClass('on');
+            $("#orderStar").removeClass("on");
+            orderArg = 1;
+            getRemark(orderArg, 1, 15);
+        });
 
-       $("#orderStar").click(function () {
-           $(this).addClass('on');
-           $("#orderDate").removeClass("on");
-           orderArg = 0;
-           getRemark(orderArg, 1, 15);
-       });
+        $("#orderStar").click(function () {
+            $(this).addClass('on');
+            $("#orderDate").removeClass("on");
+            orderArg = 0;
+            getRemark(orderArg, 1, 15);
+        });
 
-       $("[itemAdd]").click(function () {
-           let price = $(this).attr("itemAdd");
-           let count = parseInt($(this).parent().parent().children().eq(4).html());
-           if (count === 99) {
-               count = 99;
-           } else {
-               count++;
-           }
-           let total = count * price;
-           $(this).parent().parent().children().eq(1).html("￥" + total);
-           $(this).parent().parent().children().eq(4).html(count);
-       });
+        $("[itemAdd]").click(function () {
+            let price = $(this).attr("itemAdd");
+            let count = parseInt($(this).parent().parent().children().eq(4).html());
+            if (count === 99) {
+                count = 99;
+            } else {
+                count++;
+            }
+            let total = count * price;
+            $(this).parent().parent().children().eq(1).html("￥" + total);
+            $(this).parent().parent().children().eq(4).html(count);
+        });
 
         $("[itemSub]").click(function () {
             let price = $(this).attr("itemSub");
@@ -203,7 +215,7 @@
                 items: JSON.stringify(items),
             };
 
-            $.post("/order_api/add_order", {json_str:JSON.stringify(order)}, function (resp) {
+            $.post("/order_api/add_order", {json_str: JSON.stringify(order)}, function (resp) {
                 if (resp.status) {
                     alert("下单成功");
                 } else {
@@ -238,23 +250,28 @@
     }
 
     function getRemark(orderBy, page, size) {
-        $.get("/order_api/get_remark", {store_id:${store.id}, order_by:orderBy, page:page, size:size}, function (resp){
+        $.get("/order_api/get_remark", {
+            store_id:${store.id},
+            order_by: orderBy,
+            page: page,
+            size: size
+        }, function (resp) {
             if (resp.status) {
                 const data = resp.data;
                 let str = '';
                 for (let i = 0; i < data.length; i++) {
                     str += '<div class="list clear">' +
-                        ' <div class="header"><div class="imgbox" style="height: 100%; width: 100%;"><img src="'+data[i].accountImg+'"></div></div>' +
+                        ' <div class="header"><div class="imgbox" style="height: 100%; width: 100%;"><img src="' + data[i].accountImg + '"></div></div>' +
                         ' <div class="info">' +
-                        '     <div class="name">'+data[i].username+'</div>' +
-                        '     <div class="date"><span>'+data[i].createdAt+'</span></div>' +
+                        '     <div class="name">' + data[i].username + '</div>' +
+                        '     <div class="date"><span>' + data[i].createdAt + '</span></div>' +
                         '     <div class="source">' +
                         '         <div class="star-cont">' +
                         '             <ul class="stars-ul"><li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li></ul>' +
-                        '             <ul class="stars-ul stars-light" style="width: '+(data[i].star * 10)+'%;"><li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li></ul>' +
+                        '             <ul class="stars-ul stars-light" style="width: ' + (data[i].star * 10) + '%;"><li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li></ul>' +
                         '         </div>' +
                         '     </div>' +
-                        '     <div class="desc">'+data[i].remark+'</div>' +
+                        '     <div class="desc">' + data[i].remark + '</div>' +
                         '<div class="line"></div>' +
                         '</div>' +
                         '</div>'
@@ -281,11 +298,11 @@
                 let str = '';
                 for (let i = 0; i < data.length; i++) {
                     str += ' <li>' +
-                        '  <a href="/store/detail?store_id='+data[i].id+'">' +
-                        '  <div class="pic"><div class="imgbox" style="height:100%;width:100%;"><img src="'+data[i].storeImg+'"></div></div>' +
-                        '  <p class="name">'+data[i].storeName+'</p>' +
-                        '  <p class="desc">'+data[i].address+'</p>' +
-                        '  <p class="price"><b>￥</b>'+data[i].storeStar.avgPrice+'</p>' +
+                        '  <a href="/store/detail?store_id=' + data[i].id + '">' +
+                        '  <div class="pic"><div class="imgbox" style="height:100%;width:100%;"><img src="' + data[i].storeImg + '"></div></div>' +
+                        '  <p class="name">' + data[i].storeName + '</p>' +
+                        '  <p class="desc">' + data[i].address + '</p>' +
+                        '  <p class="price"><b>￥</b>' + data[i].storeStar.avgPrice + '</p>' +
                         '  </a>' +
                         '</li>'
                 }
@@ -296,4 +313,4 @@
         })
     }
 </script>
-<%@ include file="./common/footer.jsp"%>
+<%@ include file="./common/footer.jsp" %>

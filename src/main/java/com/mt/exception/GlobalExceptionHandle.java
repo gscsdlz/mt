@@ -25,7 +25,7 @@ public class GlobalExceptionHandle implements HandlerExceptionResolver {
 
             return mv;
         } else {
-           // httpServletRequest.getContextPath().contains()
+            // httpServletRequest.getContextPath().contains()
             ModelAndView mv = new ModelAndView("/admin/common/error");
             mv.addObject("error", message);
             return mv;

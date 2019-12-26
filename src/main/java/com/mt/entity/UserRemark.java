@@ -45,7 +45,7 @@ public class UserRemark {
 
     public String getCreatedAt() {
         String date = createdAt.substring(0, 10);
-        String []dates = date.split("-");
+        String[] dates = date.split("-");
         return dates[0] + "年" + dates[1] + "月" + dates[2] + "日";
     }
 

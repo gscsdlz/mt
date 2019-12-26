@@ -92,7 +92,7 @@
 
         $("#uploadFile").AjaxFileUpload({
             "action": "/upload_api/image",
-            "onComplete": function(filename, response) {
+            "onComplete": function (filename, response) {
                 response = response.substr(5, response.length - 11);
                 response = JSON.parse(response);
                 if (!response.status) {
@@ -106,7 +106,7 @@
         $("#submit").click(function () {
             let username = $("#username").val();
             let accountImg = $("#accountImg").attr('src');
-            send("/account_api/update", {username:username, accountImg:accountImg, needUpdate:"username:accountImg"})
+            send("/account_api/update", {username: username, accountImg: accountImg, needUpdate: "username:accountImg"})
         });
 
         $("#passChange").click(function () {
@@ -116,7 +116,7 @@
             if (password !== confirmPassword) {
                 alert("两次输入的密码不匹配");
             } else {
-                send("/account_api/set_password", {password:password, old_password:oldPassword});
+                send("/account_api/set_password", {password: password, old_password: oldPassword});
             }
         })
     });

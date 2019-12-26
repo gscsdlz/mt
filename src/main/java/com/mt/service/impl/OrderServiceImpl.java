@@ -24,17 +24,17 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<Order> getOrderByUser(int accountId, int page, int size) {
-        return orderDao.getAllOrderByUser(accountId, (page - 1) *size, size);
+        return orderDao.getAllOrderByUser(accountId, (page - 1) * size, size);
     }
 
     @Override
     public List<Order> getOrderByStore(int storeId, int page, int size) {
-        return orderDao.getAllOrderByStore(storeId, (page - 1) *size, size);
+        return orderDao.getAllOrderByStore(storeId, (page - 1) * size, size);
     }
 
     @Override
     public List<Order> getOrder(int page, int size) {
-        return orderDao.getAllOrder((page - 1) *size, size);
+        return orderDao.getAllOrder((page - 1) * size, size);
     }
 
     @Override
@@ -118,9 +118,9 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<UserRemark> getRemark(int storeId, int page, int size, RemarkOrder orderBy) {
         if (orderBy == RemarkOrder.ORDER_BY_DATE) {
-            return orderDao.getRemarkOrderByDate(storeId, (page-1) * size, size);
+            return orderDao.getRemarkOrderByDate(storeId, (page - 1) * size, size);
         } else {
-            return orderDao.getRemarkOrderByStar(storeId, (page-1) * size, size);
+            return orderDao.getRemarkOrderByStar(storeId, (page - 1) * size, size);
         }
     }
 
@@ -139,7 +139,7 @@ public class OrderServiceImpl implements OrderService {
                 r3++;
             }
         }
-        res.put("total", r1+r2+r3);
+        res.put("total", r1 + r2 + r3);
         res.put("r1", r1);
         res.put("r2", r2);
         res.put("r3", r3);
@@ -158,6 +158,6 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<String> groupByMonth(String lastTime) {
-        return  orderDao.getOrderCreatedAt(lastTime + " 00:00:00");
+        return orderDao.getOrderCreatedAt(lastTime + " 00:00:00");
     }
 }

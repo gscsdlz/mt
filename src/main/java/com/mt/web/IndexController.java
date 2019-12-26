@@ -48,7 +48,7 @@ public class IndexController {
     @RequestMapping("/login")
     private String login(@RequestParam Map<String, Object> param) {
         if (isLogin()) {
-            return  "redirect:/";
+            return "redirect:/";
         }
         return "admin/login";
     }
@@ -56,7 +56,7 @@ public class IndexController {
     @RequestMapping("/register")
     private String register(@RequestParam Map<String, Object> param) {
         if (isLogin()) {
-            return  "redirect:/";
+            return "redirect:/";
         }
         return "admin/register";
     }

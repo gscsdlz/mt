@@ -14,8 +14,10 @@
                                 <c:forEach items="${data}" var="post">
                                     <tr>
                                         <td class="post-td-img"><img src="${post.accountImg}"></td>
-                                        <td class="post-td-title"><span onclick="window.location.href='/post/show?post_id=${post.id}'">${post.postTitle}</span></td>
-                                        <td style="text-align: right;width: 20%">${post.username} @ </td>
+                                        <td class="post-td-title">
+                                            <span onclick="window.location.href='/post/show?post_id=${post.id}'">${post.postTitle}</span>
+                                        </td>
+                                        <td style="text-align: right;width: 20%">${post.username} @</td>
                                         <td style="text-align: left;width: 20%">${post.createdAt.substring(0, 19)}</td>
                                     </tr>
                                 </c:forEach>
@@ -27,7 +29,9 @@
                         <ul class="pagination-custom">
                             <c:forEach begin="1" end="${total}" step="1" var="i">
                                 <c:if test="${i == page}">
-                                    <li><a  style="background-color: #337ab7;color: white;cursor: not-allowed" href="#"><span>${i}</span></a></li>
+                                    <li>
+                                        <a style="background-color: #337ab7;color: white;cursor: not-allowed" href="#"><span>${i}</span></a>
+                                    </li>
                                 </c:if>
                                 <c:if test="${i != page}">
                                     <li><a href="/post/all?page=${i}"><span>${i}</span></a></li>
@@ -54,9 +58,12 @@
                         <table style="width: 100%;text-align: center;font-size: 14px">
                             <tbody>
                             <tr>
-                                <td style="width: 33.3%"><img style="width: 80%" src="/assets/images/ui/today_total.png"></td>
-                                <td style="width: 33.3%"><img style="width: 80%" src="/assets/images/ui/all_post.png"></td>
-                                <td style="width: 33.3%"><img style="width: 80%" src="/assets/images/ui/all_reply.png"></td>
+                                <td style="width: 33.3%">
+                                    <img style="width: 80%" src="/assets/images/ui/today_total.png"></td>
+                                <td style="width: 33.3%"><img style="width: 80%" src="/assets/images/ui/all_post.png">
+                                </td>
+                                <td style="width: 33.3%"><img style="width: 80%" src="/assets/images/ui/all_reply.png">
+                                </td>
                             </tr>
                             <tr>
                                 <td>今日帖子</td>
@@ -71,7 +78,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="guess-you-like"  style="margin-top: 10px">
+                    <div class="guess-you-like" style="margin-top: 10px">
                         <h4>今日榜单</h4>
                         <table style="width: 100%">
                             <tbody>
@@ -111,7 +118,7 @@
     $(document).ready(function () {
         $("#addPost").click(function () {
             let title = $("#title").val();
-            $.post("/post_api/add_post", {title:title}, function (resp) {
+            $.post("/post_api/add_post", {title: title}, function (resp) {
                 if (resp.status) {
                     alert("添加成功");
                     window.location.reload();

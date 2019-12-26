@@ -19,7 +19,8 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">商品列表</h4>
-                        <button id="add" class="btn btn-sm btn-primary" type="button">新增 <span class="mdi mdi-plus"></span></button>
+                        <button id="add" class="btn btn-sm btn-primary" type="button">新增
+                            <span class="mdi mdi-plus"></span></button>
                         <hr/>
                         <table class="table table-bordered">
                             <thead>
@@ -75,7 +76,7 @@
             </div>
             <div class="modal-body">
                 <form id="itemForm">
-                    <input type="hidden" id="itemId" />
+                    <input type="hidden" id="itemId"/>
                     <div class="row">
                         <div class="col-sm-8">
                             <div class="form-group row">
@@ -128,8 +129,8 @@
 </div>
 <script src="${pageContext.request.contextPath}/assets/js/AjaxFileUpload.js"></script>
 <script>
-    $(document).ready(function() {
-        $("#confirm").click(function (){
+    $(document).ready(function () {
+        $("#confirm").click(function () {
             let name = $("#itemName").val();
             let price = $("#price").val();
             let inventory = $("#inventory").val();
@@ -168,7 +169,7 @@
 
         $("#uploadFile").AjaxFileUpload({
             "action": "/upload_api/image",
-            "onComplete": function(filename, response) {
+            "onComplete": function (filename, response) {
                 response = response.substr(5, response.length - 11);
                 response = JSON.parse(response);
                 if (!response.status) {
@@ -181,7 +182,7 @@
 
         $("[actionDel]").click(function () {
             let id = $(this).attr('actionDel');
-            $.post("/admin/item_api/del", {id:id}, function (resp) {
+            $.post("/admin/item_api/del", {id: id}, function (resp) {
                 if (resp.status) {
                     alert("删除成功");
                     window.location.reload();
@@ -190,7 +191,7 @@
                 }
             })
         });
-        
+
         $("[actionModify]").click(function () {
             let id = $(this).attr('actionModify');
             let target = $(this).parent().parent().children();
@@ -201,7 +202,7 @@
             $("#inventory").val(target.eq(6).html());
             $("#itemModal").modal();
         });
-        
+
         $("#add").click(function () {
             document.getElementById("itemForm").reset();
             $("#itemIdm").val(0);

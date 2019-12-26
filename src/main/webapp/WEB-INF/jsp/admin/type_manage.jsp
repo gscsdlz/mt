@@ -124,7 +124,7 @@
             let str = JSON.stringify({
                 mainType: mainType, typeName: typeName
             });
-            send("/admin/type_api/add", {json_str:str});
+            send("/admin/type_api/add", {json_str: str});
         });
 
     });
@@ -166,7 +166,7 @@
         let str = JSON.stringify({
             id: id, mainType: mainType, typeName: typeName
         });
-        send("/admin/type_api/modify", {json_str:str});
+        send("/admin/type_api/modify", {json_str: str});
     }
 </script>
 <%@ include file="./common/footer.jsp" %>

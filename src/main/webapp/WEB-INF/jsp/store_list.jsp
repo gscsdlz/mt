@@ -17,10 +17,14 @@
                             <ul class="more clear" id="typeList">
                                 <c:forEach items="${types}" var="type">
                                     <c:if test="${type.id == curr_type && !curr_display.equals(\"all\")}">
-                                        <li style="min-width: 50px"><a class="on" href="javascript:;" typeId="${type.id}">${type.typeName}</a></li>
+                                        <li style="min-width: 50px">
+                                            <a class="on" href="javascript:;" typeId="${type.id}">${type.typeName}</a>
+                                        </li>
                                     </c:if>
                                     <c:if test="${type.id != curr_type}">
-                                        <li style="min-width: 50px"><a class="" href="javascript:;"  typeId="${type.id}">${type.typeName}</a></li>
+                                        <li style="min-width: 50px">
+                                            <a class="" href="javascript:;" typeId="${type.id}">${type.typeName}</a>
+                                        </li>
                                     </c:if>
                                 </c:forEach>
                             </ul>
@@ -69,15 +73,25 @@
                                             <div class="source clear">
                                                 <div class="star-cont">
                                                     <ul class="stars-ul">
-                                                        <li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li>
+                                                        <li><i class="iconfont icon-star_icon"></i></li>
+                                                        <li><i class="iconfont icon-star_icon"></i></li>
+                                                        <li><i class="iconfont icon-star_icon"></i></li>
+                                                        <li><i class="iconfont icon-star_icon"></i></li>
+                                                        <li><i class="iconfont icon-star_icon"></i></li>
                                                     </ul>
                                                     <ul class="stars-ul stars-light" style="width: ${store.storeStar.avgStar * 10}%;">
-                                                        <li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li>
+                                                        <li><i class="iconfont icon-star_icon"></i></li>
+                                                        <li><i class="iconfont icon-star_icon"></i></li>
+                                                        <li><i class="iconfont icon-star_icon"></i></li>
+                                                        <li><i class="iconfont icon-star_icon"></i></li>
+                                                        <li><i class="iconfont icon-star_icon"></i></li>
                                                     </ul>
                                                 </div>
-                                                <p>${store.storeStar.avgStar}分<span>${store.storeStar.totalRemark}条评论</span></p>
+                                                <p>${store.storeStar.avgStar}分<span>${store.storeStar.totalRemark}条评论</span>
+                                                </p>
                                             </div>
-                                            <p class="desc">${store.address}<span>人均￥${store.storeStar.avgPrice}</span></p>
+                                            <p class="desc">${store.address}<span>人均￥${store.storeStar.avgPrice}</span>
+                                            </p>
                                         </a>
                                     </div>
                                 </li>
@@ -110,33 +124,33 @@
         let notSpecial = true;
         $("#specialList").children().each(function () {
             if ($(this).children().eq(0).hasClass("on")) {
-                $("#clearAll").before('<span class="sel" selTarget="special">'+ $(this).children().eq(0).html() +'</span>');
+                $("#clearAll").before('<span class="sel" selTarget="special">' + $(this).children().eq(0).html() + '</span>');
                 notSpecial = false;
             }
         });
         if (notSpecial) {
-           $("#specialList").prev().addClass("on");
+            $("#specialList").prev().addClass("on");
         }
         $("#specialList").on('click', 'li', function () {
-           hrefArgs.special = $(this).children().eq(0).html();
-           redirect();
+            hrefArgs.special = $(this).children().eq(0).html();
+            redirect();
         });
 
 
         let notType = true;
         $("#typeList").children().each(function () {
             if ($(this).children().eq(0).hasClass("on")) {
-                $("#clearAll").before('<span class="sel" selTarget="type">'+ $(this).children().eq(0).html() +'</span>');
+                $("#clearAll").before('<span class="sel" selTarget="type">' + $(this).children().eq(0).html() + '</span>');
                 notType = false;
             }
         });
         if (notType) {
             $("#typeList").prev().addClass("on");
         }
-        $("#typeList").on('click', 'li', function() {
-           hrefArgs.display = "key";
-           hrefArgs.type_id = $(this).children().eq(0).attr('typeId');
-           redirect();
+        $("#typeList").on('click', 'li', function () {
+            hrefArgs.display = "key";
+            hrefArgs.type_id = $(this).children().eq(0).attr('typeId');
+            redirect();
         });
 
         if (notType && notSpecial) {
@@ -187,7 +201,7 @@
         }
         window.location.href = str;
     }
-    
+
     function getHot() {
         $.get("/store_api/get_hot?limit=10", function (resp) {
             if (resp.status) {
@@ -195,11 +209,11 @@
                 let str = '';
                 for (let i = 0; i < data.length; i++) {
                     str += ' <li>' +
-                        '  <a href="/store/detail?store_id='+data[i].id+'">' +
-                        '  <div class="pic"><div class="imgbox" style="height:100%;width:100%;"><img src="'+data[i].storeImg+'"></div></div>' +
-                        '  <p class="name">'+data[i].storeName+'</p>' +
-                        '  <p class="desc">'+data[i].address+'</p>' +
-                        '  <p class="price"><b>￥</b>'+data[i].storeStar.avgPrice+'</p>' +
+                        '  <a href="/store/detail?store_id=' + data[i].id + '">' +
+                        '  <div class="pic"><div class="imgbox" style="height:100%;width:100%;"><img src="' + data[i].storeImg + '"></div></div>' +
+                        '  <p class="name">' + data[i].storeName + '</p>' +
+                        '  <p class="desc">' + data[i].address + '</p>' +
+                        '  <p class="price"><b>￥</b>' + data[i].storeStar.avgPrice + '</p>' +
                         '  </a>' +
                         '</li>'
                 }

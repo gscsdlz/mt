@@ -6,7 +6,7 @@
         <div class="orders-container">
             <div class="clearfix">
                 <div style="float:left">
-                    <%@ include file="./common/me_left_menu.jsp"%>
+                    <%@ include file="./common/me_left_menu.jsp" %>
                 </div>
                 <div class="orders-box">
                     <div class="orders">
@@ -21,35 +21,35 @@
                         </div>
                         <div class="orders-body" id="statusAll">
                             <c:forEach items="${data}" var="order">
-                            <div>
-                                <div class="order-item clearfix">
-                                    <div class="order-img">
-                                        <a href="/store/detail?store_id=${order.storeId}" class="link">
-                                            <div><img src="${order.storeImg}" class="image"></div>
-                                        </a></div>
-                                    <div class="order-info">
-                                        <div class="info-box">
+                                <div>
+                                    <div class="order-item clearfix">
+                                        <div class="order-img">
                                             <a href="/store/detail?store_id=${order.storeId}" class="link">
-                                                <p class="order-title">${order.storeName}</p></a>
-                                            <p class="info">时间: ${order.createdAt}</p></div>
-                                    </div>
-                                    <div class="order-price">总价: ￥${order.totalPrice}</div>
-                                    <div class="order-status">${order.status}</div>
-                                    <div class="order-btn">
-                                        <input type="hidden" value="${order.id}"/>
-                                        <c:if test="${order.status.equals(\"用户创建订单\")}">
-                                        <button class="btn-fff">去支付</button>
-                                        </c:if>
-                                        <c:if test="${order.status.equals(\"订单已送出\")}">
-                                            <button class="btn-fff">确认签收</button>
-                                        </c:if>
-                                        <c:if test="${order.status.equals(\"订单已签收\")}">
-                                            <button class="btn-fff">去评价</button>
-                                        </c:if>
+                                                <div><img src="${order.storeImg}" class="image"></div>
+                                            </a></div>
+                                        <div class="order-info">
+                                            <div class="info-box">
+                                                <a href="/store/detail?store_id=${order.storeId}" class="link">
+                                                    <p class="order-title">${order.storeName}</p></a>
+                                                <p class="info">时间: ${order.createdAt}</p></div>
+                                        </div>
+                                        <div class="order-price">总价: ￥${order.totalPrice}</div>
+                                        <div class="order-status">${order.status}</div>
+                                        <div class="order-btn">
+                                            <input type="hidden" value="${order.id}"/>
+                                            <c:if test="${order.status.equals(\"用户创建订单\")}">
+                                                <button class="btn-fff">去支付</button>
+                                            </c:if>
+                                            <c:if test="${order.status.equals(\"订单已送出\")}">
+                                                <button class="btn-fff">确认签收</button>
+                                            </c:if>
+                                            <c:if test="${order.status.equals(\"订单已签收\")}">
+                                                <button class="btn-fff">去评价</button>
+                                            </c:if>
 
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
                             </c:forEach>
                         </div>
                         <div class="orders-body" id="statusPay" hidden>
@@ -81,26 +81,26 @@
                         <div class="orders-body" id="statusConfirm" hidden>
                             <c:forEach items="${data}" var="order">
                                 <c:if test="${order.status.equals(\"订单已送出\")}">
-                                <div>
-                                    <div class="order-item clearfix">
-                                        <div class="order-img">
-                                            <a href="/store/detail?store_id=${order.storeId}" class="link">
-                                                <div><img src="${order.storeImg}" class="image"></div>
-                                            </a></div>
-                                        <div class="order-info">
-                                            <div class="info-box">
+                                    <div>
+                                        <div class="order-item clearfix">
+                                            <div class="order-img">
                                                 <a href="/store/detail?store_id=${order.storeId}" class="link">
-                                                    <p class="order-title">${order.storeName}</p></a>
-                                                <p class="info">时间: ${order.createdAt}</p></div>
-                                        </div>
-                                        <div class="order-price">总价: ￥${order.totalPrice}</div>
-                                        <div class="order-status">${order.status}</div>
-                                        <div class="order-btn">
-                                            <input type="hidden" value="${order.id}"/>
-                                            <button class="btn-fff">确认签收</button>
+                                                    <div><img src="${order.storeImg}" class="image"></div>
+                                                </a></div>
+                                            <div class="order-info">
+                                                <div class="info-box">
+                                                    <a href="/store/detail?store_id=${order.storeId}" class="link">
+                                                        <p class="order-title">${order.storeName}</p></a>
+                                                    <p class="info">时间: ${order.createdAt}</p></div>
+                                            </div>
+                                            <div class="order-price">总价: ￥${order.totalPrice}</div>
+                                            <div class="order-status">${order.status}</div>
+                                            <div class="order-btn">
+                                                <input type="hidden" value="${order.id}"/>
+                                                <button class="btn-fff">确认签收</button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
                                 </c:if>
                             </c:forEach>
                         </div>
@@ -177,10 +177,18 @@
                         <td class="td-field-value">
                             <div class="star-cont">
                                 <ul class="stars-ul" id="starDown">
-                                    <li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li>
+                                    <li><i class="iconfont icon-star_icon"></i></li>
+                                    <li><i class="iconfont icon-star_icon"></i></li>
+                                    <li><i class="iconfont icon-star_icon"></i></li>
+                                    <li><i class="iconfont icon-star_icon"></i></li>
+                                    <li><i class="iconfont icon-star_icon"></i></li>
                                 </ul>
                                 <ul class="stars-ul stars-light" style="width: 20%;" id="starUp">
-                                    <li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li>
+                                    <li><i class="iconfont icon-star_icon"></i></li>
+                                    <li><i class="iconfont icon-star_icon"></i></li>
+                                    <li><i class="iconfont icon-star_icon"></i></li>
+                                    <li><i class="iconfont icon-star_icon"></i></li>
+                                    <li><i class="iconfont icon-star_icon"></i></li>
                                 </ul>
                             </div>
                         </td>
@@ -229,36 +237,36 @@
             handleURL()
         });
 
-        $("[tab-target]").click(function() {
+        $("[tab-target]").click(function () {
             $(this).parent().children().removeClass('active');
             $(this).addClass('active');
 
             let id = $(this).attr('tab-target');
             $('.orders-body').hide();
-            $('#'+id).show();
-            window.location.href = window.location.href.substr(0, location.href.indexOf("#"))+"#" + id;
+            $('#' + id).show();
+            window.location.href = window.location.href.substr(0, location.href.indexOf("#")) + "#" + id;
         });
 
         $(".btn-fff").click(function () {
-           if ($(this).html() === "去评价") {
+            if ($(this).html() === "去评价") {
                 $("#orderId").val($(this).prev().val());
                 $("#remarkModal").fadeIn();
-           } else {
-               let id = $(this).prev().val();
-               let status = $(this).html() === "去支付" ? 1 : 4;
-               $.post("/order_api/update_status", {id:id, status:status}, function (resp) {
-                   if (!resp.status) {
-                       alert(resp.info);
-                   } else {
-                       if (status === 1) {
-                           alert("支付成功");
-                       } else {
-                           alert("已确认收货");
-                       }
-                   }
-                   window.location.reload();
-               })
-           }
+            } else {
+                let id = $(this).prev().val();
+                let status = $(this).html() === "去支付" ? 1 : 4;
+                $.post("/order_api/update_status", {id: id, status: status}, function (resp) {
+                    if (!resp.status) {
+                        alert(resp.info);
+                    } else {
+                        if (status === 1) {
+                            alert("支付成功");
+                        } else {
+                            alert("已确认收货");
+                        }
+                    }
+                    window.location.reload();
+                })
+            }
         })
 
         $("#submitRemark").click(function () {
@@ -269,10 +277,10 @@
             let star = parseInt($("#starUp").css('width'));
             let orderId = $("#orderId").val();
 
-            $.post("/order_api/add_remark", {id:orderId, remark:remark, star:star}, function (resp) {
+            $.post("/order_api/add_remark", {id: orderId, remark: remark, star: star}, function (resp) {
                 if (resp.status) {
                     alert("评价成功");
-                 } else {
+                } else {
                     alert(resp.info);
                 }
                 window.location.reload()
@@ -286,11 +294,11 @@
             tag = "statusAll";
         }
         $("[tab-target]").parent().children().removeClass('active');
-        let key = "[tab-target='"+tag+"']";
+        let key = "[tab-target='" + tag + "']";
         $(key).addClass('active');
         let id = $(key).attr('tab-target');
         $('.orders-body').hide();
-        $('#'+id).show();
+        $('#' + id).show();
     }
 </script>
 <%@ include file="./common/footer.jsp" %>

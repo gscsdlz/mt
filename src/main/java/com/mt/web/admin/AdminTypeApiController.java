@@ -63,7 +63,7 @@ public class AdminTypeApiController {
     }
 
     @RequestMapping("/add")
-    private NormalResponse<String> addType(@RequestParam Map<String, Object> param) throws CustomException{
+    private NormalResponse<String> addType(@RequestParam Map<String, Object> param) throws CustomException {
         NormalResponse<String> response = new NormalResponse<>();
         ParamUtils p = new ParamUtils(param);
         Type t = p.parseJson("json_str", Type.class);
@@ -74,7 +74,7 @@ public class AdminTypeApiController {
     }
 
     @RequestMapping("/modify")
-    private NormalResponse<String> updateType(@RequestParam Map<String, Object> param) throws CustomException{
+    private NormalResponse<String> updateType(@RequestParam Map<String, Object> param) throws CustomException {
         NormalResponse<String> response = new NormalResponse<>();
         ParamUtils p = new ParamUtils(param);
         Type t = p.parseJson("json_str", Type.class);

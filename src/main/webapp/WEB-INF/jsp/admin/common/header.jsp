@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/fonts/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/vendor.bundle.base.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css">
-    <link rel="shortcut icon" href="${pageContext.request.contextPath}/assets/images/default/logo.png" />
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/assets/images/default/logo.png"/>
     <script src="${pageContext.request.contextPath}/assets/js/vendor.bundle.base.js"></script>
     <script src="${pageContext.request.contextPath}/assets/js/vendor.bundle.addons.js"></script>
     <script src="${pageContext.request.contextPath}/assets/js/off-canvas.js"></script>

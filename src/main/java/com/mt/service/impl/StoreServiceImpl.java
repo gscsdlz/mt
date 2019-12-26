@@ -57,7 +57,7 @@ public class StoreServiceImpl implements StoreService {
 
     @Override
     public List<Store> searchStoreName(String storeName, int page, int size) {
-        List<Store> res= store.getAllStoreByName("%" + storeName + "%", (page-1) * size, size);
+        List<Store> res = store.getAllStoreByName("%" + storeName + "%", (page - 1) * size, size);
         for (Store s : res) {
             s.setStoreStar(orderDao.getStoreStar(s.getId()));
         }
@@ -94,8 +94,7 @@ public class StoreServiceImpl implements StoreService {
             s.setStoreStar(orderDao.getStoreStar(s.getId()));
         }
 
-        switch (orderBy)
-        {
+        switch (orderBy) {
             case ORDER_BY_DEFAULT:
                 break;
             case ORDER_BY_REMARK:
@@ -123,7 +122,7 @@ public class StoreServiceImpl implements StoreService {
                 });
                 break;
         }
-        if ((page-1) * size >= res.size()) {
+        if ((page - 1) * size >= res.size()) {
             return null;
         } else {
             if (page * size + 1 > res.size()) {

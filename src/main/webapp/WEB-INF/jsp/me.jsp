@@ -6,7 +6,7 @@
         <div class="userexinfo-container">
             <div class="clearfix">
                 <div style="float:left">
-                    <%@ include file="./common/me_left_menu.jsp"%>
+                    <%@ include file="./common/me_left_menu.jsp" %>
                 </div>
                 <div class="userinfo-box">
                     <div class="my-page">
@@ -16,7 +16,8 @@
                                     <a href="#"><img src="${sessionScope.get("accountImg").toString()}" alt=""></a>
                                 </div>
                                 <div class="nick-name">
-                                    <a href="javascript:;"><p class="nick-name-txt">${sessionScope.get("username").toString()}</p></a>
+                                    <a href="javascript:;">
+                                        <p class="nick-name-txt">${sessionScope.get("username").toString()}</p></a>
                                     <p class="user-money">加入时间：${account.createdAt}</p>
                                 </div>
                                 <a href="/user/info" class="user-setting">个人信息设置 &gt;</a>

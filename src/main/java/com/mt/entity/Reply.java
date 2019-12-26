@@ -122,7 +122,7 @@ public class Reply {
 
     public String getContentText() {
         String newstr = "";
-        newstr = content.replaceAll("<[.[^>]]*>","");
+        newstr = content.replaceAll("<[.[^>]]*>", "");
         newstr = newstr.replaceAll(" ", "");
         return newstr;
     }

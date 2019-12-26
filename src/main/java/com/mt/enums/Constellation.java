@@ -16,6 +16,7 @@ public enum Constellation {
     Constellation_12("双鱼座");
 
     private String name;
+
     Constellation(String n) {
         name = n;
     }

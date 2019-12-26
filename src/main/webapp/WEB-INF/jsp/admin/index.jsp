@@ -67,7 +67,7 @@
                     <div class="clearfix">
                         <h4 class="card-title float-left">近一个月订单情况</h4>
                     </div>
-                    <div id="orderImg"  style="width: 100%; height: 400px"></div>
+                    <div id="orderImg" style="width: 100%; height: 400px"></div>
                 </div>
             </div>
         </div>
@@ -87,12 +87,12 @@
 
         let date = [
             <c:forEach items="${account_data}" var="d">
-                '${d.key}',
+            '${d.key}',
             </c:forEach>
         ];
         let accountData = [
             <c:forEach items="${account_data}" var="d">
-                ${d.value},
+            ${d.value},
             </c:forEach>
         ];
 
@@ -112,7 +112,7 @@
                     magicType: {type: ['line', 'bar']},
                 }
             },
-            xAxis:  {
+            xAxis: {
                 type: 'category',
                 boundaryGap: false,
                 data: date
@@ -122,9 +122,9 @@
             },
             series: [
                 {
-                    name:'人数',
-                    type:'line',
-                    data:accountData,
+                    name: '人数',
+                    type: 'line',
+                    data: accountData,
                     markPoint: {
                         data: [
                             {type: 'max', name: '最大值'},
@@ -151,7 +151,7 @@
                     magicType: {type: ['line', 'bar']},
                 }
             },
-            xAxis:  {
+            xAxis: {
                 type: 'category',
                 boundaryGap: false,
                 data: date
@@ -161,9 +161,9 @@
             },
             series: [
                 {
-                    name:'数量',
-                    type:'line',
-                    data:orderData,
+                    name: '数量',
+                    type: 'line',
+                    data: orderData,
                     color: "#2f4554",
                     markPoint: {
                         data: [

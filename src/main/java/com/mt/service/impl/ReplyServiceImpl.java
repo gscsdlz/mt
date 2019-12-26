@@ -34,7 +34,7 @@ public class ReplyServiceImpl implements ReplyService {
 
     @Override
     public List<Reply> getAllReply(int postId, int page, int size) {
-        List<Reply> res = replyDao.getAllReply(postId, (page-1) * size, size);
+        List<Reply> res = replyDao.getAllReply(postId, (page - 1) * size, size);
         int idx = 1;
         for (Reply r : res) {
             r.setIdx(idx++);
@@ -54,11 +54,11 @@ public class ReplyServiceImpl implements ReplyService {
 
     @Override
     public List<Reply> getMeReply(int accountId, int page, int size) {
-        return replyDao.getMeReply(accountId, (page-1) * size, size);
+        return replyDao.getMeReply(accountId, (page - 1) * size, size);
     }
 
     @Override
     public List<Reply> getReplyMe(int accountId, int page, int size) {
-        return replyDao.getReplyMe(accountId, (page-1) * size, size);
+        return replyDao.getReplyMe(accountId, (page - 1) * size, size);
     }
 }

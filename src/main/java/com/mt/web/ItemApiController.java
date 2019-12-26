@@ -18,5 +18,5 @@ import java.util.Map;
 @ResponseBody
 @RequestMapping(value = "/item_api", method = {RequestMethod.GET, RequestMethod.POST}, produces = "application/json;charset=utf-8")
 public class ItemApiController {
-    
+
 }

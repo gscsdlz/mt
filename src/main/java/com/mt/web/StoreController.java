@@ -44,7 +44,7 @@ public class StoreController {
         int page = p.getInteger("page", 1);
         int size = p.getInteger("size", 15);
         int cityId = 1;
-        if (request.getSession().getAttribute("recent_city") != null ) {
+        if (request.getSession().getAttribute("recent_city") != null) {
             cityId = Integer.parseInt(request.getSession().getAttribute("recent_city").toString());
         }
 

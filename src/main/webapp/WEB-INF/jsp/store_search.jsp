@@ -32,15 +32,25 @@
                                             <div class="source clear">
                                                 <div class="star-cont">
                                                     <ul class="stars-ul">
-                                                        <li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li>
+                                                        <li><i class="iconfont icon-star_icon"></i></li>
+                                                        <li><i class="iconfont icon-star_icon"></i></li>
+                                                        <li><i class="iconfont icon-star_icon"></i></li>
+                                                        <li><i class="iconfont icon-star_icon"></i></li>
+                                                        <li><i class="iconfont icon-star_icon"></i></li>
                                                     </ul>
                                                     <ul class="stars-ul stars-light" style="width: ${store.storeStar.avgStar * 10}%;">
-                                                        <li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li><li><i class="iconfont icon-star_icon"></i></li>
+                                                        <li><i class="iconfont icon-star_icon"></i></li>
+                                                        <li><i class="iconfont icon-star_icon"></i></li>
+                                                        <li><i class="iconfont icon-star_icon"></i></li>
+                                                        <li><i class="iconfont icon-star_icon"></i></li>
+                                                        <li><i class="iconfont icon-star_icon"></i></li>
                                                     </ul>
                                                 </div>
-                                                <p>${store.storeStar.avgStar}分<span>${store.storeStar.totalRemark}条评论</span></p>
+                                                <p>${store.storeStar.avgStar}分<span>${store.storeStar.totalRemark}条评论</span>
+                                                </p>
                                             </div>
-                                            <p class="desc">${store.address}<span>人均￥${store.storeStar.avgPrice}</span></p>
+                                            <p class="desc">${store.address}<span>人均￥${store.storeStar.avgPrice}</span>
+                                            </p>
                                         </a>
                                     </div>
                                 </li>
@@ -63,6 +73,7 @@
         getHot();
 
     });
+
     function getHot() {
         $.get("/store_api/get_hot?limit=10", function (resp) {
             if (resp.status) {
@@ -70,11 +81,11 @@
                 let str = '';
                 for (let i = 0; i < data.length; i++) {
                     str += ' <li>' +
-                        '  <a href="/store/detail?store_id='+data[i].id+'">' +
-                        '  <div class="pic"><div class="imgbox" style="height:100%;width:100%;"><img src="'+data[i].storeImg+'"></div></div>' +
-                        '  <p class="name">'+data[i].storeName+'</p>' +
-                        '  <p class="desc">'+data[i].address+'</p>' +
-                        '  <p class="price"><b>￥</b>'+data[i].storeStar.avgPrice+'</p>' +
+                        '  <a href="/store/detail?store_id=' + data[i].id + '">' +
+                        '  <div class="pic"><div class="imgbox" style="height:100%;width:100%;"><img src="' + data[i].storeImg + '"></div></div>' +
+                        '  <p class="name">' + data[i].storeName + '</p>' +
+                        '  <p class="desc">' + data[i].address + '</p>' +
+                        '  <p class="price"><b>￥</b>' + data[i].storeStar.avgPrice + '</p>' +
                         '  </a>' +
                         '</li>'
                 }

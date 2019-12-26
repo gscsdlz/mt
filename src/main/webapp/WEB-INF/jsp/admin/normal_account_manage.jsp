@@ -64,7 +64,8 @@
                                         </c:if>
                                         <c:if test="${account.disabled == 1}">
                                             <button actionUnlock="${account.id}" title="解除禁用" class="btn btn-danger btn-sm"
-                                                    type="button"><span class="mdi mdi-lock-open mdi-md"></span></button>
+                                                    type="button"><span class="mdi mdi-lock-open mdi-md"></span>
+                                            </button>
                                         </c:if>
 
                                         <button actionReset="${account.id}" title="重置密码" class="btn btn-danger btn-sm"
@@ -94,12 +95,12 @@
 
         $("[actionLock]").click(function () {
             let id = $(this).attr('actionLock');
-            send("/admin/account_api/lock", {id:id, disabled:1});
+            send("/admin/account_api/lock", {id: id, disabled: 1});
         });
 
         $("[actionUnlock]").click(function () {
             let id = $(this).attr('actionUnlock');
-            send("/admin/account_api/lock", {id:id, disabled:0});
+            send("/admin/account_api/lock", {id: id, disabled: 0});
         })
     });
 

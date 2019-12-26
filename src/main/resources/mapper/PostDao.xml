@@ -6,20 +6,20 @@
     <select id="getAllPost" resultType="Post">
         SELECT m_post.*, m_account.username, m_account.account_img
         FROM m_post
-                 LEFT JOIN m_account ON (m_account.id = m_post.manager_id)
+        LEFT JOIN m_account ON (m_account.id = m_post.manager_id)
         LIMIT #{offset}, #{limit};
     </select>
     <select id="getPostById" resultType="Post">
         SELECT m_post.*, m_account.username, m_account.account_img
         FROM m_post
-                 LEFT JOIN m_account ON (m_account.id = m_post.manager_id)
+        LEFT JOIN m_account ON (m_account.id = m_post.manager_id)
         WHERE m_post.id = #{id};
     </select>
 
     <select id="getAllPostByUser" resultType="Post">
         SELECT m_post.*, m_account.username, m_account.account_img
         FROM m_post
-                 LEFT JOIN m_account ON (m_account.id = m_post.manager_id)
+        LEFT JOIN m_account ON (m_account.id = m_post.manager_id)
         WHERE manager_id = #{manager_id}
         LIMIT #{offset}, #{limit};
     </select>
@@ -50,7 +50,7 @@
     <select id="getHotPostByDate" resultType="Post">
         SELECT m_post.*, m_account.username, m_account.account_img
         FROM m_post
-                 LEFT JOIN m_account ON (m_account.id = m_post.manager_id)
+        LEFT JOIN m_account ON (m_account.id = m_post.manager_id)
         ORDER BY m_post.created_at
         LIMIT 20;
     </select>
@@ -58,7 +58,7 @@
     <select id="getHotPostByReply" resultType="Post">
         SELECT m_post.*, m_account.username, m_account.account_img
         FROM m_post
-                 LEFT JOIN m_account ON (m_account.id = m_post.manager_id)
+        LEFT JOIN m_account ON (m_account.id = m_post.manager_id)
         ORDER BY reply_num
         LIMIT 20;
     </select>
@@ -72,7 +72,7 @@
     <select id="getPostByDate" resultType="Post">
         SELECT m_post.*, m_account.username, m_account.account_img
         FROM m_post
-                 LEFT JOIN m_account ON (m_account.id = m_post.manager_id)
+        LEFT JOIN m_account ON (m_account.id = m_post.manager_id)
         WHERE m_post.created_at >= #{created_at_l} AND m_post.created_at &lt;= #{created_at_r}
         ORDER BY m_post.created_at
         LIMIT 10

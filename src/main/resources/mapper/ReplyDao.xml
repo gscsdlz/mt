@@ -5,15 +5,15 @@
 <mapper namespace="com.mt.dao.ReplyDao">
     <select id="getAllReply" resultType="Reply">
         SELECT r1.*,
-               a1.username   as username,
-               a2.username   as reply_username,
-               r2.content    as reply_content,
-               r2.created_at as reply_time,
-               a1.account_img
+        a1.username as username,
+        a2.username as reply_username,
+        r2.content as reply_content,
+        r2.created_at as reply_time,
+        a1.account_img
         FROM m_reply as r1
-                 LEFT JOIN m_account as a1 ON (r1.account_id = a1.id)
-                 LEFT JOIN m_reply as r2 ON (r1.reply_id = r2.id)
-                 LEFT JOIN m_account as a2 ON (r2.account_id = a2.id)
+        LEFT JOIN m_account as a1 ON (r1.account_id = a1.id)
+        LEFT JOIN m_reply as r2 ON (r1.reply_id = r2.id)
+        LEFT JOIN m_account as a2 ON (r2.account_id = a2.id)
         WHERE r1.post_id = #{post_id}
         ORDER BY r1.created_at ASC
         LIMIT #{offset}, #{limit};
@@ -41,31 +41,31 @@
 
     <select id="getMeReply" resultType="Reply">
         SELECT r1.*,
-               a1.username   as username,
-               a2.username   as reply_username,
-               r2.content    as reply_content,
-               r2.created_at as reply_time,
-               a1.account_img
+        a1.username as username,
+        a2.username as reply_username,
+        r2.content as reply_content,
+        r2.created_at as reply_time,
+        a1.account_img
         FROM m_reply as r1
-                 LEFT JOIN m_account as a1 ON (r1.account_id = a1.id)
-                 LEFT JOIN m_reply as r2 ON (r1.reply_id = r2.id)
-                 LEFT JOIN m_account as a2 ON (r2.account_id = a2.id)
-        WHERE r1.account_id = ${account_id}
+        LEFT JOIN m_account as a1 ON (r1.account_id = a1.id)
+        LEFT JOIN m_reply as r2 ON (r1.reply_id = r2.id)
+        LEFT JOIN m_account as a2 ON (r2.account_id = a2.id)
+        WHERE r1.account_id = #{account_id}
         ORDER BY r1.created_at ASC
         LIMIT #{offset}, #{limit};
     </select>
 
     <select id="getReplyMe" resultType="Reply">
         SELECT r1.*,
-               a1.username   as username,
-               a2.username   as reply_username,
-               r2.content    as reply_content,
-               r2.created_at as reply_time,
-               a1.account_img
+        a1.username as username,
+        a2.username as reply_username,
+        r2.content as reply_content,
+        r2.created_at as reply_time,
+        a1.account_img
         FROM m_reply as r1
-                 LEFT JOIN m_account as a1 ON (r1.account_id = a1.id)
-                 LEFT JOIN m_reply as r2 ON (r1.reply_id = r2.id)
-                 LEFT JOIN m_account as a2 ON (r2.account_id = a2.id)
+        LEFT JOIN m_account as a1 ON (r1.account_id = a1.id)
+        LEFT JOIN m_reply as r2 ON (r1.reply_id = r2.id)
+        LEFT JOIN m_account as a2 ON (r2.account_id = a2.id)
         WHERE r2.account_id = ${account_id}
         ORDER BY r1.created_at ASC
         LIMIT #{offset}, #{limit};

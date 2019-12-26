@@ -9,24 +9,27 @@
  * Licensed under the MIT license ( http://www.opensource.org/licenses/MIT )
  */
 
-;(function($) {
-    $.fn.AjaxFileUpload = function(options) {
+;(function ($) {
+    $.fn.AjaxFileUpload = function (options) {
 
         var defaults = {
-                action:     "upload.php",
-                onChange:   function(filename) {},
-                onSubmit:   function(filename) {},
-                onComplete: function(filename, response) {}
+                action: "upload.php",
+                onChange: function (filename) {
+                },
+                onSubmit: function (filename) {
+                },
+                onComplete: function (filename, response) {
+                }
             },
             settings = $.extend({}, defaults, options),
-            randomId = (function() {
+            randomId = (function () {
                 var id = 0;
                 return function () {
                     return "_AjaxFileUpload" + id++;
                 };
             })();
 
-        return this.each(function() {
+        return this.each(function () {
             var $this = $(this);
             if ($this.is("input") && $this.attr("type") === "file") {
                 $this.bind("change", onChange);
@@ -35,11 +38,11 @@
 
         function onChange(e) {
             var $element = $(e.target),
-                id       = $element.attr('id'),
-                $clone   = $element.removeAttr('id').clone().attr('id', id).AjaxFileUpload(options),
+                id = $element.attr('id'),
+                $clone = $element.removeAttr('id').clone().attr('id', id).AjaxFileUpload(options),
                 filename = $element.val().replace(/.*(\/|\\)/, ""),
-                iframe   = createIframe(),
-                form     = createForm(iframe);
+                iframe = createIframe(),
+                form = createForm(iframe);
 
             // We append a clone since the original input will be destroyed
             $clone.insertBefore($element);
@@ -48,7 +51,11 @@
 
             iframe.bind("load", {element: $clone, form: form, filename: filename}, onComplete);
 
-            form.append($element).bind("submit", {element: $clone, iframe: iframe, filename: filename}, onSubmit).submit();
+            form.append($element).bind("submit", {
+                element: $clone,
+                iframe: iframe,
+                filename: filename
+            }, onSubmit).submit();
         }
 
         function onSubmit(e) {
@@ -72,9 +79,9 @@
             }
         }
 
-        function onComplete (e) {
-            var $iframe  = $(e.target),
-                doc      = ($iframe[0].contentWindow || $iframe[0].contentDocument).document,
+        function onComplete(e) {
+            var $iframe = $(e.target),
+                doc = ($iframe[0].contentWindow || $iframe[0].contentDocument).document,
                 response = doc.body.innerHTML;
 
             if (response) {

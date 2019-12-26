@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>自定义标题</title>
-    <link rel="shortcut icon" href="${pageContext.request.contextPath}/assets/images/default/logo.png" />
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/assets/images/default/logo.png"/>
     <link rel="stylesheet" href="/assets/css/com_header.css">
     <link rel="stylesheet" href="/assets/css/main.css">
     <link rel="stylesheet" href="/assets/css/custom.css">
@@ -37,27 +37,27 @@
                 <ul class="header-nav-first">
                     <li class="has-child" id="me">
                         <c:if test="${sessionScope.get(\"id\") != null}">
-                        <a rel="nofollow" href="/user/me">个人中心</a>
-                        <ul class="header-nav-my header-nav-second" id="meList">
-                            <a rel="nofollow" href="#"></a>
-                            <li>
-                                <a rel="nofollow" href="/user/order#statusAll">我的订单</a>
-                            </li>
-                            <li>
-                                <a rel="nofollow" href="/user/post">我的帖子</a>
-                            </li>
-                            <li>
-                                <a rel="nofollow" href="/user/info">账户设置</a>
-                            </li>
-                            <c:if test="${Integer.parseInt(sessionScope.get(\"pri\").toString()) != 2}">
+                            <a rel="nofollow" href="/user/me">个人中心</a>
+                            <ul class="header-nav-my header-nav-second" id="meList">
+                                <a rel="nofollow" href="#"></a>
                                 <li>
-                                    <a rel="nofollow" href="/admin/index">管理后台</a>
+                                    <a rel="nofollow" href="/user/order#statusAll">我的订单</a>
                                 </li>
-                            </c:if>
-                            <li>
-                                <a rel="nofollow" href="/logout">退出登录</a>
-                            </li>
-                        </ul>
+                                <li>
+                                    <a rel="nofollow" href="/user/post">我的帖子</a>
+                                </li>
+                                <li>
+                                    <a rel="nofollow" href="/user/info">账户设置</a>
+                                </li>
+                                <c:if test="${Integer.parseInt(sessionScope.get(\"pri\").toString()) != 2}">
+                                    <li>
+                                        <a rel="nofollow" href="/admin/index">管理后台</a>
+                                    </li>
+                                </c:if>
+                                <li>
+                                    <a rel="nofollow" href="/logout">退出登录</a>
+                                </li>
+                            </ul>
                         </c:if>
                     </li>
                 </ul>
@@ -66,7 +66,9 @@
     </div>
     <div class="header-content clearfix">
         <div class="header-title-module">
-            <div class="header-title"><img src="/assets/images/default/logo.png" alt="" style="cursor: pointer" onclick="window.location.href='/'"></div>
+            <div class="header-title">
+                <img src="/assets/images/default/logo.png" alt="" style="cursor: pointer" onclick="window.location.href='/'">
+            </div>
         </div>
         <div class="header-search-module">
             <div class="header-search-block">
@@ -88,7 +90,7 @@
         $("#search").click(function () {
             let key = $("#searchText").val();
             if (key.length !== 0) {
-                window.location.href = "/store/search?key=" +  key;
+                window.location.href = "/store/search?key=" + key;
             }
         })
     })

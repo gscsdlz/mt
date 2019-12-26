@@ -109,7 +109,8 @@ public class Order {
     public List<Item> getItemList() {
         ObjectMapper mapper = new ObjectMapper();
         try {
-            return mapper.readValue(items, new TypeReference<List<Item>>() {});
+            return mapper.readValue(items, new TypeReference<List<Item>>() {
+            });
         } catch (Exception e) {
             e.printStackTrace();
         }

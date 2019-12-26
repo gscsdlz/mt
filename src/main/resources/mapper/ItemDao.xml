@@ -6,7 +6,7 @@
     <select id="getAllItemByStore" resultType="Item">
         SELECT m_item.*, store_name
         FROM m_item
-                 LEFT JOIN m_store ON (m_item.store_id = m_store.id)
+        LEFT JOIN m_store ON (m_item.store_id = m_store.id)
         WHERE store_id = #{store_id}
         LIMIT ${offset}, ${limit};
     </select>
@@ -16,7 +16,7 @@
     <select id="getAllItem" resultType="Item">
         SELECT m_item.*, store_name
         FROM m_item
-                 LEFT JOIN m_store ON (m_item.store_id = m_store.id)
+        LEFT JOIN m_store ON (m_item.store_id = m_store.id)
         LIMIT ${offset}, ${limit};
     </select>
     <insert id="addItem">
@@ -26,10 +26,10 @@
     <update id="updateItem">
         UPDATE m_item
         SET item_name = #{item_name},
-            item_img  = #{item_img},
-            price     = #{price},
-            inventory = #{inventory},
-            store_id = #{store_id}
+        item_img = #{item_img},
+        price = #{price},
+        inventory = #{inventory},
+        store_id = #{store_id}
         WHERE id = #{id};
     </update>
     <delete id="delItem">

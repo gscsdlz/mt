@@ -6,6 +6,7 @@ public enum AccountType {
     USER("普通用户");
 
     private String typeName;
+
     AccountType(String name) {
         typeName = name;
     }

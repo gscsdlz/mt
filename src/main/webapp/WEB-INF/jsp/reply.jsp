@@ -12,36 +12,36 @@
                         </h3>
                         <div class="cont" style="margin-top: 10px;padding-top: 5px">
                             <c:forEach items="${replyList}" var="reply">
-                            <div class="row" style="border-bottom: 1px solid #e5e5e5;padding-bottom: 5px">
-                                <div class="col-md-3">
-                                    <div class="reply-info">
-                                        <p class="reply-number">#</p>
-                                        <img src="${reply.accountImg}">
-                                        <p class="reply-info-username">${reply.username}</p>
-                                        <p class="reply-info-more">加入于 2019-08-14</p>
+                                <div class="row" style="border-bottom: 1px solid #e5e5e5;padding-bottom: 5px">
+                                    <div class="col-md-3">
+                                        <div class="reply-info">
+                                            <p class="reply-number">#</p>
+                                            <img src="${reply.accountImg}">
+                                            <p class="reply-info-username">${reply.username}</p>
+                                            <p class="reply-info-more">加入于 2019-08-14</p>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-8" style="border-left: 1px solid #e5e5e5;">
-                                    <div class="reply-content">
-                                        <c:if test="${reply.replyId != 0}">
-                                            <div class="replyed">
-                                                    ${reply.replyUsername}@${reply.replyContent}
-                                            </div>
-                                        </c:if>
-                                        <div class="reply">${reply.content}</div>
-                                        <div class="reply-more" replyId="${reply.id}">
-                                            <c:if test="${sessionScope.get(\"id\") != null}">
-                                                <span><img actionReply src="/assets/images/ui/all_reply.png" style="width: 20px"/></span>
-                                                <c:if test="${Integer.parseInt(sessionScope.get(\"id\").toString()) == reply.accountId}">
-                                                    <span><img actionDel src="/assets/images/ui/trash.png" style="width: 20px"/></span>
-                                                    <span><img actionEdit src="/assets/images/ui/edit.png" style="width: 20px"/></span>
-                                                </c:if>
+                                    <div class="col-md-8" style="border-left: 1px solid #e5e5e5;">
+                                        <div class="reply-content">
+                                            <c:if test="${reply.replyId != 0}">
+                                                <div class="replyed">
+                                                        ${reply.replyUsername}@${reply.replyContent}
+                                                </div>
                                             </c:if>
-                                            <span>发布于 ${reply.createdAt.substring(0, 19)}</span>
+                                            <div class="reply">${reply.content}</div>
+                                            <div class="reply-more" replyId="${reply.id}">
+                                                <c:if test="${sessionScope.get(\"id\") != null}">
+                                                    <span><img actionReply src="/assets/images/ui/all_reply.png" style="width: 20px"/></span>
+                                                    <c:if test="${Integer.parseInt(sessionScope.get(\"id\").toString()) == reply.accountId}">
+                                                        <span><img actionDel src="/assets/images/ui/trash.png" style="width: 20px"/></span>
+                                                        <span><img actionEdit src="/assets/images/ui/edit.png" style="width: 20px"/></span>
+                                                    </c:if>
+                                                </c:if>
+                                                <span>发布于 ${reply.createdAt.substring(0, 19)}</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                             </c:forEach>
                         </div>
                     </div>
@@ -49,7 +49,9 @@
                         <ul class="pagination-custom">
                             <c:forEach begin="1" end="${total}" step="1" var="i">
                                 <c:if test="${i == page}">
-                                    <li><a  style="background-color: #337ab7;color: white;cursor: not-allowed" href="#"><span>${i}</span></a></li>
+                                    <li>
+                                        <a style="background-color: #337ab7;color: white;cursor: not-allowed" href="#"><span>${i}</span></a>
+                                    </li>
                                 </c:if>
                                 <c:if test="${i != page}">
                                     <li><a href="/post/all?page=${i}"><span>${i}</span></a></li>
@@ -128,7 +130,7 @@
 
         $("[actionDel]").click(function () {
             let id = $(this).parent().parent().attr('replyId');
-            $.post("/post_api/del_reply", {id:id}, function(resp) {
+            $.post("/post_api/del_reply", {id: id}, function (resp) {
                 if (resp.status) {
                     alert("删除成功");
                     window.location.reload();
@@ -149,7 +151,7 @@
             currentId = $(this).parent().parent().attr('replyId');
             let content = "";
             let floor = $(this).parent().parent().parent().parent().prev().children().eq(0).children().eq(0).html();
-            $("#submit").html("回复" +floor +"楼");
+            $("#submit").html("回复" + floor + "楼");
             um.setContent(content);
         });
 
@@ -167,7 +169,7 @@
                 id = currentId;
                 url = "/post_api/append_reply";
             }
-            $.post(url, {id:id, content:content, postId:postId}, function (resp) {
+            $.post(url, {id: id, content: content, postId: postId}, function (resp) {
                 if (resp.status) {
                     alert("成功");
                     window.location.reload();

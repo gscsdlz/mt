@@ -36,7 +36,7 @@ public class UploadApiController {
                 response.setInfo("当前文件类型不支持上传");
             } else {
                 String path = request.getServletContext().getRealPath("/assets/images/upload");
-                String []tmpArr = file.getOriginalFilename().split("\\.");
+                String[] tmpArr = file.getOriginalFilename().split("\\.");
                 if (tmpArr.length < 2) {
                     response.setInfo("文件名无法识别");
                 } else {

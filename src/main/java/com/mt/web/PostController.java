@@ -50,7 +50,7 @@ public class PostController {
     }
 
     @RequestMapping("/all")
-    private String all(@RequestParam Map<String, Object> param, Model  model) {
+    private String all(@RequestParam Map<String, Object> param, Model model) {
         ParamUtils p = new ParamUtils(param);
         int page = p.getInteger("page", 1);
         int size = p.getInteger("size", 15);

@@ -16,15 +16,15 @@
 
     <update id="updateAdmin">
         UPDATE m_account
-        SET pri      = #{pri},
-            disabled = #{disabled},
-            username = #{username}
+        SET pri = #{pri},
+        disabled = #{disabled},
+        username = #{username}
         WHERE id = #{id};
     </update>
     <select id="getAllAccountByPri" resultType="Account">
         SELECT m_account.*, city
         FROM m_account
-                 LEFT JOIN m_city ON (m_account.recent_city = m_city.id)
+        LEFT JOIN m_city ON (m_account.recent_city = m_city.id)
         WHERE pri = #{pri}
         LIMIT #{offset}, #{limit};
     </select>
@@ -55,12 +55,12 @@
     <update id="updateUserInfo">
         UPDATE m_account
         SET username = #{username},
-            recent_city = #{recent_city},
-            account_img = #{account_img},
-            sex = #{sex},
-            birth = #{birth},
-            constellation = #{constellation},
-            hobby = #{hobby}
+        recent_city = #{recent_city},
+        account_img = #{account_img},
+        sex = #{sex},
+        birth = #{birth},
+        constellation = #{constellation},
+        hobby = #{hobby}
         WHERE id = #{id};
     </update>
 

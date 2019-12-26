@@ -209,7 +209,7 @@
                         mainList += '<li class="nav-li"><span class="nav-text-wrapper"><span><a href="#" class="link nav-text">' + name + '</a></span></span><i class="nav-right-arrow"></i></li>'
                         let id = data[0].id;
 
-                        let str = '<div class="category-nav-detail-wrapper" typeTarget="'+name+'">' +
+                        let str = '<div class="category-nav-detail-wrapper" typeTarget="' + name + '">' +
                             '<div class="category-nav-detail active">' +
                             '        <div class="detail-area">' +
                             '            <div class="detail-title-wrapper clearfix">' +

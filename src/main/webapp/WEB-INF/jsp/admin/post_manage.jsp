@@ -55,9 +55,9 @@
 </div>
 <script>
     $(document).ready(function () {
-        $("[actionDel]").click(function() {
+        $("[actionDel]").click(function () {
             let id = $(this).attr('actionDel');
-            send("/admin/post_api/del_post", {post_id:id});
+            send("/admin/post_api/del_post", {post_id: id});
         });
     });
 

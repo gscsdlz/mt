@@ -30,12 +30,12 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public List<Post> getAllPost(int page, int size) {
-        return postDao.getAllPost((page-1) * size, size);
+        return postDao.getAllPost((page - 1) * size, size);
     }
 
     @Override
     public List<Post> getAllPostByUser(int accountId, int page, int size) {
-        return postDao.getAllPostByUser(accountId, (page-1) * size, size);
+        return postDao.getAllPostByUser(accountId, (page - 1) * size, size);
     }
 
     @Override

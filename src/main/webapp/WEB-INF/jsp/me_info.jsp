@@ -6,7 +6,7 @@
         <div class="setting-container">
             <div class="clearfix">
                 <div style="float:left">
-                    <%@ include file="./common/me_left_menu.jsp"%>
+                    <%@ include file="./common/me_left_menu.jsp" %>
                 </div>
                 <div class="setting-content" id="basicInfo">
                     <div class="head">

@@ -7,8 +7,8 @@
     <select id="getAllOrderByUser" resultType="Order">
         SELECT m_order.*, m_account.username, m_store.store_name, m_store.store_img
         FROM m_order
-                 LEFT JOIN m_account ON (m_order.account_id = m_account.id)
-                 LEFT JOIN m_store ON (m_order.store_id = m_store.id)
+        LEFT JOIN m_account ON (m_order.account_id = m_account.id)
+        LEFT JOIN m_store ON (m_order.store_id = m_store.id)
         WHERE account_id = #{account_id}
         LIMIT ${offset}, ${limit}
     </select>
@@ -16,8 +16,8 @@
     <select id="getAllOrder" resultType="Order">
         SELECT m_order.*, m_account.username, m_store.store_name, m_store.store_img
         FROM m_order
-                 LEFT JOIN m_account ON (m_order.account_id = m_account.id)
-                 LEFT JOIN m_store ON (m_order.store_id = m_store.id)
+        LEFT JOIN m_account ON (m_order.account_id = m_account.id)
+        LEFT JOIN m_store ON (m_order.store_id = m_store.id)
         WHERE order_status != 5
         LIMIT ${offset}, ${limit}
     </select>
@@ -25,7 +25,7 @@
     <select id="getAllOrderByStore" resultType="Order">
         SELECT *
         FROM m_order
-                 LEFT JOIN m_item ON (m_order.items = m_item.id)
+        LEFT JOIN m_item ON (m_order.items = m_item.id)
         WHERE m_item.store_id = #{store_id}
         LIMIT ${offset}, ${limit}
     </select>
@@ -56,8 +56,8 @@
     <select id="getHistoryOrder" resultType="Order">
         SELECT m_order.*, m_account.username, m_store.store_name, m_store.store_img
         FROM m_order
-                 LEFT JOIN m_account ON (m_order.account_id = m_account.id)
-                 LEFT JOIN m_store ON (m_order.store_id = m_store.id)
+        LEFT JOIN m_account ON (m_order.account_id = m_account.id)
+        LEFT JOIN m_store ON (m_order.store_id = m_store.id)
         WHERE order_status = 5
         LIMIT #{offset}, #{limit}
     </select>
@@ -77,7 +77,7 @@
     <select id="getRemarkOrderByDate" resultType="UserRemark">
         SELECT m_account.account_img, m_account.username, m_order.star, m_order.remark, m_order.created_at
         FROM m_order
-                 LEFT JOIN m_account ON (m_account.id = m_order.account_id)
+        LEFT JOIN m_account ON (m_account.id = m_order.account_id)
         WHERE store_id = #{store_id} AND order_status = 5
         ORDER BY m_order.created_at DESC
         LIMIT ${offset}, ${limit}
@@ -86,8 +86,8 @@
     <select id="getRemarkOrderByStar" resultType="UserRemark">
         SELECT m_account.account_img, m_account.username, m_order.star, m_order.remark, m_order.created_at
         FROM m_order
-                 LEFT JOIN m_account ON (m_account.id = m_order.account_id)
-        WHERE store_id = #{store_id}  AND order_status = 5
+        LEFT JOIN m_account ON (m_account.id = m_order.account_id)
+        WHERE store_id = #{store_id} AND order_status = 5
         ORDER BY m_order.star DESC
         LIMIT ${offset}, ${limit}
     </select>

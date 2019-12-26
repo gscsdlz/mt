@@ -43,9 +43,12 @@
                         <table style="width: 100%;text-align: center;font-size: 14px">
                             <tbody>
                             <tr>
-                                <td style="width: 33.3%"><img style="width: 80%" src="/assets/images/ui/today_total.png"></td>
-                                <td style="width: 33.3%"><img style="width: 80%" src="/assets/images/ui/all_post.png"></td>
-                                <td style="width: 33.3%"><img style="width: 80%" src="/assets/images/ui/all_reply.png"></td>
+                                <td style="width: 33.3%">
+                                    <img style="width: 80%" src="/assets/images/ui/today_total.png"></td>
+                                <td style="width: 33.3%"><img style="width: 80%" src="/assets/images/ui/all_post.png">
+                                </td>
+                                <td style="width: 33.3%"><img style="width: 80%" src="/assets/images/ui/all_reply.png">
+                                </td>
                             </tr>
                             <tr>
                                 <td>今日帖子</td>
@@ -60,7 +63,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="guess-you-like"  style="margin-top: 10px">
+                    <div class="guess-you-like" style="margin-top: 10px">
                         <h4>今日榜单</h4>
                         <table style="width: 200px">
                             <tbody>
@@ -101,7 +104,7 @@
 
         $("#addPost").click(function () {
             let title = $("#title").val();
-            $.post("/post_api/add_post", {title:title}, function (resp) {
+            $.post("/post_api/add_post", {title: title}, function (resp) {
                 if (resp.status) {
                     alert("添加成功");
                     window.location.reload();
@@ -140,8 +143,8 @@
                 str += '<tr>';
             }
             str += '<td class="post-td-img">' +
-                    '<img src="'+data[i].accountImg+'"</td>' +
-                    '<td class="post-td-title"><span onclick="window.location.href=\'/post/show?id='+data[i].id+'\'">'+data[i].postTitle+'</span>' +
+                '<img src="' + data[i].accountImg + '"</td>' +
+                '<td class="post-td-title"><span onclick="window.location.href=\'/post/show?id=' + data[i].id + '\'">' + data[i].postTitle + '</span>' +
                 '</td>';
             count++;
             if (count === 2) {

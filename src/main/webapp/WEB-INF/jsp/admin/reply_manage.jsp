@@ -67,12 +67,12 @@
     $(document).ready(function () {
         $("[actionDel]").click(function () {
             let id = $(this).attr('actionDel');
-            send("/admin/post_api/del_reply", {id:id})
+            send("/admin/post_api/del_reply", {id: id})
         });
-        
+
         $("[actionDelAll]").click(function () {
             let id = $(this).attr('actionDelAll');
-            send("/admin/post_api/del_post", {post_id:id})
+            send("/admin/post_api/del_post", {post_id: id})
         })
     });
 
